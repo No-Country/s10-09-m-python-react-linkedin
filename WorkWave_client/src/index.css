@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body,
+#root,
+.app {
+  height: 100%;
+  /* background: linear-gradient(180deg, rgba(37,47,146,1) 0%, rgba(0,2,3,1) 60%, rgba(0,0,0,1) 100%); */
+  background-image: url("./assets/fondo1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  @apply text-white;
+}
