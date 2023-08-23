@@ -1,9 +1,7 @@
-
-import './index.css'
-import Login from './pages/login/Login'
+import Buttons from "./components/Buttons";
+import Login from "./pages/login/Login";
+import "./App.css";
 function App() {
-
-
   return (
     <>
     <Login/>
@@ -11,4 +9,4 @@ function App() {
   )
 } 
 
-export default App
+export default App;

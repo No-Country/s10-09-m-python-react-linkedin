@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { BiArrowBack } from 'react-icons/bi';
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,14 +19,21 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className=" flex items-center justify-center  bg-[url('./assets/fondo.png')] bg-no-repeat bg-right-left ">
       <form
         onSubmit={handleSubmit}
-        className="p-6 bg-white border rounded-lg shadow-md w-full max-w-md bg-black"
+        className="p-6  h-screen    mt-32 w-full max-w-md  md:w-1/3 lg:w-1/4"
       >
-        <h2 className="text-2xl font-semibold mb-4 text-white">Iniciar sesión</h2>
+        <div className="flex">
+          <div><BiArrowBack className="text-xl mr-2 mt-2 text-white"/> </div>
+              
+              <h2 className="text-2xl  mb-4 text-white">INGRESA TUS DATOS</h2>
+        </div>
+    
+        <p className='text-white'>Completa tus datos personales, para acceder a tu cuenta en Workwave.</p>
+        <div className="inputsContainer mt-8">
         <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium">
+          <label htmlFor="email" className="block text-sm font-medium text-white">
             Email
           </label>
           <input
@@ -34,12 +41,13 @@ const Login: React.FC = () => {
             id="email"
             value={email}
             onChange={handleEmailChange}
-            className="mt-1 p-2 border rounded w-full"
+            placeholder='ingresa tu email'
+            className="mt-1 p-2 border rounded-xl w-full bg-transparent "
             required
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="password" className="block text-sm font-medium">
+          <label htmlFor="password" className="block text-sm font-medium text-white">
             Contraseña
           </label>
           <input
@@ -47,16 +55,20 @@ const Login: React.FC = () => {
             id="password"
             value={password}
             onChange={handlePasswordChange}
-            className="mt-1 p-2 border rounded w-full"
+            placeholder='ingresa tu contraseña'
+            className="mt-1 p-2 border rounded-xl w-full bg-transparent"
             required
           />
         </div>
+        </div>
+        
         <button
           type="submit"
-          className="bg-blue-500 text-white p-2 rounded w-full"
+          className="bg-blue-500 text-white p-2 rounded w-full mt-24"
         >
-          Iniciar sesión
+      Siguiente
         </button>
+        <p className='text-center mt-2 text-white'>¿No tenés un usuario?  <span className='underline'>Registrate</span></p>
       </form>
     </div>
   );
