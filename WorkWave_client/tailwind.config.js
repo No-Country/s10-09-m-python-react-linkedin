@@ -7,6 +7,9 @@ export default {
       fontFamily: {
         inter: ["inter", "sans-serif"],
       },
+      width: {
+        451: "451px",
+      },
     },
     screens: {
       xs: "480px",
