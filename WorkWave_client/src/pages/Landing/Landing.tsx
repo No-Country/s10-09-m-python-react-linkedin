@@ -1,6 +1,5 @@
 import Buttons from "../../components/Buttons";
 import LandingHeader from "../../components/LandingHeader/LandingHeader";
-
 function Landing() {
   return (
     <div className=" ">
