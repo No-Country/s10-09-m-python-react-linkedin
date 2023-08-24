@@ -21,7 +21,7 @@ function Landing() {
         <svg
           // width="596"
           // height="435"
-          className=" hidden sm:block w-[300px] sm:w-[500px]   "
+          className=" hidden sm:block w-[300px] sm:w-[500px]"
           viewBox="0 0 360 65"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
