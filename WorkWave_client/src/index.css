@@ -4,11 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
 html,
 body,
 #root,
 .app {
   height: 100%;
+
   /* background: linear-gradient(180deg, rgba(37,47,146,1) 0%, rgba(0,2,3,1) 60%, rgba(0,0,0,1) 100%); */
   background-image: url("./assets/landing.png");
   background-size: cover;

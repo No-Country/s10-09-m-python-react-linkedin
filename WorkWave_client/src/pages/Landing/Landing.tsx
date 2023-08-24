@@ -1,6 +1,5 @@
 import Buttons from "../../components/Buttons";
 import LandingHeader from "../../components/LandingHeader/LandingHeader";
-
 function Landing() {
   return (
     <div className=" ">
@@ -13,7 +12,7 @@ function Landing() {
             Encontra el futuro <br></br>que buscas
           </h1>
           <Buttons text={"Nueva Cuenta"} blue={true} routing={"/"} />
-          <Buttons text={"Inicia Sesion"} blue={false} routing={"/"} />
+          <Buttons text={"Inicia Sesion"} blue={false} routing={"/login"} />
           <Buttons text={"Ingresa Con Google"} blue={false} routing={"/"} />
           <Buttons text={"Ingresa Con Apple"} blue={false} routing={"/"} />
         </div>
