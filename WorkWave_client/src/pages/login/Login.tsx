@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
+import { useNavigate } from "react-router-dom";
 import logo from '../../assets/LOGOHorizontal.png'
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate = useNavigate();
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
@@ -18,7 +19,9 @@ const Login: React.FC = () => {
     console.log('Email:', email);
     console.log('Password:', password);
   };
-
+const comeBackBTN =()=>{
+ navigate('/')
+}
   return (
     <div className="flex flex-col md:flex-row items-center justify-center bg-[url('./assets/fondo1.png')] bg-no-repeat bg-cover ">
     <form
@@ -26,7 +29,7 @@ const Login: React.FC = () => {
       className="pt-12 p-6 md:pt-60 h-screen w-full max-w-md md:w-1/3 lg:w-1/4"
     >
         <div className="flex">
-          <div><BiArrowBack className="text-xl mr-2 mt-2 text-white"/> </div>
+          <div><BiArrowBack onClick={comeBackBTN} className="text-xl mr-2 mt-2 text-white"/> </div>
               
               <h2 className="text-2xl  mb-4 text-white">INGRESA TUS DATOS</h2>
         </div>
@@ -71,7 +74,7 @@ const Login: React.FC = () => {
         </button>
         <p className='text-center mt-2 text-white'>¿No tenés un usuario?  <span className='underline'>Registrate</span></p>
       </form>
-      <div className="hidden xs:block">
+      <div className="hidden md:block">
         <img src={logo} alt="image logo" className="mb-36" />
       </div>
     </div>
