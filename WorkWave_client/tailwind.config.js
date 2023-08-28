@@ -1,9 +1,12 @@
 /** @type {import('tailwindcss').Config} */
+import daisyui from "daisyui";
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        "deep-blue": "#000000",
+      },
       fontFamily: {
         inter: ["inter", "sans-serif"],
       },
@@ -20,5 +23,5 @@ export default {
       xl: "1700px",
     },
   },
-  plugins: [],
+  plugins: [daisyui],
 };
