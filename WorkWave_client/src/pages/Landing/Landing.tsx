@@ -13,7 +13,7 @@ function Landing() {
           <h1 className="text-center md:text-left sm:text-4xl lg:text-5xl  pb-10 hidden sm:block ">
             Encontra el futuro <br></br>que buscas
           </h1>
-          <Buttons text={"Nueva Cuenta"} blue={true} routing={"/"} />
+          <Buttons text={"Nueva Cuenta"} blue={true} routing={"/register"} />
           <Buttons text={"Inicia Sesion"} blue={false} routing={"/login"} />
           <Buttons text={"Ingresa Con Google"} blue={false} routing={"/"} />
           <Buttons text={"Ingresa Con Apple"} blue={false} routing={"/"} />
