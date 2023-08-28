@@ -98,8 +98,18 @@ function Step1() {
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          <Buttons text="Siguiente" routing="/register/step2" />
-          <Buttons text="Omitir" routing="/register/step2" blue={false} />
+          <Buttons
+            text="Siguiente"
+            blue={true}
+            width=""
+            routing="/register/step2"
+          />
+          <Buttons
+            text="Omitir"
+            width=""
+            routing="/register/step2"
+            blue={false}
+          />
         </div>
       </form>
     </div>

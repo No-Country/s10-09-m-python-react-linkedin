@@ -32,37 +32,21 @@ function Step3() {
         </div>
       </ul>
       <div className="flex flex-row-reverse items-center justify-center gap-4">
-        <svg
-          className="mt-4"
-          fill="#fff"
-          height="25px"
-          version="1.1"
-          id="Layer_1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          viewBox="0 0 330 330"
-          xml:space="preserve"
-          stroke="#fff"
-        >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g
-            id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          ></g>
-          <g id="SVGRepo_iconCarrier">
-            {" "}
-            <path
-              id="XMLID_225_"
-              d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"
-            ></path>{" "}
-          </g>
-        </svg>
         <p className="text-center mt-4">Ver más </p>
       </div>
       <div className="flex flex-col gap-2 mt-8">
-        <Buttons text="Agregar" routing="/register/step4" />
-        <Buttons text="Omitir" routing="/register/step4" blue={false} />
+        <Buttons
+          text="Agregar"
+          width=""
+          blue={true}
+          routing="/register/step4"
+        />
+        <Buttons
+          text="Omitir"
+          width=""
+          routing="/register/step4"
+          blue={false}
+        />
       </div>
     </div>
   );

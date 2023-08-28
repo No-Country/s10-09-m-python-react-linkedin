@@ -126,7 +126,12 @@ const Register: React.FC = () => {
           </div>
         </div>
         <div onClick={handleSubmit}>
-          <Buttons text="Siguiente" routing="/register/step1" />
+          <Buttons
+            text="Siguiente"
+            width=""
+            blue={true}
+            routing="/register/step1"
+          />
         </div>
         <p className="text-center mt-2 text-white">
           ¿Ya tienes un usuario?{" "}

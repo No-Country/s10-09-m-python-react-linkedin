@@ -140,7 +140,12 @@ function LandingHeader() {
         </div>
       </div>
       <div className=" flex  gap-6 pl-8 ">
-        <Buttons text="Nueva Cuenta" width="!w-40" routing="/register" />
+        <Buttons
+          text="Nueva Cuenta"
+          blue={true}
+          width="!w-40"
+          routing="/register"
+        />
         <Buttons
           text="Iniciar sesion"
           width="!w-40"

@@ -12,8 +12,8 @@ function Step4() {
         <img src="/congrats.png" alt="frontImg" className="py-4" />
       </div>
       <div className="flex flex-col gap-4">
-        <Buttons text="Ir a Inicio" routing="/login" />
-        <Buttons text="Omitir" routing="/" blue={false} />
+        <Buttons text="Ir a Inicio" width="" blue={true} routing="/login" />
+        <Buttons text="Omitir" width="" routing="/" blue={false} />
       </div>
     </div>
   );

@@ -26,10 +26,10 @@ const Profile: React.FC = () => {
       descrip: "UX/UI, 02.09.2022",
     },
   ]);
-
+  console.log(setProjects);
   return (
     <div className="container m-auto ">
-        {/* ACA EMPIEZA EL BANNER DEL USUARIO */}
+      {/* ACA EMPIEZA EL BANNER DEL USUARIO */}
       <div className="flex flex-col md:flex-row w-full">
         <div className="w-full">
           <div className="bannerProfileContainer">
@@ -66,11 +66,10 @@ const Profile: React.FC = () => {
             </div>
           </div>
         </div>
-        
       </div>
       <div className="flex flex-wrap gap-2  ">
         {/* ACA EMPIEZA LA INFORMACIO DEL USUARIO */}
-      <div className="md:w-[30%] sm:w-full md:pl-4">
+        <div className="md:w-[30%] sm:w-full md:pl-4">
           <div className="aboutTheUserContainer  flex flex-col">
             <div className="aboutTheUserData mt-3 p-3 bg-gray-400 rounded-md mb-3">
               <h2>Sobre mí</h2>
@@ -105,25 +104,23 @@ const Profile: React.FC = () => {
               </div>
             </div>
           </div>
-          
         </div>
-             {/* ACA EMPIEZA LA EXPERIENCIA DEL USUARIO */}
-             <div className="UserProjects  md:w-[50%] sm:w-full bg-gray-400 mt-3 rounded-md ">
-            <h2>
-              Proyectos <span className="text-gray-500"> 3 of 10 </span>
-            </h2>
-            <div className="projects flex justify-center items-center gap-2">
-              {projects.map((project, index) => (
-                <div key={index}>
-                  <div>
-                    <img src={project.img} alt="" />
-                  </div>
+        {/* ACA EMPIEZA LA EXPERIENCIA DEL USUARIO */}
+        <div className="UserProjects  md:w-[50%] sm:w-full bg-gray-400 mt-3 rounded-md ">
+          <h2>
+            Proyectos <span className="text-gray-500"> 3 of 10 </span>
+          </h2>
+          <div className="projects flex justify-center items-center gap-2">
+            {projects.map((project, index) => (
+              <div key={index}>
+                <div>
+                  <img src={project.img} alt="" />
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
+        </div>
       </div>
-      
     </div>
   );
 };

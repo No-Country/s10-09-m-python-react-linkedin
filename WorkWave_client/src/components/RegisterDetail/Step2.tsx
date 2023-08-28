@@ -10,8 +10,18 @@ function Step2() {
         <img src="/frontImg.png" alt="frontImg" className="h-80" />
       </div>
       <div className="flex flex-col gap-4">
-        <Buttons text="Agregar" routing="/register/step3" />
-        <Buttons text="Omitir" routing="/register/step2" blue={false} />
+        <Buttons
+          text="Agregar"
+          blue={true}
+          width=""
+          routing="/register/step3"
+        />
+        <Buttons
+          text="Omitir"
+          width=""
+          routing="/register/step2"
+          blue={false}
+        />
       </div>
     </div>
   );
