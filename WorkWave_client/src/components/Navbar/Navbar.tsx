@@ -51,7 +51,10 @@ function Navbar() {
           <AiTwotoneAlert className="text-xl" />
           <p>Alertas</p>
         </button>
-        <button className="flex flex-col justify-center items-center w-9 h-11 text-base ">
+        <button
+          onClick={() => navigate("/profile")}
+          className="flex flex-col justify-center items-center w-9 h-11 text-base "
+        >
           <FaUserCircle className="text-xl" />
           <p>Perfil</p>
         </button>
