@@ -1,3 +1,4 @@
+import Buttons from "../Buttons";
 function LandingHeader() {
   return (
     <div className="flex justify-end items-center pt-10 pr-72 ">
@@ -139,12 +140,13 @@ function LandingHeader() {
         </div>
       </div>
       <div className=" flex  gap-6 pl-8 ">
-        <button className=" h-11 w-40 rounded-lg p-1 text-center border-2 bg-[#61A9FD] text-[#000C2C]">
-          Nueva Cuenta
-        </button>
-        <button className=" h-11 w-40 rounded-lg p-1 text-center border-2 bg-inherit text-[#D9D9D9] ">
-          Inicia Sesion
-        </button>
+        <Buttons text="Nueva Cuenta" width="!w-40" routing="/register" />
+        <Buttons
+          text="Iniciar sesion"
+          width="!w-40"
+          routing="/login"
+          blue={false}
+        />
       </div>
     </div>
   );
