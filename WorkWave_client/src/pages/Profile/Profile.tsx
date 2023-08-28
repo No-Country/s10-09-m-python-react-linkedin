@@ -28,7 +28,7 @@ const Profile: React.FC = () => {
   ]);
   console.log(setProjects);
   return (
-    <div className="container m-auto ">
+    <div className="container m-auto">
       {/* ACA EMPIEZA EL BANNER DEL USUARIO */}
       <div className="flex flex-col md:flex-row w-full">
         <div className="w-full">
@@ -40,9 +40,9 @@ const Profile: React.FC = () => {
                 className="w-full rounded-sm"
               />
             </div>
-            <div className="dataUser">
+            <div className="dataUser bg-black">
               <div>
-                <div>
+                <div className="ml-4">
                   <img
                     src={UserImg}
                     alt=""
@@ -50,7 +50,7 @@ const Profile: React.FC = () => {
                   />
                 </div>
               </div>
-              <div className="mt-5">
+              <div className="m-5">
                 <h1>UserName</h1>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
@@ -58,8 +58,10 @@ const Profile: React.FC = () => {
                 </p>
               </div>
               <div className="flex justify-around mt-3">
-                <div className="rounded-xl bg-blue-500 p-1">300 CONEXIONES</div>
-                <div className="rounded-xl bg-transparent border-solid border-2 px-10">
+                <div className="rounded-xl bg-blue-500 p-1 mb-2">
+                  300 CONEXIONES
+                </div>
+                <div className="rounded-xl bg-transparent border-solid border-2 px-10 mb-2">
                   EMPLEADO
                 </div>
               </div>
@@ -67,11 +69,11 @@ const Profile: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap gap-2  ">
+      <div className="flex flex-wrap gap-2 p-2  ">
         {/* ACA EMPIEZA LA INFORMACIO DEL USUARIO */}
         <div className="md:w-[30%] sm:w-full md:pl-4">
           <div className="aboutTheUserContainer  flex flex-col">
-            <div className="aboutTheUserData mt-3 p-3 bg-gray-400 rounded-md mb-3">
+            <div className="aboutTheUserData mt-3 p-3 bg-black rounded-md mb-3">
               <h2>Sobre mí</h2>
               <div className="UserInfo">
                 <p>
@@ -82,7 +84,7 @@ const Profile: React.FC = () => {
                 </p>
               </div>
             </div>
-            <div className="aboutTheUserContact  p-3 bg-gray-400 rounded-md">
+            <div className="aboutTheUserContact  p-3 bg-black rounded-md">
               <h2 className="border-b-2 border-gray-500">CONTACTO</h2>
               <div className="m-1 flex gap-1">
                 <h2>
@@ -106,11 +108,11 @@ const Profile: React.FC = () => {
           </div>
         </div>
         {/* ACA EMPIEZA LA EXPERIENCIA DEL USUARIO */}
-        <div className="UserProjects  md:w-[50%] sm:w-full bg-gray-400 mt-3 rounded-md ">
+        <div className="UserProjects  md:w-[50%] sm:w-full bg-black mt-3 rounded-md ">
           <h2>
             Proyectos <span className="text-gray-500"> 3 of 10 </span>
           </h2>
-          <div className="projects flex justify-center items-center gap-2">
+          <div className="projects flex justify-center items-center gap-2 ">
             {projects.map((project, index) => (
               <div key={index}>
                 <div>
@@ -119,7 +121,30 @@ const Profile: React.FC = () => {
               </div>
             ))}
           </div>
+        
         </div>
+          {/* ACA EMPIEZA LA INFORMACION DE EEXPERIENCIA DEL USUARIO */}
+          <div className="UserExperience md:w-[50%] mt-3 bg-black">
+         
+              <div className=" flex flex-nowrap">
+                <div className="w-24 h-10 m-2 bg-[#F39014] rounded-full"></div>
+                <div className="UserExperienceData flex-col">
+                <h2>Freelance UX/UI designer</h2>
+                <p>Jun 2022 — Present</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus eros eu vehicula interdum. Cras nec ultricies massa. Curabitur rutrum, diam id consequat consequat</p>
+                </div>
+                
+              </div>
+              <div className=" flex gap-2 ">
+                <div className="w-24 h-10 m-2 bg-[#0A66C2] rounded-full"></div>
+                <div className="UserExperienceData flex-col">
+                <h2>Freelance UX/UI designer</h2>
+                <p>Jun 2022 — Present</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus eros eu vehicula interdum. Cras nec ultricies massa. Curabitur rutrum, diam id consequat consequat</p>
+                </div>
+                
+              </div>
+          </div>
       </div>
     </div>
   );

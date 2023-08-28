@@ -14,12 +14,9 @@ body,
 .app {
   height: 100%;
  
-  background-image: url("./assets/fondo1.png");
-  background-size: cover;
-
-  background-image: url("./assets/fondo1.png"); 
-
+  background-image: url("./assets/bgUserProfile.png");
   background-repeat: no-repeat;
+  background-size: cover;
   @apply text-white;
 }
 .userImg{
