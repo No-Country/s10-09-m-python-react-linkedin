@@ -36,27 +36,12 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Cleanup old images in backend ECR
-        env:
-          AWS_REGION: us-west-2
-          ECR_REPOSITORY_NAME: server 
-          IMAGE_TAG: ${{v1}}  # Cambia esto por la etiqueta de la imagen que quieres eliminar (en este caso, v1)
-        run: |
-          
-          # Get the list of images in the repository
-          IMAGES=$(aws ecr list-images --repository-name $ECR_REPOSITORY_NAME --query 'imageIds[*].imageTag' --output text)
-          
-          # Check if the current image tag already exists in the repository
-          if echo "$IMAGES" | grep -q "$IMAGE_TAG"; then
-            # Delete the old image
-            aws ecr batch-delete-image --repository-name $ECR_REPOSITORY_NAME --image-ids imageTag=$IMAGE_TAG
-          fi
-
+ 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: ${{v1}}
+        IMAGE_TAG: v1
       run: |
         # Build a docker container and
         # push it to ECR so that it can
