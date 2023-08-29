@@ -7,7 +7,7 @@ on:
 env:
   AWS_REGION: us-west-2                   
   ECR_REPOSITORY: frontend          
-  ECS_SERVICE: frontendService                  
+  ECS_SERVICE: serverfrontend                  
   ECS_CLUSTER: demo-deploy                 
   ECS_TASK_DEFINITION: .github/workflows/task-definition-front.json                                              
   CONTAINER_NAME: frontend           
@@ -58,7 +58,7 @@ jobs:
       with:
         task-definition: ${{ env.ECS_TASK_DEFINITION }}
         container-name: ${{ env.CONTAINER_NAME }}
-        image: ${{ steps.build-image.outputs.image }}
+        image: 236649525998.dkr.ecr.us-west-2.amazonaws.com/frontend:latest
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
