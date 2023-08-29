@@ -6,10 +6,10 @@ on:
 
 env:
   AWS_REGION: us-west-2                   
-  ECR_REPOSITORY: frontend          
-  ECS_SERVICE: frontendService                  
+  ECR_REPOSITORY: server         
+  ECS_SERVICE: backendService                  
   ECS_CLUSTER: demo-deploy                 
-  ECS_TASK_DEFINITION: .github/workflows/task-definition-front.json
+  ECS_TASK_DEFINITION: .github/workflows/task-definition-server.json
                                               
   CONTAINER_NAME: frontend           
                                                
