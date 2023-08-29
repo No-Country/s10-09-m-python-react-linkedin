@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "frontend",
-            "image": "411951638844.dkr.ecr.us-west-2.amazonaws.com/frontend",
+            "image": "411951638844.dkr.ecr.us-west-2.amazonaws.com/frontend:latest",
             "cpu": 0,
             "portMappings": [
                 {
