@@ -1,16 +1,17 @@
+
 name: Deploy to Amazon ECS backend
 
 on:
   workflow_dispatch:
 
 env:
-  AWS_REGION: MY_AWS_REGION                   
-  ECR_REPOSITORY: MY_ECR_REPOSITORY           
-  ECS_SERVICE: MY_ECS_SERVICE                 
-  ECS_CLUSTER: MY_ECS_CLUSTER                 
-  ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION 
+  AWS_REGION: us-west-2                   
+  ECR_REPOSITORY: frontend          
+  ECS_SERVICE: frontendService                  
+  ECS_CLUSTER: demo-deploy                 
+  ECS_TASK_DEFINITION: .github/workflows/task-definition-front.json
                                               
-  CONTAINER_NAME: MY_CONTAINER_NAME           
+  CONTAINER_NAME: frontend           
                                                
 permissions:
   contents: read
