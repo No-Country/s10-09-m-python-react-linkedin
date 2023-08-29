@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-west-2:411951638844:task-definition/frontend:1",
+    "taskDefinitionArn": "arn:aws:ecs:us-west-2:411951638844:task-definition/frontend:2",
     "containerDefinitions": [
         {
             "name": "frontend",
-            "image": "411951638844.dkr.ecr.us-west-2.amazonaws.com/frontend:latest",
+            "image": "236649525998.dkr.ecr.us-west-2.amazonaws.com/frontend:latest",
             "cpu": 0,
             "portMappings": [
                 {
@@ -26,7 +26,7 @@
     "taskRoleArn": "arn:aws:iam::411951638844:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::411951638844:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 1,
+    "revision": 2,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -60,7 +60,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-08-29T01:19:08.073Z",
+    "registeredAt": "2023-08-29T09:50:16.274Z",
     "registeredBy": "arn:aws:iam::411951638844:user/Yessica",
     "tags": []
 }
