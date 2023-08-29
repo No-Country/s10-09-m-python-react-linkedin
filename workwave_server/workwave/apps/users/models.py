@@ -7,7 +7,7 @@ from cryptography.fernet import Fernet
 # Create your models here.
 class User(models.Model):
     email = models.EmailField(max_length=100, unique=True)
-    encrypted_password = models.BinaryField()
+    password = models.BinaryField()
     name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     birthdate = models.DateField(default=date.today)
@@ -17,23 +17,23 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     @property
-    def password(self):
+    def password_plane(self):
         # Este método no almacenará nunca la contraseña en texto plano, para eso esta el siguiente método
         raise AttributeError("The password cannot be accessed directly")
 
-    @password.setter
-    def password(self, value):
+    @password_plane.setter
+    def password_save(self, value):
         # Genera la clave en secuencia de bytes
         key = Fernet.generate_key()
         # Objeto que contiene la llave de cifrado y descifrado
         cipher_suite = Fernet(key)
-        encrypted_password = cipher_suite.encrypt(value.encode())
-        self.encrypted_password = encrypted_password
+        password = cipher_suite.encrypt(value.encode())
+        self.password = password
 
     def verify_password(self, value):
         # Verifica si la contraseña proporcionada coincide con la contraseña almacenada
         cipher_suite = Fernet(Fernet.generate_key())
-        decrypted_password = cipher_suite.decrypt(self.encrypted_password).decode()
+        decrypted_password = cipher_suite.decrypt(self.password).decode()
         return value == decrypted_password
 
     def save(self, *args, **kwargs):

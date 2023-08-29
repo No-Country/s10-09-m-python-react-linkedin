@@ -18,11 +18,11 @@ class UserSerializer(serializers.ModelSerializer):
             "password",
         )
 
-    def create(self, validated_data):
+    """def create(self, validated_data):
         user = User(**validated_data)
-        user.password = validated_data["password"]  # Utiliza el setter del modelo
+        #user.password = validated_data["password"]  # Utiliza el setter del modelo
         user.save()
-        return user
+        return user"""
 
 
 class PasswordSerializer(serializers.Serializer):

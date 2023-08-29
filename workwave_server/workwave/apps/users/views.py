@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from cryptography.fernet import Fernet
 from .api.serializers import *
-from workwave.apps.users.api.serializers import UserSerializer, PasswordSerializer
+from workwave.apps.users.api.serializers import UserSerializer
 
 
 class CreateUserView(APIView):
@@ -14,7 +14,6 @@ class CreateUserView(APIView):
     def post(self, request):
         user_data = request.data
         self.validate_password(user_data)  # Llama al método de validación de contraseña
-
         user_serializer = UserSerializer(data=user_data)
         if user_serializer.is_valid():
             user = user_serializer.save()
