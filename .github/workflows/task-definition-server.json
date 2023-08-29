@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-west-2:411951638844:task-definition/server:1",
+    "taskDefinitionArn": "arn:aws:ecs:us-west-2:411951638844:task-definition/server:2",
     "containerDefinitions": [
         {
             "name": "server",
@@ -26,7 +26,7 @@
     "taskRoleArn": "arn:aws:iam::411951638844:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::411951638844:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 1,
+    "revision": 2,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -60,7 +60,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-08-29T01:50:22.345Z",
+    "registeredAt": "2023-08-29T09:51:56.329Z",
     "registeredBy": "arn:aws:iam::411951638844:user/Yessica",
     "tags": []
 }
