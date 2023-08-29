@@ -47,7 +47,7 @@ jobs:
       env:
         ECR_REGISTRY: 411951638844.dkr.ecr.us-west-2.amazonaws.com         
       run: |          
-          docker build --no-cache -t frontend ./frontend
+          docker build --no-cache -t frontend .
           docker tag frontend $ECR_REGISTRY/frontend:latest
           docker push $ECR_REGISTRY/frontend:latest    
      
