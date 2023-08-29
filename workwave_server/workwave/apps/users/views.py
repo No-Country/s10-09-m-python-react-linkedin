@@ -11,7 +11,7 @@ class CreateUserView(APIView):
         if data["password"] != data["password2"]:
             raise serializers.ValidationError({"Error": "Passwords are not the same"})
 
-    def signup(self, request):
+    def post(self, request):
         user_data = request.data
         self.validate_password(user_data)  # Llama al método de validación de contraseña
 
