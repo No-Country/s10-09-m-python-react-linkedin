@@ -124,7 +124,7 @@ const Profile: React.FC = () => {
         
         </div>
           {/* ACA EMPIEZA LA INFORMACION DE EEXPERIENCIA DEL USUARIO */}
-          <div className="UserExperience md:w-[50%] mt-3 bg-black">
+          {/* <div className="UserExperience md:w-[50%] mt-3 bg-black">
          
               <div className=" flex flex-nowrap">
                 <div className="w-24 h-10 m-2 bg-[#F39014] rounded-full"></div>
@@ -141,10 +141,10 @@ const Profile: React.FC = () => {
                 <h2>Freelance UX/UI designer</h2>
                 <p>Jun 2022 — Present</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus eros eu vehicula interdum. Cras nec ultricies massa. Curabitur rutrum, diam id consequat consequat</p>
-                </div>
+              </div>
                 
               </div>
-          </div>
+          </div> */}
       </div>
     </div>
   );
