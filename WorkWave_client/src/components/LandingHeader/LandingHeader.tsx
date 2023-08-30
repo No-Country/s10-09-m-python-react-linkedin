@@ -1,4 +1,3 @@
-import Buttons from "../Buttons";
 import logoheader from "../../assets/logoheader.svg";
 import logoheader1 from "../../assets/logoheader1.svg";
 import logoheader2 from "../../assets/logoheader2.svg";
@@ -17,20 +16,16 @@ function LandingHeader() {
         </div>
       </div>
       <div className=" flex  gap-6 pl-8 ">
-        <Buttons
-          text="Nueva Cuenta"
-          blue={true}
-          width="!w-40"
-          routing="/register"
-          height={"11"}
-        />
-        <Buttons
-          text="Iniciar sesion"
-          width="!w-40"
-          routing="/login"
-          blue={false}
-          height={"11"}
-        />
+        <button
+          className={`h-11  text-[#D9D9D9] w-40  rounded-full p-1 text-center border-2 bg-[#4F46E5] `}
+        >
+          Nueva Cuenta
+        </button>
+        <button
+          className={`h-11  text-[#D9D9D9] w-40  rounded-full p-1 text-center border-2 `}
+        >
+          Iniciar sesión
+        </button>
       </div>
     </div>
   );
