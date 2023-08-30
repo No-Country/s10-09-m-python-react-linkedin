@@ -15,8 +15,10 @@ function Buttons(props: ButtonProps) {
   return (
     <Link to={routing}>
       <button
-        className={`h-${height} ${width} text-[#D9D9D9] w-[300px] sm:w-[350px] md:w-[450px] rounded-full p-1 text-center border-2  ${
-          blue ? "bg-[#4F46E5] text-[#000C2C]" : "bg-inherit "
+
+        className={`h-11 ${width} text-[#D9D9D9] w-[300px] sm:w-[450px]  rounded-full p-1 text-center  ${
+          blue ? "bg-[#4318FF] text-[#000C2C]" : "bg-inherit  border-2  "
+
         } `}
       >
         {text ? (
