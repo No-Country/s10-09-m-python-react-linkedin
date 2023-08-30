@@ -1,18 +1,15 @@
+import type { Meta, StoryObj } from "@storybook/react";
+import logo from "../assets/LOGOHorizontal.png";
+
 import { AiFillHome, AiTwotoneAlert } from "react-icons/ai";
 import { IoMdBriefcase } from "react-icons/io";
 import { MdMessage, MdFavorite } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
-// import LogoHorizontal from "../Logo/LogoHorizontal";
-import logo from "../../assets/LOGOHorizontal.png";
-import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const navigate = useNavigate();
   return (
     <div className="flex justify-center  navbar bg-deep-blue h-[71px] gap-16 ">
-      {" "}
       <div className="flex gap-12">
-        {" "}
         {/* <a className="btn btn-ghost"></a> */}
         <div className="w-24">
           <img src={logo} alt="logo" className="object-contain" />
@@ -29,14 +26,14 @@ function Navbar() {
       </div>
       <div className="flex justif-center items-center gap-20">
         <button
-          onClick={() => navigate("/perfil")}
+          onClick={() => {}}
           className="flex flex-col justify-center items-center w-9 h-11 text-base"
         >
           <AiFillHome className="text-xl" />
           <p>Inicio</p>
         </button>
         <button
-          onClick={() => navigate("/empleos")}
+          onClick={() => {}}
           className="flex flex-col justify-center items-center w-9 h-11 text-base "
         >
           <IoMdBriefcase className="text-xl" />
@@ -55,15 +52,26 @@ function Navbar() {
           <p>Alertas</p>
         </button>
         <button
-          onClick={() => navigate("/profile")}
+          onClick={() => {}}
           className="flex flex-col justify-center items-center w-9 h-11 text-base "
         >
           <FaUserCircle className="text-xl" />
-          <p>Perfil</p>
         </button>
+        <p>Perfil</p>
       </div>
     </div>
   );
 }
 
-export default Navbar;
+const meta = {
+  title: "Example/ComponentNavbar",
+  component: Navbar,
+  tags: ["root/Navbar"],
+} satisfies Meta<typeof Navbar>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {},
+};

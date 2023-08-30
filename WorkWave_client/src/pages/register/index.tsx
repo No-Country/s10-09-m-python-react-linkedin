@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/LOGOHorizontal.png";
 import Buttons from "../../components/Buttons";
+
 const Register: React.FC = () => {
   const [user, setUser] = useState("");
   const [phone, setPhone] = useState("");
