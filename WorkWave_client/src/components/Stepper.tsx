@@ -1,26 +1,35 @@
 type StepperProps = {
-  step: number; // al llamar al componente stepper ingresar por props el numero del paso por donde va el usuario ejemplo: paso 1 <Stepper step={1}>
+  step: string;
+  width: string; // al llamar al componente stepper ingresar por props el numero del paso por donde va el usuario ejemplo: paso 1 <Stepper step={1}>
 };
 function Stepper(props: StepperProps) {
-  const { step } = props;
+  const { step, width } = props;
   return (
     <div>
-      <ul className="lg:hidden mt-4 w-full justify-center flex gap-4">
-        <li className="bg-[#61A9FD] w-24 h-2"></li>
+      <ul className=" mt-8 w-full justify-center flex gap-16">
         <li
           className={`${
-            step === 2 || step === 3 || step === 4
-              ? "bg-[#61A9FD]"
-              : "bg-[#D9D9D9]"
-          } w-24 h-2`}
+            step === "step1" ? "bg-[#4318FF]" : "bg-[#2B3674]"
+          } w-60 ${width}
+           h-2 rounded-full`}
         ></li>
         <li
           className={`${
-            step === 3 || step === 4 ? "bg-[#61A9FD]" : "bg-[#D9D9D9]"
-          } w-24 h-2`}
+            step === "step2" ? "bg-[#4318FF]" : "bg-[#2B3674]"
+          } w-60 ${width}
+           h-2 rounded-full`}
         ></li>
         <li
-          className={`${step === 4 ? "bg-[#61A9FD]" : "bg-[#D9D9D9]"} w-24 h-2`}
+          className={`${
+            step === "step3" ? "bg-[#4318FF]" : "bg-[#2B3674]"
+          } w-60 ${width}
+           h-2 rounded-full`}
+        ></li>
+        <li
+          className={`${
+            step === "step4" ? "bg-[#4318FF]" : "bg-[#2B3674]"
+          } w-60 ${width}
+           h-2 rounded-full`}
         ></li>
       </ul>
     </div>
