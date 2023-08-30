@@ -107,10 +107,10 @@ const Profile: React.FC = () => {
         {/* </div> */}
         {/* PROYECTOS Y EXPERIENCIA DEL USUARIO */}
 
-        <div className="UserProjectsContainer flex flex-col sm:w-[52%]  mt-3 p-2 rounded-md ">
-          <div className=" bg-black">
+        <div className="UserProjectsContainer flex flex-col sm:w-[52%]  mt-3 p-2  ">
+          <div className=" bg-black rounded-md">
             <div className="UserProjects mb-4">
-              <h2>
+              <h2 className="ml-1">
                 Proyectos <span className="text-gray-500"> 3 of 10 </span>
               </h2>
             </div>
@@ -126,20 +126,20 @@ const Profile: React.FC = () => {
             
           </div>
           
-          <div className=" bg-black mt-2">
+          <div className=" bg-black mt-2 rounded-md">
             <div className="UserProjects mb-4 ">
-              <h2>
-                Proyectos <span className="text-gray-500"> 3 of 10 </span>
+              <h2 className="ml-1">
+              Experiencía
               </h2>
             </div>
-            <div className="projects flex  justify-center items-center gap-2">
-              {projects.map((project, index) => (
-                <div key={index}>
-                  <div>
-                    <img src={project.img} alt="" />
-                  </div>
-                </div>
-              ))}
+            <div className="projects flex   gap-2">
+              <div className="bg-[#F39014] w-[125px] h-[50px] rounded-full"></div>
+              <div>
+                <h2>Freelance UX/UI designer</h2>
+                <p>Lorem ipsum  Lorem ipsum </p>
+                <p> Jun 2022 — <span className="text-[#0A66C2]">Present1 yrs 02 mos</span></p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus eros eu vehicula interdum. Cras nec ultricies massa. Curabitur rutrum, diam id consequat consequat</p>
+              </div>
             </div>
             
           </div>
