@@ -12,9 +12,10 @@ html,
 body,
 #root,
 .app {
-  height: 100%;
  
-  background-image: url("./assets/bgUserProfile.png");
+  /* background-color: #000C2C; */
+  background-image: url("./assets/main.png");
+  background-size: cover;
   background-repeat: no-repeat;
   @apply text-white;
 }
