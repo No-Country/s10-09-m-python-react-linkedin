@@ -36,12 +36,6 @@ class User(models.Model):
         decrypted_password = cipher_suite.decrypt(self.password).decode()
         return value == decrypted_password
 
-    def save(self, *args, **kwargs):
-        created = not self.pk
-        super().save(*args, **kwargs)
-        if created:
-            Profile.objects.create(user=self)
-
     def __str__(self):
         return f"{self.name} {self.last_name} | {self.email}"
 
@@ -52,7 +46,7 @@ class User(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(
         User,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         primary_key=True,
         verbose_name="User Profile",
         related_name="profile",
