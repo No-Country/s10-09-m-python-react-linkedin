@@ -15,8 +15,8 @@ const buttonContents = [
   "Ventas",
   "Educación",
   "Compras",
-  "Bienes y Racices",
-  "Invesigación",
+  "Bienes y Raices",
+  "Investigación",
   "Consultoría",
 ];
 function Landing() {
@@ -35,7 +35,7 @@ function Landing() {
             width=""
             blue={true}
             routing={"/register"}
-            height={""}
+            height={"14"}
           />
           <Buttons
             text={"Iniciar Sesión"}
@@ -60,12 +60,12 @@ function Landing() {
             height={"16"}
           />
         </div>
-        <img src={logoWork} className="hidden sm:block w-4/6 lg:w-2/6" />
+        <img src={logoWork} className="hidden sm:block self-center" />
         <LogoVertical />
       </div>
       <div className="flex flex-col  md:items-start gap-8 sm:gap-20 mt-28 sm:mt-40">
         <h1 className="text-lg sm:text-3xl md:text-5xl md:leading-[62px] font-semibold  ">
-          Econtrá el empleo<br></br>que se adapte a vos
+          Encontrá el empleo<br></br>que se adapte a vos
         </h1>
 
         <div className="flex flex-wrap gap-10">
@@ -118,7 +118,7 @@ function Landing() {
           </div>
         </div>
 
-        <div className="flex justify-center items-center gap-20 mb-12 mt-36">
+        <div className="flex w-full justify-center items-center gap-20 mb-12 mt-36">
           <a className="link link-hover text-sm">Condiciones De Uso</a>
           <a className="link link-hover text-sm">Politica De privacidad</a>
           <a className="link link-hover text-sm">Politica De Cookies</a>
