@@ -8,12 +8,11 @@
 #         fields = (
 #             "id",
 #             "email",
-#             "name",
+#             "password",
+#             "first_name",
 #             "last_name",
 #             "phone_number",
 #             "country",
-#             "created_at",
-#             "password",
 #         )
 
 

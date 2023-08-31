@@ -5,6 +5,12 @@ from .base import *
 #     'DATE_INPUT_FORMATS': ['iso-8601', '%Y-%m-%d'],
 # }
 
+AUTH_PASSWORD_VALIDATORS += [
+    {
+        "NAME": "workwave.apps.users.validators.CustomPasswordValidator",
+    },
+]
+
 #Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
