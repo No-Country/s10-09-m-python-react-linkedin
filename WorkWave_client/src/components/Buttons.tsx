@@ -3,10 +3,10 @@ import logoGoogle from "../assets/Google.svg";
 import logoFacebook from "../assets/Facebook.svg";
 type ButtonProps = {
   text: string; // texto que aparecera en el boton
-  blue: boolean; // cambio de estilos del boton si es azul o transparente
-  routing: string;
-  width: string;
-  height: string;
+  blue?: boolean; // cambio de estilos del boton si es azul o transparente
+  routing?: string;
+  width?: string;
+  height?: string;
   // ruta a la que va a enviar el boton
 };
 function Buttons(props: ButtonProps) {
@@ -23,7 +23,7 @@ function Buttons(props: ButtonProps) {
           <div className="flex justify-center items-center">
             {/* Renderiza el logotipo aquí */}
             {text.includes("Google") && (
-              <img src={logoGoogle} alt="Logo" className="mr-7" />
+              <img src={logoGoogle} alt="Logo" className="mr-2" />
             )}
             {text.includes("Facebook") && (
               <img src={logoFacebook} alt="Logo" className="mr-2" />

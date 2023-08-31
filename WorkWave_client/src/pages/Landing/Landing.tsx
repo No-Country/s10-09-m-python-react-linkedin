@@ -15,8 +15,8 @@ const buttonContents = [
   "Ventas",
   "Educación",
   "Compras",
-  "Bienes y Racices",
-  "Invesigación",
+  "Bienes y Raices",
+  "Investigación",
   "Consultoría",
 ];
 function Landing() {
@@ -60,7 +60,7 @@ function Landing() {
             height={"16"}
           />
         </div>
-        <img src={logoWork} className="hidden sm:block w-4/6 lg:w-2/6" />
+        <img src={logoWork} className="hidden sm:block self-center" />
         <LogoVertical />
       </div>
       <div className="flex flex-col  md:items-start gap-8 sm:gap-20 mt-28 sm:mt-40">

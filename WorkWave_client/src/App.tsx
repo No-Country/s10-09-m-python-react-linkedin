@@ -9,10 +9,11 @@ import Empleos from "./pages/empleos/Empleos";
 
 import Register from "./pages/register";
 import RegisterDetail from "./components/RegisterDetail";
+import Terms from "./pages/terms/index";
 
 function App() {
   return (
-    <div className="app">
+    <div className="app scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -27,6 +28,8 @@ function App() {
 
           <Route path="/register" element={<Register />} />
           <Route path="/register/:step" element={<RegisterDetail />} />
+
+          <Route path="/terms-and-conditions" element={<Terms />} />
         </Routes>
       </BrowserRouter>
     </div>
