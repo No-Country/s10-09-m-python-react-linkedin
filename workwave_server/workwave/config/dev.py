@@ -1,8 +1,9 @@
 from .base import *
 
-REST_FRAMEWORK = {
-    'DATE_INPUT_FORMATS': ['iso-8601', '%Y-%m-%dT%H:%M:%S.%fZ'],
-}
+# REST_FRAMEWORK = {
+#     'DATE_FORMAT': "%Y-%m-%d",
+#     'DATE_INPUT_FORMATS': ['iso-8601', '%Y-%m-%d'],
+# }
 
 #Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

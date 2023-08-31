@@ -10,10 +10,8 @@ class UserSerializer(serializers.ModelSerializer):
             "email",
             "name",
             "last_name",
-            "birthdate",
             "phone_number",
             "country",
-            "postal_code",
             "created_at",
             "password",
         )
@@ -25,12 +23,4 @@ class UserSerializer(serializers.ModelSerializer):
         return user"""
 
 
-class PasswordSerializer(serializers.Serializer):
-    password = serializers.CharField(max_length=128, min_length=6, write_only=True)
-    password2 = serializers.CharField(max_length=128, min_length=6, write_only=True)
 
-    # Verifica que el usuario coloque bien la contraseña
-    def validate(self, data):
-        if data["password"] != data["password2"]:
-            raise serializers.ValidationError({"Error": "Passwords are not the same"})
-        return data
