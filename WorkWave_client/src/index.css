@@ -1,3 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+*{
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+html,
+body,
+#root,
+.app {
+ 
+  /* background-color: #000C2C; */
+  background-image: url("./assets/main.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  @apply text-white;
+}
+.userImg{
+  box-shadow: 1px -2px 61px 16px rgba(109,104,252,1);
+}
