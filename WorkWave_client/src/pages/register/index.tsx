@@ -69,7 +69,7 @@ const Register: React.FC = () => {
 
   const onSubmit = (data: FormData) => {
     console.log(data);
-    navigate("/register/Step1");
+    navigate("/register/step1");
   };
 
   return (
