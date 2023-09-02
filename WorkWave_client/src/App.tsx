@@ -13,7 +13,7 @@ import Terms from "./pages/terms/index";
 
 function App() {
   return (
-    <div className="app scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100">
+    <div className="app">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
