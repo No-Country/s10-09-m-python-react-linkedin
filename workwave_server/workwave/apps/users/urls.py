@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import *
-# from workwave.apps.users.views import CreateUserView
+from workwave.apps.users.views import RegisterUserView, LoginUserView
 
 urlpatterns = [
-    path("sign_up/", name="sign_up"),
+    path("register/", view=RegisterUserView.as_view(), name="register"),
+    path("login/", view=LoginUserView.as_view(), name="login"),
 ]
