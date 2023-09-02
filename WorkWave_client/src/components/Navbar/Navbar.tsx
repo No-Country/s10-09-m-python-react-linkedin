@@ -5,11 +5,14 @@ import { FaUserCircle } from "react-icons/fa";
 // import LogoHorizontal from "../Logo/LogoHorizontal";
 import logo from "../../assets/LOGOHorizontal.png";
 import { useNavigate } from "react-router-dom";
+
 function Navbar() {
   const navigate = useNavigate();
   return (
     <div className="flex justify-center  navbar bg-deep-blue h-[71px] gap-16 ">
+      {" "}
       <div className="flex gap-12">
+        {" "}
         {/* <a className="btn btn-ghost"></a> */}
         <div className="w-24">
           <img src={logo} alt="logo" className="object-contain" />
