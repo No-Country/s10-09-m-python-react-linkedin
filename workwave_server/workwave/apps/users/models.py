@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 from workwave.apps.users.managers import CustomUserManager
 
 # Create your models here.
-class User(AbstractUser):
+class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(max_length=100, unique=True, validators=[EmailValidator])
     first_name = models.CharField(max_length=50,validators=[MinLengthValidator(2)])
@@ -28,7 +28,7 @@ class User(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(
-        User,
+        CustomUser,
         on_delete=models.CASCADE,
         primary_key=True,
         verbose_name="User Profile",

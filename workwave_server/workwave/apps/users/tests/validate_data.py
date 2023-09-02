@@ -1,5 +1,5 @@
 from cryptography.fernet import Fernet
-from users.views import *
+from workwave.apps.users.api.views import *
 
 
 value = "asda3123"

@@ -1,16 +1,16 @@
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
-from workwave.apps.users.models import User, Profile
+from workwave.apps.users.models import CustomUser, Profile
 
 
-class UserSerializer(serializers.ModelSerializer):
+class CustomUserSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     password = serializers.CharField(write_only=True)
     password2 = serializers.CharField(write_only=True)
 
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ("id", "email", "password", "password2", "first_name", "last_name", "phone_number", "country", "is_active")
 
     def create(self, validated_data):

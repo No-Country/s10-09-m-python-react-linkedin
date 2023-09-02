@@ -1,15 +1,15 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User, Profile
+from .models import CustomUser, Profile
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import User
+from .models import CustomUser
 
 # Register your models here.
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
-    model = User
+    model = CustomUser
     list_display = ("email", "first_name", "last_name", "phone_number", "country", "is_active", "is_staff")
     list_filter = ("email", "first_name", "last_name", "phone_number", "country", "is_active", "is_staff")
     fieldsets = (
@@ -25,5 +25,5 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ("email",)
     ordering = ("date_joined",)
 
-admin.site.register(User, CustomUserAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Profile)

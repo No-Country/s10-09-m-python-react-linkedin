@@ -1,9 +1,11 @@
 from .base import *
 
-# REST_FRAMEWORK = {
-#     'DATE_FORMAT': "%Y-%m-%d",
-#     'DATE_INPUT_FORMATS': ['iso-8601', '%Y-%m-%d'],
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
 
 AUTH_PASSWORD_VALIDATORS += [
     {

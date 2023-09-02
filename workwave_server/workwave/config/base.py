@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "workwave.apps.users",
     "rest_framework",
+    "rest_framework.authtoken",
 ]
 
 MIDDLEWARE = [
@@ -76,7 +77,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "workwave.config.wsgi.application"
 
-AUTH_USER_MODEL = "users.User"
+AUTH_USER_MODEL = "users.CustomUser"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

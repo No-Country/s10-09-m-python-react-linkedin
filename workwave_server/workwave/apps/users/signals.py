@@ -2,9 +2,9 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.core.mail import send_mail
 from workwave.config import dev 
-from .models import User, Profile
+from .models import CustomUser, Profile
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=CustomUser)
 def send_email_verification(sender, instance, created, **kwargs):
     if created:
         subject = 'Welcome to Workwave!'
