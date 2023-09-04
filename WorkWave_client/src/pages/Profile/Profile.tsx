@@ -6,7 +6,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { FaPhoneAlt } from "react-icons/fa";
 import { AiFillBehanceSquare } from "react-icons/ai";
 import NavbarUserProfile from "../../components/NavbarUserProfile/NavbarUserProfile";
-import UserProjects from "../../components/userProjects/UserProjects";
+import UserProjects from "../../components/userWorkExperience/UserWorkExperience";
 const Profile: React.FC = () => {
 
 
@@ -93,7 +93,7 @@ const Profile: React.FC = () => {
 
         <div className="UserProjectsContainer flex flex-col sm:w-[52%]  mt-3 p-2  ">
         <NavbarUserProfile/>
-         <UserProjects/>
+         {/* <UserProjects/> */}
           
         
         </div>
