@@ -10,6 +10,8 @@ resource "aws_ecs_cluster" "wave-cluster" {
   name = "my-ecs-cluster"
 }
 
+#Define BACKEND & FRONTEND TASK & SERVICE 
+
 #<------- BACKEND  task - service - ---->
 
 #task definition 
