@@ -19,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("user/", include("workwave.apps.users.api.urls")),
+    path("", include("workwave.apps.users.api.urls")),
 ]
