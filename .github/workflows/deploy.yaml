@@ -57,5 +57,5 @@ jobs:
       run: |
           # Usa Terraform aquí para crear o actualizar recursos de ECS y Load Balancing.
           terraform init
-          terraform apply -auto-approve
+          terraform apply -var-file=terraform.tfvars -auto-approve 
    
