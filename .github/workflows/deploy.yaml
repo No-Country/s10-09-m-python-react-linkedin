@@ -1,0 +1,61 @@
+name: Deploy to Amazon ECS backend
+
+on:
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-west-2           
+                                           
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+        
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+  
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+      
+    - name: Build and push BACKEND Docker image
+      env:
+        ECR_REGISTRY: 411951638844.dkr.ecr.us-west-2.amazonaws.com         
+      run: |          
+          docker build --no-cache -t server ./workwave_server
+          docker tag server $ECR_REGISTRY/server:latest
+          docker push $ECR_REGISTRY/server:latest 
+
+    - name: Build and push FRONTEND Docker image
+      env:
+        ECR_REGISTRY: 411951638844.dkr.ecr.us-west-2.amazonaws.com         
+      run: |          
+          docker build --no-cache -t frontend ./WorkWave_client
+          docker tag frontend $ECR_REGISTRY/frontend:latest
+          docker push $ECR_REGISTRY/frontend:latest    
+     
+    - name: Deploy to ECS
+      run: |
+          # Usa Terraform aquí para crear o actualizar recursos de ECS y Load Balancing.
+          terraform init
+          terraform apply -auto-approve
+   
