@@ -4,7 +4,7 @@ name: Deploy to Amazon ECS Frontend
 on:
   push:
     branches: 
-      - Dockerfiles
+      - dev
   workflow_dispatch:
 
 env:
@@ -126,7 +126,7 @@ jobs:
             {
               "Action": "UPSERT",
               "ResourceRecordSet": {
-                "Name": "www.weworkwave.net",
+                "Name": "www.weworkwavedev.net",
                 "Type": "A",
                 "TTL": 300,
                 "ResourceRecords": [
