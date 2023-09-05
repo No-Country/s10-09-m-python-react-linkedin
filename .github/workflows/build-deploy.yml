@@ -96,7 +96,7 @@ jobs:
       id: get-ecs-cluster-arn
       run: |
         # Replace 'your-cluster-name' with your ECS cluster name
-        CLUSTER_NAME="your-cluster-name"
+        CLUSTER_NAME="workwave-dev"
         CLUSTER_ARN=$(aws ecs describe-clusters --clusters $CLUSTER_NAME --query 'clusters[0].clusterArn' --output text)
         if [ -z "$CLUSTER_ARN" ]; then
           echo "Error: ECS cluster '$CLUSTER_NAME' not found or an error occurred."
