@@ -67,21 +67,21 @@ jobs:
         cd ..
         pwd
 
-    - name: Fill in the new image ID in the Amazon ECS task definition
-      id: task-def-front
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: .github/workflows/task_definition.json
-        container-name: frontend
-        image: ${{ steps.build-image-front.outputs.image }}
+    # - name: Fill in the new image ID in the Amazon ECS task definition
+    #   id: task-def-front
+    #   uses: aws-actions/amazon-ecs-render-task-definition@v1
+    #   with:
+    #     task-definition: .github/workflows/task_definition.json
+    #     container-name: frontend
+    #     image: ${{ steps.build-image-front.outputs.image }}
 
-    - name: Fill in the new image ID in the Amazon ECS task definition
-      id: task-def-back
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: .github/workflows/task_definition.json
-        container-name: backend
-        image: ${{ steps.build-image-back.outputs.image }}
+    # - name: Fill in the new image ID in the Amazon ECS task definition
+    #   id: task-def-back
+    #   uses: aws-actions/amazon-ecs-render-task-definition@v1
+    #   with:
+    #     task-definition: .github/workflows/task_definition.json
+    #     container-name: backend
+    #     image: ${{ steps.build-image-back.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
