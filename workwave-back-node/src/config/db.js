@@ -10,14 +10,9 @@ const path = require("path");
 //     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 //   }
 // );
-
-const DB_NAME = "workwave_db";
-const DB_USER = "workwave";
-const DB_PASSWORD = "workwave09";
-const DB_HOST = "workwave-1.cthm6sfrssli.us-west-2.rds.amazonaws.com";
-const DB_PORT = 5432; // El puerto predeterminado de PostgreSQL es 5432
-
+const { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT } = process.env;
 // Crea una instancia de Sequelize para conectarte a la base de datos
+console.log(DB_NAME);
 const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
   host: DB_HOST,
   port: DB_PORT,
