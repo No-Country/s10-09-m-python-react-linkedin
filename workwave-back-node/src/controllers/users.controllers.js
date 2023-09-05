@@ -1,6 +1,14 @@
 const { Users_customuser } = require("../config/db");
 const { handleHttpError } = require("../utils/handleError");
 
+const getUsers = async (re, res) => {
+  try {
+    const users = await Users_customuser.findAll();
+    res.status(200).json(users);
+  } catch (error) {
+    handleHttpError(res, { error: error.message }, 500);
+  }
+};
 const createUser = async (req, res) => {
   try {
     const { body } = req;
@@ -17,4 +25,4 @@ const createUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser };
+module.exports = { createUser, getUsers };

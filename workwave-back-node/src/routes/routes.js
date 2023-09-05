@@ -12,7 +12,7 @@ const comments = require("./comments");
 router.use("/experience", experience);
 router.use("/typesofubication", typesOfUbication);
 router.use("/typesofemployment", typesOfEmployment);
-router.use("/post", post);
+router.use("/posts", post);
 router.use("/users", users);
 router.use("/likes", likes);
 router.use("/comments", comments);
