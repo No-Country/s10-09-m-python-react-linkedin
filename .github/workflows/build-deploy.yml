@@ -2,6 +2,9 @@
 name: Deploy to Amazon ECS Frontend
 
 on:
+  push:
+    branches: 
+      - Dockerfiles
   workflow_dispatch:
 
 env:
