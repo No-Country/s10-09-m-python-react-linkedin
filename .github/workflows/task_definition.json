@@ -1,6 +1,4 @@
 {
-    "taskDefinition": {
-        "taskDefinitionArn": "arn:aws:ecs:us-east-2:411951638844:task-definition/workwave-dev:3",
         "containerDefinitions": [
             {
                 "name": "frontend",
@@ -70,6 +68,4 @@
         "memory": "2048",
         "registeredAt": "2023-09-05T10:16:53.596000+01:00",
         "registeredBy": "arn:aws:iam::411951638844:user/Matias"
-    },
-    "tags": []
 }
