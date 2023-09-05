@@ -121,5 +121,21 @@ jobs:
       run: |
         # Replace 'your-hosted-zone-id' and 'your-record-set-name' with your Route 53 hosted zone ID and record set name.
         if [ "${{ steps.get-ecs-task-ip.outputs.task_ip }}" != "NoRunningTasks" ]; then
-          aws route53 change-resource-record-sets --hosted-zone-id Z0201908RVKCBGER6OFM --change-batch '{"Changes":[{"Action":"UPSERT","ResourceRecordSet":{"Name":"www","Type":"A","TTL":300,"ResourceRecords":[{"Value":"'"${{ steps.get-ecs-task-ip.outputs.task_ip }}"'"}]}}]'
+        aws route53 change-resource-record-sets --hosted-zone-id Z0201908RVKCBGER6OFM --change-batch '{
+          "Changes": [
+            {
+              "Action": "UPSERT",
+              "ResourceRecordSet": {
+                "Name": "www",
+                "Type": "A",
+                "TTL": 300,
+                "ResourceRecords": [
+                  {
+                    "Value": "'"${{ steps.get-ecs-task-ip.outputs.task_ip }}"'"
+                  }
+                ]
+              }
+            }
+          ]
+        }'
         fi
