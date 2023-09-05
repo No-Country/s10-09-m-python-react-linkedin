@@ -17,7 +17,11 @@ Backend for WorkWave. Made with Django and Django REST Framework.
 	pipenv run pip install -r requirements.txt
 	```
 5. Ask for the environment variables to the development team
-6. Run the server with the following command
+6. Activate the virtual environment
+    ```bash
+	pipenv shell
+	```
+7. Run the server with the following command
 	```bash
 	python manage.py runserver
 	```
