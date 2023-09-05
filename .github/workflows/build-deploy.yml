@@ -126,7 +126,7 @@ jobs:
             {
               "Action": "UPSERT",
               "ResourceRecordSet": {
-                "Name": "www",
+                "Name": "www.weworkwave.net",
                 "Type": "A",
                 "TTL": 300,
                 "ResourceRecords": [
