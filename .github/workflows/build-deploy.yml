@@ -86,7 +86,8 @@ jobs:
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        task-definition: ${{ steps.task-def-back.outputs.task-definition }}
+        # task-definition: ${{ steps.task-def-back.outputs.task-definition }}
+        task-definition: .github/workflows/task_definition.json
         service: workwave-service
         cluster: workwave-dev
         wait-for-service-stability: true
