@@ -6,14 +6,12 @@ import { AiOutlineMail } from "react-icons/ai";
 import { FaPhoneAlt } from "react-icons/fa";
 import { AiFillBehanceSquare } from "react-icons/ai";
 import NavbarUserProfile from "../../components/NavbarUserProfile/NavbarUserProfile";
-import UserProjects from "../../components/userWorkExperience/UserWorkExperience";
+// import UserProjects from "../../components/userWorkExperience/UserWorkExperience";
 const Profile: React.FC = () => {
-
-
   return (
     <div className="container  mx-auto">
       {/* ACA EMPIEZA EL BANNER DEL USUARIO */}
-     
+
       <div className="flex flex-col md:flex-row w-[1116.81px] h-[473px] mx-auto bg-black">
         <div className="w-full">
           <div className="bannerProfileContainer ">
@@ -92,12 +90,9 @@ const Profile: React.FC = () => {
         {/* PROYECTOS Y EXPERIENCIA DEL USUARIO */}
 
         <div className="UserProjectsContainer flex flex-col sm:w-[52%]  mt-3 p-2  ">
-        <NavbarUserProfile/>
-         {/* <UserProjects/> */}
-          
-        
+          <NavbarUserProfile />
+          {/* <UserProjects/> */}
         </div>
-      
       </div>
     </div>
   );
