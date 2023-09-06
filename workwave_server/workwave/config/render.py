@@ -1,16 +1,23 @@
 from .base import *
 
-ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
+import os
+import dj_database_url
+
+DEBUG = 'RENDER' not in os.environ
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
+
+ALLOWED_HOSTS = []
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('NAME'),
-        'USER': env('USER'),
-        'PASSWORD': env('PASSWORD'),
-        'HOST': env('HOST'),
-        'PORT': env('PORT'),
-    }
+    'default': dj_database_url.config(
+        default = os.environ.get('DATABASE_URL')
+    )
 }
 
 REST_FRAMEWORK = {
