@@ -5,11 +5,11 @@ module.exports = (sequelize) => {
   sequelize.define(
     "Likes", // Nombre del modelo
     {
-      quantity: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0, // Puedes establecer un valor predeterminado
-      },
+      // quantity: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: false,
+      //   defaultValue: 0, // Puedes establecer un valor predeterminado
+      // },
     },
     {
       timestamps: false, // Desactiva la generación automática de campos createdAt y updatedAt

@@ -4,15 +4,15 @@ const { handleHttpError } = require("../utils/handleError");
 const createComments = async (req, res) => {
   try {
     const { body } = req;
-    console.log(body);
     const data = await Comments.create(body);
-    if (!data || data.length === 0) {
-      handleHttpError(res, "No existe datos de experience");
-      return;
+
+    if (!data) {
+      return handleHttpError(res, "No se pudo crear el comentario", 400);
     }
-    res.status(200).json(data);
+
+    res.status(201).json(data);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     handleHttpError(res, { error: error.message }, 500);
   }
 };

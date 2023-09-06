@@ -1,9 +1,91 @@
-const { Post } = require("../config/db");
+const { Post, Users_customuser, Comments, Likes } = require("../config/db");
 const { handleHttpError } = require("../utils/handleError");
 
 const getPosts = async (req, res) => {
   try {
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({
+      include: [
+        {
+          model: Users_customuser,
+          attributes: [
+            "id",
+            "first_name",
+            "last_name",
+            "email",
+            "phone_number",
+            "country",
+          ],
+        },
+        {
+          model: Likes,
+          // attributes: ["id"],
+          include: [
+            {
+              model: Post,
+              attributes: [
+                "id",
+                "title",
+                "content",
+                "post_date",
+                "photo",
+                "video",
+              ],
+            },
+            {
+              model: Users_customuser,
+              attributes: [
+                "id",
+                "first_name",
+                "last_name",
+                "email",
+                "phone_number",
+                "country",
+              ],
+            },
+          ],
+          attributes: {
+            exclude: ["PostId", "usersCustomuserId"],
+          },
+        },
+        {
+          model: Comments,
+          include: [
+            {
+              model: Post,
+              attributes: [
+                "id",
+                "title",
+                "content",
+                "post_date",
+                "photo",
+                "video",
+              ],
+            },
+            {
+              model: Users_customuser,
+              attributes: [
+                "id",
+                "first_name",
+                "last_name",
+                "email",
+                "phone_number",
+                "country",
+              ],
+            },
+          ],
+          attributes: {
+            exclude: ["PostId", "usersCustomuserId"],
+          },
+        },
+      ],
+      attributes: {
+        exclude: [
+          // "typesOfEmploymentId",
+          // "typesOfUbicationId",
+          "usersCustomuserId",
+        ],
+      },
+    });
     res.status(200).json(posts);
   } catch (error) {
     handleHttpError(res, { error: error.message }, 500);

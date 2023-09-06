@@ -12,10 +12,10 @@ const getLikes = async (req, res) => {
 
 const createLike = async (req, res) => {
   try {
-    const { usersCustomuserId, postId } = req.body;
+    const { usersCustomuserId, PostId } = req.body;
 
     const existingLike = await Likes.findOne({
-      where: { userId, postId },
+      where: { usersCustomuserId, PostId },
     });
 
     if (existingLike) {
@@ -24,11 +24,12 @@ const createLike = async (req, res) => {
       res.status(200).json({ message: "Like eliminado" });
     } else {
       // Si no existe un registro de like, crea uno nuevo
-      await Likes.create({ usersCustomuserId, postId });
+      await Likes.create({ usersCustomuserId, PostId });
       res.status(201).json({ message: "Like agregado" });
     }
   } catch (error) {
-    handleHttpError(error, res);
+    console.log(error);
+    // handleHttpError(error, res);
   }
 };
 module.exports = { createLike, getLikes };
