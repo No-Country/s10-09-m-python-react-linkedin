@@ -1,6 +1,6 @@
 set -o errexit
 
-pip install --updgrade pip
+pip install --upgrade pip
 
 pipenv install
 
