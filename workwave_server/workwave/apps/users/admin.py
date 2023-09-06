@@ -11,6 +11,7 @@ class CustomUserAdmin(UserAdmin):
     form = CustomUserChangeForm
     model = CustomUser
     list_display = ("email", "first_name", "last_name", "phone_number", "country", "is_active", "is_staff")
+    readonly_fields = ('id',)
     list_filter = ("email", "first_name", "last_name", "phone_number", "country", "is_active", "is_staff")
     fieldsets = (
         (None, {"fields": ("email", "password", "first_name", "last_name", "phone_number", "country")}),

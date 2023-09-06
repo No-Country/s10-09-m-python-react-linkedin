@@ -12,7 +12,7 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=50,validators=[MinLengthValidator(2)])
     phone_number = models.CharField(max_length=50, null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
-    is_active = models.BooleanField(default=False, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')
+    is_active = models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

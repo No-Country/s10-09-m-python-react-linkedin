@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from workwave.apps.users.api.serializers import CustomUserSerializer, ProfileSerializer
+from workwave.apps.users.models import CustomUser
 
 class RegisterUserView(APIView):
     def post(self, request):
@@ -23,7 +24,6 @@ class LoginUserView(APIView):
         user = authenticate(
             username=request.data["email"], 
             password=request.data["password"])
-        print(request.data["email"], request.data["password"])
         if user:
             token, created = Token.objects.get_or_create(user=user)
             return Response({'token':token.key})
@@ -39,3 +39,22 @@ class LogoutUserView(APIView):
             return Response({'message': 'Successfully logged out.'}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class UserDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, pk):
+        try:
+            user = CustomUser.objects.get(pk=pk)
+        except ObjectDoesNotExist as e:
+            return Response({"error": "user doesn't exist"}, status=status.HTTP_404_NOT_FOUND)
+        serializer = CustomUserSerializer(user, data=request.data)
+        if serializer.is_valid():
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors)
+        
+    def delete(self, request,pk):
+        user = CustomUser.objects.get(pk=pk)
+        user.delete()
+        return Response({"message": "user account deleted successfully"})
