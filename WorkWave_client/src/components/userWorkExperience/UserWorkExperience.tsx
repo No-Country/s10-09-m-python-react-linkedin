@@ -4,7 +4,7 @@ import exampleProject2 from "../../assets/exProject2.png";
 import exampleProject3 from "../../assets/exProject3.png";
 
 const UserWorkExperience: React.FC = () => {
-  const [projects, setProjects] = useState([
+  const [projects] = useState([
     {
       projectName: "Lorem ipsum dolor sit",
       img: exampleProject1,

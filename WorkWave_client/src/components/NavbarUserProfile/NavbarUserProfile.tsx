@@ -46,7 +46,7 @@ const NavbarUserProfile: React.FC = () => {
           <UserWorkExperience />
         ) : (
           (seccionActual === "education" && <UserEducation />) || (
-            <UserPublications />
+            <UserPublications text="" img="" footText="" />
           )
         )}
       </div>

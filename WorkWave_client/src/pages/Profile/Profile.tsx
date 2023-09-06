@@ -6,7 +6,6 @@ import { AiOutlineMail } from "react-icons/ai";
 import { FaPhoneAlt } from "react-icons/fa";
 import { AiFillBehanceSquare } from "react-icons/ai";
 import NavbarUserProfile from "../../components/NavbarUserProfile/NavbarUserProfile";
-// import UserProjects from "../../components/userWorkExperience/UserWorkExperience";
 const Profile: React.FC = () => {
   return (
     <div className="container  mx-auto">
