@@ -55,9 +55,39 @@ const {
   Likes,
   Comments,
   ConnectionRequests,
+  Job,
+  JobPreferences,
+  JobApplication,
 } = sequelize.models;
 
-Users_customuser.hasOne(ConnectionRequests);
+//jobs and User
+Users_customuser.hasMany(Job);
+Job.belongsTo(Users_customuser);
+
+//jobs and Types_of_ubication
+Types_of_employment.hasOne(Job);
+Job.belongsTo(Types_of_employment);
+//jobs and Types_of_employment
+Types_of_ubication.hasOne(Job);
+Job.belongsTo(Types_of_ubication);
+
+//jobsPreference and User
+Users_customuser.hasMany(JobPreferences);
+JobPreferences.belongsTo(Users_customuser);
+
+//jobsPreference and Job
+Job.hasMany(JobPreferences);
+JobPreferences.belongsTo(Job);
+
+//JobApplication and User
+Users_customuser.hasMany(JobApplication);
+JobApplication.belongsTo(Users_customuser);
+
+//JobApplication and Job
+Job.hasOne(JobApplication);
+JobApplication.belongsTo(Job);
+
+Users_customuser.hasMany(ConnectionRequests);
 ConnectionRequests.belongsTo(Users_customuser);
 
 Types_of_employment.hasOne(Experience);
