@@ -1,9 +1,8 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  // Define el modelo
   sequelize.define(
-    "Likes", // Nombre del modelo
+    "Likes",
     {
       // quantity: {
       //   type: DataTypes.INTEGER,
@@ -12,7 +11,7 @@ module.exports = (sequelize) => {
       // },
     },
     {
-      timestamps: false, // Desactiva la generación automática de campos createdAt y updatedAt
+      timestamps: false,
     }
   );
 };

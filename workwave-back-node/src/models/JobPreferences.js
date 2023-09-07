@@ -2,10 +2,10 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "types_of_ubication",
+    "JobApplication",
     {
-      name: {
-        type: DataTypes.STRING,
+      data_preference: {
+        type: DataTypes.JSON,
         allowNull: false,
       },
     },

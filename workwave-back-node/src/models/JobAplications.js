@@ -2,16 +2,19 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "Comments",
+    "JobApplication",
     {
-      content: {
+      cv: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      date_comment: {
-        type: DataTypes.DATE,
+      resume: {
+        type: DataTypes.TEXT,
         allowNull: false,
-        defaultValue: DataTypes.NOW,
+      },
+      reason_for_interest: {
+        type: DataTypes.TEXT,
+        allowNull: false,
       },
     },
     {

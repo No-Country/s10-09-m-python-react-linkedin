@@ -1,9 +1,8 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  // Define el modelo
   sequelize.define(
-    "Experience", // Nombre del modelo
+    "Experience",
     {
       job_position: {
         type: DataTypes.STRING,
@@ -22,7 +21,7 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
       description: {
-        type: DataTypes.TEXT, // Cambiado a tipo TEXT
+        type: DataTypes.TEXT,
         allowNull: true,
       },
       start_date: {
@@ -35,7 +34,7 @@ module.exports = (sequelize) => {
       },
     },
     {
-      timestamps: false, // Desactiva la generación automática de campos createdAt y updatedAt
+      timestamps: false,
     }
   );
 };
