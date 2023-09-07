@@ -2,8 +2,12 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  createJobAplication,
+  createJobApplication,
+  getJobApplicationsByUser,
+  deleteJobApplicationByUserAndJob,
 } = require("../controllers/jobAplications.controllers");
 
-router.post("/", createJobAplication);
+router.get("/:id", getJobApplicationsByUser);
+router.post("/", createJobApplication);
+router.delete("/:userId/:jobId", deleteJobApplicationByUserAndJob);
 module.exports = router;

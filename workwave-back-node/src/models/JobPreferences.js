@@ -5,9 +5,9 @@ module.exports = (sequelize) => {
     "JobPreferences",
     {
       data_preference: {
-        type: DataTypes.DATE, // Usamos DataTypes.DATE para capturar la fecha y hora
+        type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW, // Establece el valor predeterminado como la fecha y hora actual
+        defaultValue: DataTypes.NOW,
       },
     },
     {
