@@ -13,8 +13,11 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.1",
+    "axios": "^1.5.0",
     "million": "^2.6.0-beta.11",
+    "notiflix": "^3.2.6",
     "react": "^18.2.0",
+    "react-country-state-city": "^1.0.9",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.4",
     "react-icons": "^4.10.1",

@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Stepper from "../../components/Stepper";
@@ -7,7 +6,8 @@ import Country from "../../components/RegisterDetail/Country";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
+import axios from "axios";
+import { Loading } from "notiflix/build/notiflix-loading-aio";
 type FormData = {
   name: string;
   surname: string;
@@ -58,7 +58,6 @@ const schema = yup
 
 const Register: React.FC = () => {
   const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -68,8 +67,25 @@ const Register: React.FC = () => {
   });
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
-    navigate("/register/step1");
+    const NewUser = {
+      email: data.email,
+      first_name: data.name,
+      last_name: data.surname,
+      phone_number: data.phone,
+      password: data.password,
+      password2: data.confirmedPassword,
+    };
+    Loading.circle();
+    axios
+      .post("https://workwave-django.onrender.com/register/", NewUser)
+      .then((res) => {
+        console.log(res.data);
+        navigate("/register/step1");
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        Loading.remove();
+      });
   };
 
   return (

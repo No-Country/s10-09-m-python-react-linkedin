@@ -9,7 +9,7 @@ function Step4() {
         <p className="text-white w-full">
           Ingresa a tu inicio y conecta con otros profesionales.
         </p>
-        <img src="/congrats.png" alt="frontImg" className="py-4" />
+        <img src="/congrats.avif" alt="frontImg" className="py-4" />
       </div>
       <div className="flex flex-col gap-4 w-full px-8 md:px-0 md:w-auto">
         <Buttons

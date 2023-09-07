@@ -9,7 +9,7 @@ function Step2() {
         <p className="text-white px-4 w-full">
           Elige una fotografía para tu perfil{" "}
         </p>
-        <img src="/frontImg.png" alt="frontImg" className="h-80 " />
+        <img src="/frontimg.avif" alt="frontImg" className="h-80 " />
       </div>
       <div className="flex flex-col gap-4 w-full px-4 md:px-0 md:w-auto">
         <Buttons
