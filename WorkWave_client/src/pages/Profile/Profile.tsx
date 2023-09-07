@@ -21,26 +21,28 @@ const Profile: React.FC = () => {
                 className="w-full rounded-sm"
               />
             </div>
-            <div className="dataUser mt-5 md:flex md:justify-between md:items-center">
-              <div className="md:flex md:items-center">
-                <img
-                  src={UserImg}
-                  alt=""
-                  className="userImg border border-white rounded-full p-2 my-2 md:mx-6"
-                />
-                <div className="md:text-center">
-                  <h1 className="text-xl md:text-2xl">UserName</h1>
-                  <p className="text-sm md:text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                    dapibus eros eu vehicula interdum.
-                  </p>
+            <div className="dataUser bg-black">
+              <div>
+                <div className="ml-4">
+                  <img
+                    src={UserImg}
+                    alt=""
+                    className="userImg border border-white rounded-full p-2 my-2 mx-6"
+                  />
                 </div>
               </div>
-              <div className="flex flex-col md:flex-row md:mt-3">
-                <div className="rounded-xl bg-blue-500 p-1 md:mr-2 md:mb-0 mb-2">
+              <div className="mt-5">
+                <h1 className="ml-2">UserName</h1>
+                <p className="ml-2">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  dapibus eros eu vehicula interdum.
+                </p>
+              </div>
+              <div className="flex justify-around mt-3">
+                <div className="rounded-xl bg-blue-500 p-1 mb-2">
                   300 CONEXIONES
                 </div>
-                <div className="rounded-xl bg-transparent border-solid border-2 px-4">
+                <div className="rounded-xl bg-transparent border-solid border-2 px-10 mb-2">
                   EMPLEADO
                 </div>
               </div>
@@ -88,6 +90,28 @@ const Profile: React.FC = () => {
         <div className="UserProjectsContainer sm:w-full md:w-1/2 mt-3 p-2">
           <NavbarUserProfile />
         </div>
+          {/* ACA EMPIEZA LA INFORMACION DE EEXPERIENCIA DEL USUARIO */}
+          {/* <div className="UserExperience md:w-[50%] mt-3 bg-black">
+         
+              <div className=" flex flex-nowrap">
+                <div className="w-24 h-10 m-2 bg-[#F39014] rounded-full"></div>
+                <div className="UserExperienceData flex-col">
+                <h2>Freelance UX/UI designer</h2>
+                <p>Jun 2022 — Present</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus eros eu vehicula interdum. Cras nec ultricies massa. Curabitur rutrum, diam id consequat consequat</p>
+                </div>
+                
+              </div>
+              <div className=" flex gap-2 ">
+                <div className="w-24 h-10 m-2 bg-[#0A66C2] rounded-full"></div>
+                <div className="UserExperienceData flex-col">
+                <h2>Freelance UX/UI designer</h2>
+                <p>Jun 2022 — Present</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus eros eu vehicula interdum. Cras nec ultricies massa. Curabitur rutrum, diam id consequat consequat</p>
+              </div>
+                
+              </div>
+          </div> */}
       </div>
     </div>
   );
