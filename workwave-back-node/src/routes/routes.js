@@ -8,6 +8,7 @@ const post = require("./post");
 const users = require("./users");
 const likes = require("./likes");
 const comments = require("./comments");
+const connectionRequests = require("./connectionRequests");
 
 router.use("/experience", experience);
 router.use("/typesofubication", typesOfUbication);
@@ -16,5 +17,6 @@ router.use("/posts", post);
 router.use("/users", users);
 router.use("/likes", likes);
 router.use("/comments", comments);
+router.use("/connectionRequests", connectionRequests);
 
 module.exports = router;

@@ -1,0 +1,111 @@
+swagger: "2.0"
+info:
+  title: Documentación de API de ConnectionRequests
+  version: 1.0.0
+paths:
+  /connectionRequests:
+    get:
+      tags:
+        - Connections
+      summary: Obtener todas las conexiones
+      description: Obtiene todas las conexiones de la tabla ConnectionRequests.
+      responses:
+        200:
+          description: Conexiones recuperadas con éxito
+          examples:
+            application/json:
+              - id: 1
+                receiverUserId: 8
+                status: pendiente
+                usersCustomuserId: 1
+              - id: 2
+                receiverUserId: 7
+                status: aceptada
+                usersCustomuserId: 3
+        500:
+          description: Error interno del servidor
+
+    post:
+      tags:
+        - Connections
+      summary: Crear una nueva conexión
+      description: Crea una nueva conexión en la tabla ConnectionRequests.
+      parameters:
+        - in: body
+          name: body
+          description: Datos de la conexión a crear
+          required: true
+          schema:
+            type: object
+            properties:
+              receiverUserId:
+                type: integer
+                example: 8
+              status:
+                type: string
+                example: pendiente
+              usersCustomuserId:
+                type: integer
+                example: 1
+      responses:
+        201:
+          description: Conexión creada con éxito
+          examples:
+            application/json:
+              id: 3
+              receiverUserId: 8
+              status: pendiente
+              usersCustomuserId: 1
+        409:
+          description: La conexión ya existe
+        500:
+          description: Error interno del servidor
+
+  /connectionRequests/{id}:
+    put:
+      tags:
+        - Connections
+      summary: Actualizar el estado de una conexión
+      description: Actualiza el estado de una conexión en la tabla ConnectionRequests.
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+          description: ID de la conexión a actualizar
+        - in: body
+          name: body
+          description: Datos para actualizar el estado de la conexión
+          required: true
+          schema:
+            type: object
+            properties:
+              response:
+                type: string
+                example: rechazada
+      responses:
+        200:
+          description: Estado de la conexión actualizado con éxito
+        404:
+          description: Conexión no encontrada
+        500:
+          description: Error interno del servidor
+
+    delete:
+      tags:
+        - Connections
+      summary: Eliminar una conexión
+      description: Elimina una conexión de la tabla ConnectionRequests.
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+          description: ID de la conexión a eliminar
+      responses:
+        200:
+          description: Conexión eliminada exitosamente
+        404:
+          description: Conexión no encontrada
+        500:
+          description: Error interno del servidor

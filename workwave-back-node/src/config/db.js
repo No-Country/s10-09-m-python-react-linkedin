@@ -54,7 +54,11 @@ const {
   Post,
   Likes,
   Comments,
+  ConnectionRequests,
 } = sequelize.models;
+
+Users_customuser.hasOne(ConnectionRequests);
+ConnectionRequests.belongsTo(Users_customuser);
 
 Types_of_employment.hasOne(Experience);
 Experience.belongsTo(Types_of_employment);
