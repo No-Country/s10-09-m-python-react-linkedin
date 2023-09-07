@@ -10,14 +10,14 @@ function Step3() {
       <ul className="flex flex-row md:flex-col flex-wrap gap-4 w-full justify-center items-center">
         <div className="flex flex-col md:flex-row gap-4 justify-center items-center ">
           <li className="bg-white p-4 rounded-xl ">
-            <img src="/nike.png" alt="" className="h-20 hover:scale-90" />
+            <img src="/nike.avif" alt="" className="h-20 hover:scale-90" />
           </li>
           <li className="bg-white p-4 rounded-xl">
-            <img src="/netflix.png" alt="" className="h-20 hover:scale-90" />
+            <img src="/netflix.avif" alt="" className="h-20 hover:scale-90" />
           </li>
           <li className="bg-white p-4 rounded-xl">
             <img
-              src="/filmora.png"
+              src="/filmora.avif"
               alt=""
               className="h-20 rounded-4xl hover:scale-90"
             />
@@ -25,13 +25,17 @@ function Step3() {
         </div>
         <div className="flex  flex-col md:flex-row gap-4 justify-center items-center  ">
           <li className="bg-white  p-4 rounded-xl">
-            <img src="/bata.png" alt="" className="h-20 hover:scale-90" />
+            <img src="/bata.avif" alt="" className="h-20 hover:scale-90" />
           </li>
           <li className="bg-white p-4 rounded-xl">
-            <img src="/university.png" alt="" className="h-20 hover:scale-90" />
+            <img
+              src="/university.avif"
+              alt=""
+              className="h-20 hover:scale-90"
+            />
           </li>
-          <li className="bg-celeste-claro p-4 rounded-xl">
-            <img src="/canva.png" alt=" " className="h-20 hover:scale-90" />
+          <li className="bg-white p-4 rounded-xl">
+            <img src="/canva.avif" alt=" " className="h-20 hover:scale-90" />
           </li>
         </div>
       </ul>

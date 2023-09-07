@@ -10,7 +10,7 @@ type PublicationProps = {
 const userPublications = (props: PublicationProps) => {
   const {
     text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus augue eget scelerisque efficitur.",
-    img = "/publicationImg.png",
+    img = "/publicationImg.avif",
     footText = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam porro, reiciendis corporis adipisci dolores ullam officiis.",
   } = props;
   return (
