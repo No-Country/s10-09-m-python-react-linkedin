@@ -10,7 +10,7 @@ def send_email_verification(sender, instance, created, **kwargs):
         subject = 'Welcome to Workwave!'
         message = f'Hello {instance.first_name}!\n\nWelcome to Workwave. Thank you for joining us.'
         from_email = 'from@yourdjangoapp.com'
-        recipient_list = (dev.EMAIL_HOST_USER,)
+        recipient_list = (instance.email,)
         send_mail(subject, message, from_email,recipient_list)
 
     if instance.is_active == True:
