@@ -1,0 +1,179 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "API de Empleos"
+paths:
+  /jobs:
+    get:
+      tags:
+        - Jobs
+      summary: Obtiene una lista de todos los empleos.
+      description: Obtiene una lista de todos los empleos disponibles.
+      responses:
+        200:
+          description: Lista de empleos obtenida con éxito.
+          examples:
+            application/json:
+              - id: 1
+                job_position: "Desarrollador web"
+                company_name: "Empresa de tecnología XYZ"
+                description: "Estamos buscando un desarrollador web altamente motivado..."
+                ubication: "Ciudad de Ejemplo"
+                salary: 50000
+                typesOfEmploymentId: 4
+                typesOfUbicationId: 3
+                usersCustomuserId: 1
+    post:
+      tags:
+        - Jobs
+      summary: Publica un nuevo empleo.
+      description: Publica un nuevo empleo con los detalles proporcionados.
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: job
+          description: Datos del nuevo empleo.
+          required: true
+          schema:
+            type: object
+            properties:
+              job_position:
+                type: string
+                example: "Desarrollador web"
+              company_name:
+                type: string
+                example: "Empresa de tecnología XYZ"
+              description:
+                type: string
+                example: "Estamos buscando un desarrollador web altamente motivado..."
+              ubication:
+                type: string
+                example: "Ciudad de Ejemplo"
+              salary:
+                type: integer
+                example: 50000
+              typesOfEmploymentId:
+                type: integer
+                example: 4
+              typesOfUbicationId:
+                type: integer
+                example: 3
+              usersCustomuserId:
+                type: integer
+                example: 1
+      responses:
+        201:
+          description: Empleo publicado con éxito.
+          examples:
+            application/json:
+              - id: 1
+                job_position: "Desarrollador web"
+                company_name: "Empresa de tecnología XYZ"
+                description: "Estamos buscando un desarrollador web altamente motivado..."
+                ubication: "Ciudad de Ejemplo"
+                salary: 50000
+                typesOfEmploymentId: 4
+                typesOfUbicationId: 3
+                usersCustomuserId: 1
+  /jobs/{id}:
+    get:
+      tags:
+        - Jobs
+      summary: Obtiene un empleo por ID.
+      description: Obtiene los detalles de un empleo específico por su ID.
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+          description: ID del empleo a obtener.
+      responses:
+        200:
+          description: Empleo obtenido con éxito.
+          examples:
+            application/json:
+              - id: 1
+                job_position: "Desarrollador web"
+                company_name: "Empresa de tecnología XYZ"
+                description: "Estamos buscando un desarrollador web altamente motivado..."
+                ubication: "Ciudad de Ejemplo"
+                salary: 50000
+                typesOfEmploymentId: 4
+                typesOfUbicationId: 3
+                usersCustomuserId: 1
+        404:
+          description: Empleo no encontrado.
+    put:
+      tags:
+        - Jobs
+      summary: Actualiza un empleo por ID.
+      description: Actualiza los detalles de un empleo específico por su ID.
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+          description: ID del empleo a actualizar.
+        - in: body
+          name: job
+          description: Datos actualizados del empleo.
+          schema:
+            type: object
+            properties:
+              job_position:
+                type: string
+                example: "Desarrollador web"
+              company_name:
+                type: string
+                example: "Empresa de tecnología XYZ"
+              description:
+                type: string
+                example: "Estamos buscando un desarrollador web altamente motivado..."
+              ubication:
+                type: string
+                example: "Ciudad de Ejemplo"
+              salary:
+                type: integer
+                example: 50000
+              typesOfEmploymentId:
+                type: integer
+                example: 4
+              typesOfUbicationId:
+                type: integer
+                example: 3
+              usersCustomuserId:
+                type: integer
+                example: 1
+      responses:
+        200:
+          description: Empleo actualizado con éxito.
+          examples:
+            application/json:
+              - id: 1
+                job_position: "Desarrollador web"
+                company_name: "Empresa de tecnología XYZ"
+                description: "Estamos buscando un desarrollador web altamente motivado..."
+                ubication: "Ciudad de Ejemplo"
+                salary: 50000
+                typesOfEmploymentId: 4
+                typesOfUbicationId: 3
+                usersCustomuserId: 1
+    delete:
+      tags:
+        - Jobs
+      summary: Elimina un empleo por ID.
+      description: Elimina un empleo específico por su ID.
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+          description: ID del empleo a eliminar.
+      responses:
+        204:
+          description: Empleo eliminado con éxito.
+        404:
+          description: Empleo no encontrado.

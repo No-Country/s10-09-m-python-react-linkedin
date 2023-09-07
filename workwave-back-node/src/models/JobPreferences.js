@@ -2,11 +2,12 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "types_of_ubication",
+    "JobPreferences",
     {
-      name: {
-        type: DataTypes.STRING,
+      data_preference: {
+        type: DataTypes.DATE,
         allowNull: false,
+        defaultValue: DataTypes.NOW,
       },
     },
     {

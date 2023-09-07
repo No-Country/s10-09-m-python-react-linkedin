@@ -107,11 +107,13 @@ function Step1() {
             text="Siguiente"
             blue={true}
             width=""
+            height=""
             routing="/register/step2"
           />
           <Buttons
             text="Omitir"
             width=""
+            height=""
             routing="/register/step2"
             blue={false}
           />

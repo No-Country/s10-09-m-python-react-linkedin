@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 import React,{useState,useEffect} from "react";
 import axios from "axios";
+=======
+>>>>>>> 1648d14942de2e41289631cf0abe7525289fa9ca
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Stepper from "../../components/Stepper";
@@ -8,7 +11,9 @@ import Country from "../../components/RegisterDetail/Country";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
+import axios from "axios";
+import { Loading } from "notiflix/build/notiflix-loading-aio";
+import { Report } from "notiflix/build/notiflix-report-aio";
 type FormData = {
   email: string;
   first_name: string;
@@ -55,7 +60,6 @@ const schema = yup
 const Register: React.FC = () => {
   const[UserData,setUserData]=useState({})
   const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -65,9 +69,36 @@ const Register: React.FC = () => {
   });
 
   const onSubmit = (data: FormData) => {
+<<<<<<< HEAD
     // console.log(data)
     setUserData({...data});
     // navigate("/register/step1");
+=======
+    const NewUser = {
+      email: data.email,
+      first_name: data.name,
+      last_name: data.surname,
+      phone_number: data.phone,
+      password: data.password,
+      password2: data.confirmedPassword,
+    };
+    Loading.circle();
+    axios
+      .post("https://workwave-django.onrender.com/register/", NewUser)
+      .then((res) => {
+        console.log(res.data);
+        navigate("/register/step1");
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        Loading.remove();
+        Report.success(
+          "Registro Exitoso",
+          "Rellene los siguientes datos para completar su informacion de perfil",
+          "Okay"
+        );
+      });
+>>>>>>> 1648d14942de2e41289631cf0abe7525289fa9ca
   };
   useEffect(() => {
   console.log(UserData)

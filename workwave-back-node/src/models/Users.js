@@ -1,9 +1,8 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  // Define el modelo
   const User = sequelize.define(
-    "users_customuser", // Nombre del modelo, debe coincidir con el nombre de la tabla en la base de datos
+    "users_customuser",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -47,8 +46,8 @@ module.exports = (sequelize) => {
       },
     },
     {
-      timestamps: false, // Desactiva la generación automática de campos createdAt y updatedAt
-      freezeTableName: true, // Evita que Sequelize cree una nueva tabla y utiliza la tabla existente
+      timestamps: false,
+      freezeTableName: true,
     }
   );
 
