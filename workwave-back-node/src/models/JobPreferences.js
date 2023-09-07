@@ -2,11 +2,12 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "JobApplication",
+    "JobPreferences",
     {
       data_preference: {
-        type: DataTypes.JSON,
+        type: DataTypes.DATE, // Usamos DataTypes.DATE para capturar la fecha y hora
         allowNull: false,
+        defaultValue: DataTypes.NOW, // Establece el valor predeterminado como la fecha y hora actual
       },
     },
     {

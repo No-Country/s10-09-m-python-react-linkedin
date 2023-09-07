@@ -9,6 +9,9 @@ const users = require("./users");
 const likes = require("./likes");
 const comments = require("./comments");
 const connectionRequests = require("./connectionRequests");
+const jobs = require("./jobs");
+const jobAplications = require("./jobAplications");
+const jobPreferences = require("./jobPreferences");
 
 router.use("/experience", experience);
 router.use("/typesofubication", typesOfUbication);
@@ -18,5 +21,8 @@ router.use("/users", users);
 router.use("/likes", likes);
 router.use("/comments", comments);
 router.use("/connectionRequests", connectionRequests);
+router.use("/jobs", jobs);
+router.use("/jobAplication", jobAplications);
+router.use("/jobPreferences", jobPreferences);
 
 module.exports = router;
