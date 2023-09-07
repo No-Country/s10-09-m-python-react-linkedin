@@ -14,11 +14,18 @@ function Step4() {
       <div className="flex flex-col gap-4 w-full px-8 md:px-0 md:w-auto">
         <Buttons
           text="Ir a Inicio"
+          height=""
           width="!w-full"
           blue={true}
           routing="/login"
         />
-        <Buttons text="Omitir" width="!w-full" routing="/" blue={false} />
+        <Buttons
+          text="Omitir"
+          height=""
+          width="!w-full"
+          routing="/"
+          blue={false}
+        />
       </div>
     </div>
   );

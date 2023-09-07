@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
+import { Report } from "notiflix/build/notiflix-report-aio";
 type FormData = {
   name: string;
   surname: string;
@@ -85,6 +86,11 @@ const Register: React.FC = () => {
       .catch((err) => console.log(err))
       .finally(() => {
         Loading.remove();
+        Report.success(
+          "Registro Exitoso",
+          "Rellene los siguientes datos para completar su informacion de perfil",
+          "Okay"
+        );
       });
   };
 

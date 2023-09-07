@@ -45,12 +45,14 @@ function Step3() {
       <div className="flex flex-col gap-2 mt-8 w-full px-4">
         <Buttons
           text="Agregar"
+          height=""
           width="!w-full"
           blue={true}
           routing="/register/step4"
         />
         <Buttons
           text="Omitir"
+          height=""
           width="!w-full"
           routing="/register/step4"
           blue={false}
