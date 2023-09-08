@@ -1,12 +1,16 @@
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import logo from "../../assets/LOGOHorizontal.png";
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     <footer className="footer gap-20 p-5 md:p-10 pt-16 bg-deep-blue flex flex-col md:flex-row  md:justify-around text-white h-auto lg:h-[215px]">
       <div className="flex w-full justify-around gap-6 ss:gap-20">
         <div>
           <div className="w-24">
-            <img src={logo} alt="logo" className="object-contain" />
+            <Link to={"/"}>
+              <img src={logo} alt="logo" className="object-contain" />
+            </Link>
           </div>
         </div>
         <div className="flex flex-col gap-2 ss:gap-4">
