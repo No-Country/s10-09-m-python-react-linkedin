@@ -12,6 +12,8 @@ const connectionRequests = require("./connectionRequests");
 const jobs = require("./jobs");
 const jobAplications = require("./jobAplications");
 const jobPreferences = require("./jobPreferences");
+const education = require("./education");
+const skills = require("./skill");
 
 router.use("/experience", experience);
 router.use("/typesofubication", typesOfUbication);
@@ -24,5 +26,7 @@ router.use("/connectionRequests", connectionRequests);
 router.use("/jobs", jobs);
 router.use("/jobAplication", jobAplications);
 router.use("/jobPreferences", jobPreferences);
+router.use("/education", education);
+router.use("/skill", skills);
 
 module.exports = router;
