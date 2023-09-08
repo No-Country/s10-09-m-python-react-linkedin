@@ -1,3 +1,5 @@
+import React,{useState,useEffect} from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Stepper from "../../components/Stepper";
@@ -6,17 +8,16 @@ import Country from "../../components/RegisterDetail/Country";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
 import { Loading } from "notiflix/build/notiflix-loading-aio";
 import { Report } from "notiflix/build/notiflix-report-aio";
 type FormData = {
-  name: string;
-  surname: string;
   email: string;
-  phone: string;
-  phonePrefix: string;
+  first_name: string;
+  last_name:string; 
+  phone_number: string;
+  country? : string,
   password: string;
-  confirmedPassword: string;
+  password2: string;
 };
 
 const schema = yup
@@ -25,24 +26,19 @@ const schema = yup
       .string()
       .required("El campo es requerido")
       .email("El email no es válido"),
-    name: yup
+      first_name: yup
       .string()
       .required("El campo es requerido")
       .min(3, "El nombre debe tener al menos 3 caracteres"),
-    surname: yup
+      last_name: yup
       .string()
       .required("El campo es requerido")
       .min(3, "El apellido debe tener al menos 3 caracteres"),
-    phone: yup
+      phone_number: yup
       .string()
       .required("Ambos campos son requeridos")
       .min(4, "Un numero debe tener al menos 8 numeros "),
-    phonePrefix: yup
-      .string()
-      .matches(/\+/, "El prefijo debe contener el símbolo +")
-      .min(2, "Ingrese el prefijo telefonico")
-      .required("Ambos campos son requeridos"),
-    password: yup
+      password: yup
       .string()
       .required("El campo es requerido")
       .min(8, "La contraseña debe tener al menos 8 caracteres")
@@ -50,7 +46,7 @@ const schema = yup
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]+$/,
         "La contraseña debe contener al menos una mayúscula, una minúscula y un número"
       ),
-    confirmedPassword: yup
+      password2: yup
       .string()
       .required("El campo es requerido")
       .oneOf([yup.ref("password")], "Las contraseñas no coinciden"),
@@ -58,6 +54,7 @@ const schema = yup
   .required();
 
 const Register: React.FC = () => {
+  const[UserData,setUserData]=useState({})
   const navigate = useNavigate();
   const {
     register,
@@ -68,31 +65,26 @@ const Register: React.FC = () => {
   });
 
   const onSubmit = (data: FormData) => {
-    const NewUser = {
-      email: data.email,
-      first_name: data.name,
-      last_name: data.surname,
-      phone_number: data.phone,
-      password: data.password,
-      password2: data.confirmedPassword,
-    };
-    Loading.circle();
-    axios
-      .post("https://workwave-django.onrender.com/register/", NewUser)
-      .then((res) => {
-        console.log(res.data);
-        navigate("/register/step1");
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        Loading.remove();
-        Report.success(
-          "Registro Exitoso",
-          "Rellene los siguientes datos para completar su informacion de perfil",
-          "Okay"
-        );
-      });
+    // console.log(data)
+    setUserData({...data});
+    // navigate("/register/step1");
   };
+  useEffect(() => {
+  console.log(UserData)
+    const sendUserData = async () => {
+          console.log(UserData)
+          if (UserData) {
+            try {
+              const response = await axios.post(`https://workwave-django.onrender.com/register/`,UserData);
+              console.log('Solicitud POST exitosa:', response.data);
+              navigate('/register/step1');
+            } catch (error) {
+              console.error('Error al hacer la solicitud POST:', error);
+            }
+          }
+        };
+        sendUserData()
+  }, [UserData]);
 
   return (
     <>
@@ -146,11 +138,11 @@ const Register: React.FC = () => {
                   id="name"
                   placeholder="Lucia"
                   className="mt-1 p-2 border rounded-xl w-full bg-transparent"
-                  {...register("name")}
+                  {...register("first_name")}
                 />
-                {errors.name && (
+                {errors.first_name && (
                   <span className="text-orange-400">
-                    {errors.name?.message}
+                    {errors.first_name?.message}
                   </span>
                 )}
               </li>
@@ -164,14 +156,14 @@ const Register: React.FC = () => {
                 </label>
                 <input
                   type="string"
-                  id="surname"
+                  id="lastname"
                   placeholder="Lopez"
                   className="mt-1 p-2 border rounded-xl w-full bg-transparent"
-                  {...register("surname")}
+                  {...register("last_name")}
                 />
-                {errors.surname && (
+                {errors.last_name && (
                   <span className="text-orange-400">
-                    {errors.surname.message}
+                    {errors.last_name.message}
                   </span>
                 )}
               </li>
@@ -189,25 +181,25 @@ const Register: React.FC = () => {
                 </label>
                 <li className="flex gap-4">
                   <input
-                    type="phonePrefix"
-                    id="phonePrefix"
+                    type="phone_number"
+                    id="phone_number"
                     placeholder="+54"
                     className="mt-1 p-2 border rounded-xl w-16 bg-transparent"
-                    {...register("phonePrefix")}
+                    {...register("phone_number")}
                   />
                   <input
                     type="phone"
-                    id="phone"
+                    id="phone_number"
                     placeholder="111-1111111"
                     className="mt-1 p-2 border rounded-xl w-full bg-transparent"
-                    {...register("phone")}
+                    {...register("phone_number")}
                   />
                 </li>
-                {errors.phone || errors.phonePrefix ? (
+                {errors.phone_number || errors.phone_number ? (
                   <span className="text-orange-400">
-                    {errors.phone
-                      ? errors.phone.message
-                      : errors.phonePrefix?.message}
+                    {errors.phone_number
+                      ? errors.phone_number.message
+                      : errors.phone_number}
                   </span>
                 ) : null}
               </li>
@@ -247,11 +239,11 @@ const Register: React.FC = () => {
                   id="confirmedPassword"
                   placeholder="************"
                   className="mt-1 p-2 border rounded-xl w-full bg-transparent"
-                  {...register("confirmedPassword")}
+                  {...register("password2")}
                 />
-                {errors.confirmedPassword && (
+                {errors.password2 && (
                   <span className="text-orange-400">
-                    {errors.confirmedPassword.message}
+                    {errors.password2.message}
                   </span>
                 )}
               </li>
@@ -279,6 +271,7 @@ const Register: React.FC = () => {
             <button
               type="submit"
               className="btn btn-info min-w-full bg-celeste-claro"
+              
             >
               Continuar
             </button>
