@@ -94,7 +94,7 @@ const Register: React.FC = () => {
         <Stepper step={"step1"} width="" />
       </div>
 
-      <div className=" md:pt-32 pt-16 flex flex-col md:flex-row items-center justify-center bg-[url('./assets/fondo1.png')] bg-no-repeat bg-cover ">
+      <div className=" md:pt-32 pt-16 flex flex-col md:flex-row items-center justify-center bg-no-repeat bg-cover ">
         <section className=" px-4 py-8 w-full flex flex-col md:justify-start md:items-start md:w-1/2 justify-center items-center">
           <form
             onSubmit={handleSubmit(onSubmit)}

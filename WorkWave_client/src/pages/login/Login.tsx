@@ -32,7 +32,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center bg-[url('./assets/fondo1.png')] bg-no-repeat bg-cover ">
+    <div className="flex flex-col md:flex-row items-center justify-center  bg-no-repeat bg-cover ">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="pt-12 p-6 md:pt-60 h-screen w-full max-w-md md:w-1/3 lg:w-1/4"
