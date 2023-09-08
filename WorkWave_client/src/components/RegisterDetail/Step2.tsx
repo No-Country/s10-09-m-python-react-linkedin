@@ -17,13 +17,13 @@ function Step2() {
           height=""
           blue={true}
           width="!w-full md:w-fit"
-          routing="/register/step3"
+          routing="/registro/step3"
         />
         <Buttons
           text="Omitir"
           height=""
           width="!w-full md:w-fit"
-          routing="/register/step2"
+          routing="/registro/step2"
           blue={false}
         />
       </div>

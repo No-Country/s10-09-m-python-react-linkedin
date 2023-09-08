@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import LandingHeader from "../../components/LandingHeader/LandingHeader";
 
-const TermsPage: React.FC = () => {
+const AboutUsPage: React.FC = () => {
   return (
     <div className="min-h-screen">
       <div className="py-5 hidden lg:flex justify-center items-center">
@@ -34,4 +34,4 @@ const TermsPage: React.FC = () => {
   );
 };
 
-export default TermsPage;
+export default AboutUsPage;
