@@ -5,6 +5,7 @@ import landing from "../../assets/landing.png";
 import landing1 from "../../assets/landing1.png";
 import landing2 from "../../assets/landing2.png";
 import logoWork from "../../assets/logo.svg";
+import { Link } from "react-router-dom";
 const buttonContents = [
   "Ingeniería",
   "Finanzas",
@@ -119,21 +120,21 @@ function Landing() {
         </div>
 
         <div className="flex w-full justify-center items-center gap-20 mb-12 mt-36">
-          <a href="/nosotros" className="link link-hover">
+          <Link to="/nosotros" className="link link-hover">
             Nosotros
-          </a>
-          <a href="/terminos" className="link link-hover ">
+          </Link>
+          <Link to="/terminos" className="link link-hover ">
             Terminos y Condiciones
-          </a>
-          <a href="/vision" className="link link-hover">
+          </Link>
+          <Link to="/vision" className="link link-hover">
             Vision
-          </a>
-          <a
-            href="https://github.com/No-Country/s10-09-m-python-react-linkedin"
+          </Link>
+          <Link
+            to="https://github.com/No-Country/s10-09-m-python-react-linkedin"
             className="link link-hover "
           >
             Reporte De Problemas
-          </a>
+          </Link>
         </div>
       </div>
     </section>
