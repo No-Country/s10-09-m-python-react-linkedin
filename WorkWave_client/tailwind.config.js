@@ -50,5 +50,5 @@ export default {
       },
     ],
   },
-  plugins: [daisyui, scrollbar({ nocompatible: true })],
+  plugins: [daisyui, scrollbar],
 };
