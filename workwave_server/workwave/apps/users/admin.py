@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, Profile
+from .models import CustomUser
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser
 
@@ -27,4 +27,3 @@ class CustomUserAdmin(UserAdmin):
     ordering = ("date_joined",)
 
 admin.site.register(CustomUser, CustomUserAdmin)
-admin.site.register(Profile)

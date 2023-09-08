@@ -1,6 +1,6 @@
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
-from workwave.apps.users.models import CustomUser, Profile
+from workwave.apps.users.models import CustomUser
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
@@ -42,11 +42,6 @@ class CustomUserSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
         
-    
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Profile
-        fields = "__all__"
 
 
 

@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
-from workwave.apps.users.api.serializers import CustomUserSerializer, ProfileSerializer
+from workwave.apps.users.api.serializers import CustomUserSerializer
 from workwave.apps.users.models import CustomUser
 
 class RegisterUserView(APIView):
