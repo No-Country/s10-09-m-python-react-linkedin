@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import daisyui from "daisyui";
-import tw from "tailwind-scrollbar";
+import scrollbar from "tailwind-scrollbar";
 
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -9,6 +9,7 @@ export default {
       colors: {
         "deep-blue": "#000000",
         "celeste-claro": "#61A9FD",
+        "celeste-claro-bar": "#2D43AA",
       },
       fontFamily: {
         inter: ["inter", "sans-serif"],
@@ -26,5 +27,5 @@ export default {
       xl: "1700px",
     },
   },
-  plugins: [daisyui, tw],
+  plugins: [daisyui, scrollbar({ nocompatible: true })],
 };
