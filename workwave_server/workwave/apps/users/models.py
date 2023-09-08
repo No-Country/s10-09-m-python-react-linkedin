@@ -14,8 +14,8 @@ class CustomUser(AbstractUser):
     country = models.CharField(max_length=100, null=True, blank=True)
     headline = models.CharField(max_length=255, blank=True, null=True)
     about = models.TextField(blank=True, null=True)
-    avatar = models.ImageField(null=True, blank=True)
-    banner = models.ImageField(null=True, blank=True)
+    avatar = models.ImageField(upload_to='images/', null=True, blank=True)
+    banner = models.ImageField(upload_to='images/', null=True, blank=True)
     is_active = models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')
 
     USERNAME_FIELD = "email"
