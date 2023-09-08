@@ -65,12 +65,9 @@ const Register: React.FC = () => {
   });
 
   const onSubmit = (data: FormData) => {
-    // console.log(data)
     setUserData({...data});
-    // navigate("/register/step1");
   };
   useEffect(() => {
-  console.log(UserData)
     const sendUserData = async () => {
           console.log(UserData)
           if (UserData) {
@@ -84,7 +81,7 @@ const Register: React.FC = () => {
           }
         };
         sendUserData()
-  }, [UserData]);
+  }, [UserData,navigate]);
 
   return (
     <>
