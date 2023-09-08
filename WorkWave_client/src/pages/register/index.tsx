@@ -79,7 +79,7 @@ const Register: React.FC = () => {
             UserData
           );
           console.log("Solicitud POST exitosa:", response.data);
-          navigate("/register/step1");
+          navigate("/registro/step1");
         } catch (error) {
           console.error("Error al hacer la solicitud POST:", error);
         }
@@ -276,7 +276,9 @@ const Register: React.FC = () => {
           </form>
         </section>
         <div className="hidden md:block ">
-          <img src={logo} alt="image logo" className="mb-36" />
+          <Link to={"/"}>
+            <img src={logo} alt="image logo" className="mb-36" />
+          </Link>
         </div>
       </div>
     </>
