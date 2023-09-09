@@ -108,13 +108,13 @@ function Step1() {
             blue={true}
             width=""
             height=""
-            routing="/register/step2"
+            routing="/registro/step2"
           />
           <Buttons
             text="Omitir"
             width=""
             height=""
-            routing="/register/step2"
+            routing="/registro/step2"
             blue={false}
           />
         </div>

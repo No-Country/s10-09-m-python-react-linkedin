@@ -11,6 +11,9 @@ import Register from "./pages/register";
 import RegisterDetail from "./components/RegisterDetail";
 import Terms from "./pages/terms/index";
 
+import AboutUs from "./pages/AboutUs/index";
+import Vision from "./pages/vision/VisionPage";
+
 function App() {
   return (
     <div className="app">
@@ -22,14 +25,16 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/panel" element={<Navigate to="/perfil" replace />} />
 
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/perfil" element={<Profile />} />
             <Route path="/empleos" element={<Empleos />} />
           </Route>
 
-          <Route path="/register" element={<Register />} />
-          <Route path="/register/:step" element={<RegisterDetail />} />
+          <Route path="/registro" element={<Register />} />
+          <Route path="/registro/:step" element={<RegisterDetail />} />
 
-          <Route path="/terms-and-conditions" element={<Terms />} />
+          <Route path="/terminos" element={<Terms />} />
+          <Route path="/nosotros" element={<AboutUs />} />
+          <Route path="/vision" element={<Vision />} />
         </Routes>
       </BrowserRouter>
     </div>

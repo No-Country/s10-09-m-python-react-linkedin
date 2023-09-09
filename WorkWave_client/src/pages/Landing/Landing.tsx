@@ -5,6 +5,7 @@ import landing from "../../assets/landing.png";
 import landing1 from "../../assets/landing1.png";
 import landing2 from "../../assets/landing2.png";
 import logoWork from "../../assets/logo.svg";
+import { Link } from "react-router-dom";
 const buttonContents = [
   "Ingeniería",
   "Finanzas",
@@ -22,7 +23,7 @@ const buttonContents = [
 function Landing() {
   return (
     <section className=" mx-4 ss:mx-8 sm:mx-16 md:mx-40 sm:py-10">
-      <div className="hidden sm:block">
+      <div className="hidden sm:flex justify-center items-center">
         <LandingHeader />
       </div>
       <div className="flex flex-col-reverse  items-center sm:items-start sm:flex-row pt-40 sm:pt-28 sm:gap-10 md:gap-20 lg:gap-40  ">
@@ -34,7 +35,7 @@ function Landing() {
             text={"Crear Nueva Cuenta"}
             width=""
             blue={true}
-            routing={"/register"}
+            routing={"/registro"}
             height={"14"}
           />
           <Buttons
@@ -46,14 +47,14 @@ function Landing() {
           />
 
           <Buttons
-            text={"Ingresá Con Google"}
+            text={"Ingresá con Google"}
             width=""
             blue={false}
             routing={"/"}
             height={"16"}
           />
           <Buttons
-            text={"Ingresá Con Facebook"}
+            text={"Ingresá con Facebook"}
             width=""
             blue={false}
             routing={"/"}
@@ -119,10 +120,21 @@ function Landing() {
         </div>
 
         <div className="flex w-full justify-center items-center gap-20 mb-12 mt-36">
-          <a className="link link-hover text-sm">Condiciones De Uso</a>
-          <a className="link link-hover text-sm">Politica De privacidad</a>
-          <a className="link link-hover text-sm">Politica De Cookies</a>
-          <a className="link link-hover text-sm">Politica De Copyright</a>
+          <Link to="/nosotros" className="link link-hover">
+            Nosotros
+          </Link>
+          <Link to="/terminos" className="link link-hover ">
+            Terminos y Condiciones
+          </Link>
+          <Link to="/vision" className="link link-hover">
+            Vision
+          </Link>
+          <Link
+            to="https://github.com/No-Country/s10-09-m-python-react-linkedin"
+            className="link link-hover "
+          >
+            Reporte De Problemas
+          </Link>
         </div>
       </div>
     </section>
