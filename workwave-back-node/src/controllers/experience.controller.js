@@ -27,7 +27,7 @@ const getExperience = async (req, res) => {
         exclude: [
           "typesOfEmploymentId",
           "typesOfUbicationId",
-          "users_customuser",
+          "usersCustomuserId",
         ],
       },
     });
