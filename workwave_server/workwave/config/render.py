@@ -7,6 +7,7 @@ DEBUG = 'RENDER' not in os.environ
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
+CLOUDINARY_URL = env('CLOUDINARY_URL')
 
 ALLOWED_HOSTS = []
 
@@ -32,6 +33,9 @@ AUTH_PASSWORD_VALIDATORS += [
         "NAME": "workwave.apps.users.validators.CustomPasswordValidator",
     },
 ]
+
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 #Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

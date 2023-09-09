@@ -1,20 +1,5 @@
 from .base import *
 
-INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "cloudinary_storage",
-    "cloudinary",
-    "workwave.apps.users",
-    "rest_framework",
-    "rest_framework.authtoken",
-    'corsheaders',
-]
-
 CLOUDINARY_URL = env('CLOUDINARY_URL')
 
 REST_FRAMEWORK = {
