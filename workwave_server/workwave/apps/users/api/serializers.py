@@ -7,10 +7,12 @@ class CustomUserSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     password = serializers.CharField(write_only=True, required=False)
     password2 = serializers.CharField(write_only=True, required=False)
+    avatar_url = serializers.ReadOnlyField(required=False)
+    banner_url = serializers.ReadOnlyField(required=False)
 
     class Meta:
         model = CustomUser
-        fields = ("id", "email", "password", "password2", "first_name", "last_name", "phone_number", "country", "headline", "about")
+        fields = ("id", "email", "password", "password2", "first_name", "last_name", "phone_number", "country", "headline", "about", "avatar_url", "banner_url")
 
     def create(self, validated_data):
         """
@@ -43,5 +45,16 @@ class CustomUserSerializer(serializers.ModelSerializer):
         return instance
         
 
+class CustomUserImageSerializer(serializers.ModelSerializer):
+    avatar_url = serializers.ReadOnlyField()
+    banner_url = serializers.ReadOnlyField()
 
+    class Meta:
+        model = CustomUser
+        fields = ("avatar_url", "avatar", "banner_url", "banner")
 
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation.pop("avatar")
+        representation.pop("banner")
+        return representation

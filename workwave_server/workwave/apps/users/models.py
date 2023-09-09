@@ -3,6 +3,7 @@ from django.core.validators import MinLengthValidator, EmailValidator
 from datetime import date
 from django.contrib.auth.models import AbstractUser
 from workwave.apps.users.managers import CustomUserManager
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class CustomUser(AbstractUser):
@@ -14,14 +15,32 @@ class CustomUser(AbstractUser):
     country = models.CharField(max_length=100, null=True, blank=True)
     headline = models.CharField(max_length=255, blank=True, null=True)
     about = models.TextField(blank=True, null=True)
-    avatar = models.ImageField(upload_to='images/', null=True, blank=True)
-    banner = models.ImageField(upload_to='images/', null=True, blank=True)
+    avatar = CloudinaryField(null=True, blank=True)
+    banner = CloudinaryField(null=True, blank=True)
     is_active = models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
+
+    @property
+    def avatar_url(self):
+        if self.avatar == None:
+            return ("null")
+        else:
+            return(
+                f"https://res.cloudinary.com/dey5v9yb0/{self.avatar}"
+            )
+        
+    @property
+    def banner_url(self):
+        if self.banner == None:
+            return ("null")
+        else:
+            return(
+                f"https://res.cloudinary.com/dey5v9yb0/{self.banner}"
+            )
     
     def __str__(self):
         return f"{self.first_name} {self.last_name} | {self.email}"
