@@ -43,13 +43,22 @@ class LogoutUserView(APIView):
 class UserDetailView(APIView):
     permission_classes = [IsAuthenticated]
 
+    def get(self, request, pk):
+        try:
+            user = CustomUser.objects.get(pk=pk)
+            serializer = CustomUserSerializer(user)
+            return Response(serializer.data)
+        except ObjectDoesNotExist as e:
+            return Response({"error": "user doesn't exist"}, status=status.HTTP_404_NOT_FOUND)
+
     def put(self, request, pk):
         try:
             user = CustomUser.objects.get(pk=pk)
         except ObjectDoesNotExist as e:
             return Response({"error": "user doesn't exist"}, status=status.HTTP_404_NOT_FOUND)
-        serializer = CustomUserSerializer(user, data=request.data)
+        serializer = CustomUserSerializer(user, data=request.data, partial=True)
         if serializer.is_valid():
+            serializer.save()
             return Response(serializer.data)
         else:
             return Response(serializer.errors)

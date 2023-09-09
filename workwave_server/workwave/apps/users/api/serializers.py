@@ -25,7 +25,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-    def update (self, instance, validated_data):
+    def update(self, instance, validated_data):
         """
         Update and return an existing 'CustomUser' instance, given the validated data.
         """
@@ -34,11 +34,11 @@ class CustomUserSerializer(serializers.ModelSerializer):
         instance.last_name = validated_data.get('last_name', instance.last_name)
         instance.phone_number = validated_data.get('phone_number', instance.phone_number)
         instance.country = validated_data.get('country', instance.country)
-        instance.is_active = validated_data.get('active', instance.is_active)
-        if validated_data["password"]:
-            validate_password(validated_data["password"])
-            instance.password = instance.set_password(validated_data.get('password', instance.password))
-        print(instance.first_name, validated_data["first_name"])
+        instance.headline = validated_data.get('headline', instance.headline)
+        instance.about = validated_data.get('about', instance.about)
+        # if validated_data["password"]:
+        #     validate_password(validated_data["password"])
+        #     instance.password = instance.set_password(validated_data.get('password', instance.password))
         instance.save()
         return instance
         
