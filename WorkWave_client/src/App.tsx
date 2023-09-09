@@ -9,12 +9,15 @@ import Empleos from "./pages/empleos/Empleos";
 
 import Register from "./pages/register";
 import RegisterDetail from "./components/RegisterDetail";
-import Terms from "./pages/terms/index";
+import TermsUso from "./pages/terms/index";
 
 import AboutUs from "./pages/AboutUs/index";
 import Vision from "./pages/vision/VisionPage";
 
 import Teams from "./pages/teams/index";
+import Cookie from "./pages/cookie/index";
+
+import TermsServices from "./pages/termsServices/index";
 
 function App() {
   return (
@@ -34,7 +37,9 @@ function App() {
           <Route path="/registro" element={<Register />} />
           <Route path="/registro/:step" element={<RegisterDetail />} />
 
-          <Route path="/terminos" element={<Terms />} />
+          <Route path="/terminos-uso" element={<TermsUso />} />
+          <Route path="/politica-servicio" element={<TermsServices />} />
+          <Route path="/cookie" element={<Cookie />} />
           <Route path="/nosotros" element={<AboutUs />} />
           <Route path="/vision" element={<Vision />} />
           <Route path="/equipo" element={<Teams />} />

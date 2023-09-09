@@ -1,12 +1,9 @@
-import { Link } from "react-router-dom";
 import LandingHeader from "../../components/LandingHeader/LandingHeader";
 
 import {
   Card,
   CardHeader,
-  CardBody,
   CardFooter,
-  Divider,
   Button,
   Image,
   ButtonGroup,
@@ -14,9 +11,9 @@ import {
 
 const QuienesSomos: React.FC = () => {
   return (
-    <div className="bg-white p-8 rounded-md shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Quiénes Somos</h2>
-      <p className="text-gray-600">
+    <div className="bg-black/70 p-8 rounded-md shadow-md">
+      <h2 className="text-2xl text-white font-bold mb-4">Quiénes Somos</h2>
+      <p className="text-white/60">
         WorkWave es un grupo de personas apasionadas que hemos decidido unir
         nuestras habilidades y conocimientos para embarcarnos en una emocionante
         aventura: crear un aplicativo desde cero, desarrollar una red social
@@ -28,9 +25,9 @@ const QuienesSomos: React.FC = () => {
 
 const NuestraMision: React.FC = () => {
   return (
-    <div className="bg-white p-8 rounded-md shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Nuestra Misión</h2>
-      <p className="text-gray-600">
+    <div className="bg-black/70 p-8 rounded-md shadow-md">
+      <h2 className="text-2xl font-bold text-white mb-4">Nuestra Misión</h2>
+      <p className="text-white/60 mb-2">
         En WorkWave, somos más que una simple aplicación. Somos una comunidad
         vibrante y dinámica que une a profesionales de diversas industrias en un
         espacio en línea donde pueden conectarse, colaborar y prosperar. Nuestra
@@ -40,7 +37,7 @@ const NuestraMision: React.FC = () => {
         mejorar la vida de las personas al ofrecer una solución que se adapte a
         su estilo de vida moderno y ágil.
       </p>
-      <p className="text-gray-600">
+      <p className="text-white/60">
         Deseamos ser reconocidos por nuestra dedicación a la excelencia, la
         innovación tecnológica y el compromiso con la satisfacción del cliente.
         Aspiramos a ser un referente en el sector y un modelo a seguir para
@@ -50,34 +47,11 @@ const NuestraMision: React.FC = () => {
   );
 };
 
-const NuestraHistoria: React.FC = () => {
-  return (
-    <div className="bg-white p-8 rounded-md shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Nuestra Historia</h2>
-      <p className="text-gray-600">
-        WorkWave fue fundada el 11 de Agosto del 2023 con la visión de
-        transformar la forma en que los profesionales interactúan en línea.
-        Reconocimos la necesidad de una plataforma que fuera más que una red
-        social; una plataforma que permitiera a las personas alcanzar sus
-        objetivos profesionales de manera efectiva.
-      </p>
-      <p className="text-gray-600">
-        Con nuestras mentes creativas y apasionadas por la tecnología, nos
-        unimos con un objetivo común y desde NoCountry nos desafiaron a realizar
-        un software como Linkedin. Por lo que decidimos crear nuestra propia
-        plataforma que marcaría la diferencia. Así nació nuestra propia red
-        social profesional, WorkWave, que nos ha llevado a explorar el vasto
-        mundo del desarrollo de software.
-      </p>
-    </div>
-  );
-};
-
 const LoQueHacemos: React.FC = () => {
   return (
-    <div className="bg-white p-8 rounded-md shadow-md">
+    <div className="bg-black/70 p-8 rounded-md shadow-md">
       <h2 className="text-2xl font-bold mb-4">Lo Que Hacemos</h2>
-      <ul className="list-disc list-inside text-gray-600">
+      <ul className="list-disc list-inside text-white/60">
         <li>
           Conectar de Manera Significativa: Facilitamos la creación de
           conexiones valiosas. Nuestra plataforma te permite conectar con
@@ -112,26 +86,11 @@ const LoQueHacemos: React.FC = () => {
   );
 };
 
-const NuestraVision: React.FC = () => {
-  return (
-    <div className="bg-white p-8 rounded-md shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Nuestra Visión</h2>
-      <p className="text-gray-600">
-        En WorkWave, tenemos una visión audaz del futuro de las redes sociales
-        profesionales en línea. Visualizamos un mundo en el que cada profesional
-        tenga la capacidad de conectarse de manera significativa, colaborar de
-        manera efectiva y alcanzar el éxito en su carrera con el apoyo de
-        nuestra plataforma.
-      </p>
-    </div>
-  );
-};
-
 const NuestrosValores: React.FC = () => {
   return (
-    <div className="bg-white p-8 rounded-md shadow-md">
+    <div className="bg-black/70 p-8 rounded-md shadow-md">
       <h2 className="text-2xl font-bold mb-4">Nuestros Valores</h2>
-      <ul className="list-disc list-inside text-gray-600">
+      <ul className="list-disc list-inside text-white/60">
         <li>
           Innovación: Abrazamos la creatividad y la innovación para diseñar
           soluciones únicas y efectivas que superen las expectativas de nuestros
@@ -253,16 +212,9 @@ const Equipo = () => {
       img: "",
     },
   ];
-
   return (
     <div>
-      <p>
-        Está formado por individuos talentosos y apasionados, cada uno con
-        habilidades únicas que contribuyen a la creación de este proyecto. Somos
-        programadores, diseñadores, expertos en experiencia de usuario y
-        profesionales de diferentes áreas que unen fuerzas para lograr el éxito
-        de este proyecto.
-      </p>
+      <h3 className="m-2 text-xl font-semibold mt-4">Nuestro Equipo</h3>
       <div className="grid grid-cols-2 justify-center items-center gap-5 my-5 mb-9">
         {miembrosEquipo.map((miembro, index) => (
           <Card
@@ -297,16 +249,16 @@ const Equipo = () => {
               </div>
               <ButtonGroup>
                 <Button
-                  href={miembro.linkedin}
                   radius="full"
                   className="bg-celeste-claro-bar text-white hover:bg-white hover:text-black"
                   size="sm"
+                  onClick={() => window.location.replace(miembro.linkedin)}
                 >
                   Linkedin
                 </Button>
                 {miembro.behance ? (
                   <Button
-                    href={miembro.behance}
+                    onClick={() => window.location.replace(miembro.behance)}
                     radius="full"
                     className="bg-green-500/70 text-white hover:bg-white hover:text-black"
                     size="sm"
@@ -317,7 +269,7 @@ const Equipo = () => {
 
                 {miembro.github ? (
                   <Button
-                    href={miembro.github}
+                    onClick={() => window.location.replace(miembro.github)}
                     radius="full"
                     className="bg-black text-white hover:bg-white hover:text-black"
                     size="sm"
@@ -342,10 +294,20 @@ const TeamsPage = () => {
       </div>
       <div className="py-1">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-black mb-4">Nuestro Equipo</h2>
+          <div className="container lg:grid gap-4 hidden grid-cols-2 mx-auto px-4">
+            <NuestraMision />
+            <div className="grid gap-2">
+              <QuienesSomos />
+              <NuestrosValores />
+            </div>
+            <div className="col-span-2">
+              <LoQueHacemos />
+            </div>
+          </div>
           <Equipo />
         </div>
       </div>
+      <div className="py-1"></div>
     </div>
   );
 };

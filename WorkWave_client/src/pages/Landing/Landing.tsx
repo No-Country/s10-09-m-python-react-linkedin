@@ -127,14 +127,22 @@ function Landing() {
           <Link to="/nosotros" className="link link-hover">
             Nosotros
           </Link>
-          <Link to="/terminos" className="link link-hover ">
-            Terminos y Condiciones
+          <Link to="/terminos-uso" className="link link-hover ">
+            Terminos de Uso
           </Link>
           <Link to="/vision" className="link link-hover">
             Vision
           </Link>
           <Link to="/equipo" className="link link-hover">
             Equipo
+          </Link>
+
+          <Link to="/cookie" className="link link-hover">
+            Cookie
+          </Link>
+
+          <Link to="/politica-servicio" className="link link-hover">
+            Politica de Privacidad
           </Link>
 
           <Link
