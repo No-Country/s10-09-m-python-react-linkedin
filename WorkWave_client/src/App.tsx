@@ -14,9 +14,11 @@ import Terms from "./pages/terms/index";
 import AboutUs from "./pages/AboutUs/index";
 import Vision from "./pages/vision/VisionPage";
 
+import Teams from "./pages/teams/index";
+
 function App() {
   return (
-    <div className="app">
+    <div className="app dark">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -35,6 +37,7 @@ function App() {
           <Route path="/terminos" element={<Terms />} />
           <Route path="/nosotros" element={<AboutUs />} />
           <Route path="/vision" element={<Vision />} />
+          <Route path="/equipo" element={<Teams />} />
         </Routes>
       </BrowserRouter>
     </div>

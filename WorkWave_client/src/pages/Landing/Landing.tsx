@@ -37,6 +37,7 @@ function Landing() {
             blue={true}
             routing={"/registro"}
             height={"14"}
+            className="hover:bg-black duration-500"
           />
           <Buttons
             text={"Iniciar Sesión"}
@@ -44,6 +45,7 @@ function Landing() {
             blue={false}
             routing={"/login"}
             height={"16"}
+            className="hover:bg-black duration-500"
           />
 
           <Buttons
@@ -52,6 +54,7 @@ function Landing() {
             blue={false}
             routing={"/"}
             height={"16"}
+            className="hover:bg-black duration-500"
           />
           <Buttons
             text={"Ingresá con Facebook"}
@@ -59,6 +62,7 @@ function Landing() {
             blue={false}
             routing={"/"}
             height={"16"}
+            className="hover:bg-black duration-500"
           />
         </div>
         <img src={logoWork} className="hidden sm:block self-center" />
@@ -129,6 +133,10 @@ function Landing() {
           <Link to="/vision" className="link link-hover">
             Vision
           </Link>
+          <Link to="/equipo" className="link link-hover">
+            Equipo
+          </Link>
+
           <Link
             to="https://github.com/No-Country/s10-09-m-python-react-linkedin"
             className="link link-hover "
