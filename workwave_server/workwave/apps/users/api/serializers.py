@@ -38,9 +38,6 @@ class CustomUserSerializer(serializers.ModelSerializer):
         instance.country = validated_data.get('country', instance.country)
         instance.headline = validated_data.get('headline', instance.headline)
         instance.about = validated_data.get('about', instance.about)
-        # if validated_data["password"]:
-        #     validate_password(validated_data["password"])
-        #     instance.password = instance.set_password(validated_data.get('password', instance.password))
         instance.save()
         return instance
         
@@ -58,3 +55,23 @@ class CustomUserImageSerializer(serializers.ModelSerializer):
         representation.pop("avatar")
         representation.pop("banner")
         return representation
+    
+class CustomUserPasswordSerializer(serializers.ModelSerializer):
+    new_password = serializers.CharField(write_only=True)
+    new_password2 = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = CustomUser
+        fields = ("new_password", "new_password2")
+
+    def update(self, instance, validated_data):
+        """
+        Update and return a new password for user, given the validated data.
+        """
+        if validated_data["new_password"] != validated_data["new_password2"]:
+            raise serializers.ValidationError("Passwords do not match.")
+        validate_password(validated_data["new_password"])
+        validated_data.pop("new_password2")
+        instance.set_password(validated_data["new_password"])
+        instance.save()
+        return instance

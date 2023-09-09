@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
-from workwave.apps.users.api.serializers import CustomUserSerializer, CustomUserImageSerializer
+from workwave.apps.users.api.serializers import CustomUserSerializer, CustomUserImageSerializer, CustomUserPasswordSerializer
 from workwave.apps.users.models import CustomUser
 
 class RegisterUserView(APIView):
@@ -84,3 +84,19 @@ class UploadImageView(APIView):
             return Response(serializer.data)
         else:
             return Response(serializer.errors)
+        
+class ChangePasswordView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, pk):
+        try:
+            user = CustomUser.objects.get(pk=pk)
+        except ObjectDoesNotExist as e:
+            return Response({"error": "user doesn't exist"}, status=status.HTTP_404_NOT_FOUND)
+        serializer = CustomUserPasswordSerializer(user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "password changed successfully"})
+        else:
+            return Response(serializer.errors)
+
