@@ -6,7 +6,7 @@ function Stepper(props: StepperProps) {
   const { step, width } = props;
   return (
     <div>
-      <ul className=" mt-8 w-full justify-center flex gap-16">
+      <ul className=" mt-8 w-full justify-center flex px-4 pt-4 md:pt-0 md:px-0 gap-4 md:gap-16">
         <li
           className={`${
             step === "step1" ? "bg-[#4318FF]" : "bg-[#2B3674]"
