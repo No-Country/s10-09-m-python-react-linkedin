@@ -1,0 +1,28 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "API de Empleos"
+paths:
+  /api/typesofemployment:
+    get:
+      tags:
+        - Types of employment
+      summary: Obtiene todos los tipos de empleo disponibles.
+      description: Obtiene una lista de todos los tipos de empleo disponibles.
+      responses:
+        200:
+          description: Lista de tipos de empleo obtenida con éxito.
+          examples:
+            application/json:
+              - id: 1
+                name: "Jornada completa"
+              - id: 2
+                name: "Jornada parcial"
+              - id: 3
+                name: "Profesional independiente"
+              - id: 4
+                name: "Contrato temporal"
+              - id: 5
+                name: "Contrato de formación"
+              - id: 6
+                name: "Contrato de prácticas"
