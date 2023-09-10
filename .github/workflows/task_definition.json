@@ -24,7 +24,7 @@
             "image": "411951638844.dkr.ecr.us-east-2.amazonaws.com/backend:latest",
             "cpu": 0,
             "portMappings": [],
-            "essential": true,
+            "essential": false,
             "environment": [],
             "mountPoints": [],
             "volumesFrom": []
@@ -34,7 +34,7 @@
             "image": "411951638844.dkr.ecr.us-east-2.amazonaws.com/backend-node:latest",
             "cpu": 0,
             "portMappings": [],
-            "essential": true,
+            "essential": false,
             "environment": [],
             "environmentFiles": [],
             "mountPoints": [],
