@@ -3,7 +3,7 @@ import { IoMdBriefcase } from "react-icons/io";
 import { MdMessage, MdFavorite } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 // import LogoHorizontal from "../Logo/LogoHorizontal";
-import logo from "../../assets/LOGOHorizontal.png";
+import logo from "../../assets/LOGOHorizontal.avif";
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
