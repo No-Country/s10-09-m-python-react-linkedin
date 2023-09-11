@@ -1,6 +1,7 @@
-import { defineConfig } from "vite";
+import million from "million/compiler";
 import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [million.vite({ auto: true }), react()],
 });
