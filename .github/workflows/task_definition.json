@@ -1,0 +1,81 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:us-east-2:411951638844:task-definition/workwave-dev:11",
+    "containerDefinitions": [
+        {
+            "name": "frontend",
+            "image": "411951638844.dkr.ecr.us-east-2.amazonaws.com/frontend:latest",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "name": "frontend-80-tcp",
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": []
+        },
+        {
+            "name": "backend",
+            "image": "411951638844.dkr.ecr.us-east-2.amazonaws.com/backend:latest",
+            "cpu": 0,
+            "portMappings": [],
+            "essential": false,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": []
+        },
+        {
+            "name": "backend-node",
+            "image": "411951638844.dkr.ecr.us-east-2.amazonaws.com/backend-node:latest",
+            "cpu": 0,
+            "portMappings": [],
+            "essential": false,
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": []
+        }
+    ],
+    "family": "workwave-dev",
+    "executionRoleArn": "arn:aws:iam::411951638844:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 11,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "2048",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2023-09-05T18:03:18.632Z",
+    "registeredBy": "arn:aws:iam::411951638844:user/Matias",
+    "tags": []
+}
