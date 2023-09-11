@@ -69,7 +69,7 @@ function Step1() {
               className={`mt-1 p-2 border rounded-xl w-full bg-inherit 
         } `}
             >
-              <option selected disabled className="bg-black" value="default">
+              <option className="bg-black" value="default">
                 Selecciona tipo de empleo
               </option>
               <option className="bg-black" value="Full-Time">
@@ -107,14 +107,12 @@ function Step1() {
             text="Siguiente"
             blue={true}
             width=""
-            height=""
-            routing="/registro/step2"
+            routing="/register/step2"
           />
           <Buttons
             text="Omitir"
             width=""
-            height=""
-            routing="/registro/step2"
+            routing="/register/step2"
             blue={false}
           />
         </div>

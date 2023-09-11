@@ -10,7 +10,7 @@ WORKDIR /app
 
 # Copy the backend code to the container
 COPY . .
-RUN pip install psycopg2-binary
+
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
