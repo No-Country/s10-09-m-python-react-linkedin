@@ -183,7 +183,7 @@ jobs:
                 "TTL": 300,
                 "ResourceRecords": [
                   {
-                    "Value": "'"$public_ip"'"
+                    "Value": "'"${{ steps.get-ecs-task-ip.outputs.task_ip }}"'"
                   }
                 ]
               }
@@ -191,5 +191,3 @@ jobs:
           ]
         }'
         fi
-
-        
