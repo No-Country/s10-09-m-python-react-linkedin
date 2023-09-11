@@ -71,8 +71,8 @@ jobs:
 
         echo "DB_NAME=workwave_db
         DB_USER=workwave
-        DB_PASSWORD=\${DB_PWD}
-        DB_HOST=\${DB_HOST}
+        DB_PASSWORD=${DB_PWD}
+        DB_HOST=${DB_HOST}
         DB_PORT=5432" > .env
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -89,7 +89,7 @@ jobs:
       run: |
         cd workwave_server/ 
         # Create or overwrite the .env file with the desired content
-        echo "SECRET_KEY=\${DJANGO_SECRET_KEY}
+        echo "SECRET_KEY=${DJANGO_SECRET_KEY}
         DEBUG=False
         ALLOWED_HOSTS=['*']
 
@@ -103,7 +103,7 @@ jobs:
         # Email vars
         EMAIL_HOST=smtp.gmail.com
         EMAIL_HOST_USER=workwave2023@gmail.com
-        EMAIL_HOST_PASSWORD=\${EMAIL_PASSWORD}
+        EMAIL_HOST_PASSWORD=${EMAIL_PASSWORD}
         EMAIL_PORT=587
         EMAIL_USE_TLS=True" > .env
 
