@@ -84,6 +84,7 @@ const createJobs = async (req, res) => {
 
     res.status(201).json(job);
   } catch (error) {
+    console.log(error);
     handleHttpError(res, { error: error.message }, 500);
   }
 };
