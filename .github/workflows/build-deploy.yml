@@ -69,11 +69,15 @@ jobs:
       run: |
         cd workwave-back-node/
 
-        echo "DB_NAME=workwave_db
-        DB_USER=workwave
-        DB_PASSWORD=${DB_PWD}
-        DB_HOST=${DB_HOST}
-        DB_PORT=5432" > .env
+        echo "DB_NAME = workwave_db
+        DB_USER = workwave
+        DB_PASSWORD = ${DB_PWD}
+        DB_HOST = ${DB_HOST}
+        DB_PORT = 5432 
+        EMAIL_HOST=smtp.gmail.com 
+        USER_EMAIL=workwave2023@gmail.com
+        PASSWORD_EMAIL=xcvxjpfewjufdush
+        EMAIL_PORT=587" > .env
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
@@ -161,7 +165,9 @@ jobs:
           eni_id=$(aws ecs describe-tasks --cluster ${{ steps.get-ecs-cluster-arn.outputs.cluster_arn }} --tasks $task_arn --query 'tasks[0].attachments[0].details[?name==`networkInterfaceId`].value' --output text)
           public_ip=$(aws ec2 describe-network-interfaces --network-interface-ids $eni_id --query 'NetworkInterfaces[0].Association.PublicIp' --output text)
           echo "::set-output name=task_ip::$public_ip"
+          
         fi
+        echo $public_ip
 
     - name: Update Route 53 A Record
       run: |
