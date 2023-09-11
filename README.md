@@ -52,7 +52,7 @@ WorkWake es un clon de LinkedIn creado como parte del reto de NoCountry para rei
    npm run dev
    
 
-6. Abre tu navegador web y accede a `http://localhost:3000` para ver la aplicación en funcionamiento.
+6. Abre tu navegador web y accede a `http://localhost:5173` para ver la aplicación en funcionamiento.
 
 ## Contribución
 

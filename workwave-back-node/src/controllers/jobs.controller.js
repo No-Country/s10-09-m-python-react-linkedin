@@ -1,8 +1,26 @@
-const { Job } = require("../config/db");
+const {
+  Job,
+  Users_customuser,
+  Types_of_ubication,
+  Types_of_employment,
+} = require("../config/db");
 const { handleHttpError } = require("../utils/handleError");
 const getTotalJobs = async (req, res) => {
   try {
-    const totalJobs = await Job.findAll();
+    const totalJobs = await Job.findAll({
+      include: [
+        { model: Users_customuser },
+        { model: Types_of_ubication },
+        { model: Types_of_employment },
+      ],
+      attributes: {
+        exclude: [
+          "typesOfEmploymentId",
+          "typesOfUbicationId",
+          "usersCustomuserId",
+        ],
+      },
+    });
     res.status(200).json(totalJobs);
   } catch (error) {
     console.error(error);
@@ -13,7 +31,20 @@ const getTotalJobs = async (req, res) => {
 const getJobById = async (req, res) => {
   try {
     const jobId = req.params.id;
-    const job = await Job.findByPk(jobId);
+    const job = await Job.findByPk(jobId, {
+      include: [
+        { model: Users_customuser },
+        { model: Types_of_ubication },
+        { model: Types_of_employment },
+      ],
+      attributes: {
+        exclude: [
+          "typesOfEmploymentId",
+          "typesOfUbicationId",
+          "usersCustomuserId",
+        ],
+      },
+    });
 
     if (!job) {
       return res

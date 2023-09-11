@@ -1,8 +1,8 @@
 import Buttons from "../../components/Buttons";
 import LogoVertical from "../../components/Logo/LogoVertical";
-import landing from "../../assets/landing.png";
-import landing1 from "../../assets/landing1.png";
-import landing2 from "../../assets/landing2.png";
+import landing from "../../assets/landing.avif";
+import landing1 from "../../assets/landing1.avif";
+import landing2 from "../../assets/landing2.avif";
 import logoWork from "../../assets/logo.svg";
 const buttonContents = [
   "Ingeniería",

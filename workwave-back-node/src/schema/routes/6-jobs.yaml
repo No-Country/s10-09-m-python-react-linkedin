@@ -2,8 +2,9 @@ swagger: "2.0"
 info:
   version: "1.0.0"
   title: "API de Empleos"
+
 paths:
-  /jobs:
+  /api/jobs:
     get:
       tags:
         - Jobs
@@ -76,7 +77,7 @@ paths:
                 typesOfEmploymentId: 4
                 typesOfUbicationId: 3
                 usersCustomuserId: 1
-  /jobs/{id}:
+  /api/jobs/{id}:
     get:
       tags:
         - Jobs

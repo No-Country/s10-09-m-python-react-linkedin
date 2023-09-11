@@ -2,9 +2,12 @@ import { AiFillHome, AiTwotoneAlert } from "react-icons/ai";
 import { IoMdBriefcase } from "react-icons/io";
 import { MdMessage, MdFavorite } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
-import logo from "../../assets/LOGOHorizontal.png";
+
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+
+// import LogoHorizontal from "../Logo/LogoHorizontal";
+import logo from "../../assets/LOGOHorizontal.avif";
 
 function Navbar() {
   const navigate = useNavigate();

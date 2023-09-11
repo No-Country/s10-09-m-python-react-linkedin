@@ -1,6 +1,6 @@
 import React from "react";
-import banner from "../../assets/bannerUser.png";
-import UserImg from "../../assets/userImg.png";
+import banner from "../../assets/bannerUser.avif";
+import UserImg from "../../assets/userImg.avif";
 
 import { AiOutlineMail } from "react-icons/ai";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -90,28 +90,6 @@ const Profile: React.FC = () => {
         <div className="UserProjectsContainer sm:w-full md:w-1/2 mt-3 p-2">
           <NavbarUserProfile />
         </div>
-          {/* ACA EMPIEZA LA INFORMACION DE EEXPERIENCIA DEL USUARIO */}
-          {/* <div className="UserExperience md:w-[50%] mt-3 bg-black">
-         
-              <div className=" flex flex-nowrap">
-                <div className="w-24 h-10 m-2 bg-[#F39014] rounded-full"></div>
-                <div className="UserExperienceData flex-col">
-                <h2>Freelance UX/UI designer</h2>
-                <p>Jun 2022 — Present</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus eros eu vehicula interdum. Cras nec ultricies massa. Curabitur rutrum, diam id consequat consequat</p>
-                </div>
-                
-              </div>
-              <div className=" flex gap-2 ">
-                <div className="w-24 h-10 m-2 bg-[#0A66C2] rounded-full"></div>
-                <div className="UserExperienceData flex-col">
-                <h2>Freelance UX/UI designer</h2>
-                <p>Jun 2022 — Present</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus eros eu vehicula interdum. Cras nec ultricies massa. Curabitur rutrum, diam id consequat consequat</p>
-              </div>
-                
-              </div>
-          </div> */}
       </div>
     </div>
   );

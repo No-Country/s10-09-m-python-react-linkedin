@@ -4,8 +4,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/LOGOHorizontal.png";
+
 import axios, { AxiosError } from "axios";
+import logo from "../../assets/LOGOHorizontal.avif";
+
+  
 const schema = yup.object().shape({
   email: yup.string().email("Email inválido").required("Email requerido"),
   password: yup
@@ -28,6 +31,12 @@ interface Error {
   statusCode: number;
 }
 
+=======
+type dataSubmit = {
+  email: string;
+  password: string;
+};
+        
 const Login: React.FC = () => {
   const {
     register,
@@ -75,20 +84,22 @@ const Login: React.FC = () => {
     <div className="flex flex-col md:flex-row items-center justify-center  bg-no-repeat bg-cover ">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="pt-12 p-6 md:pt-60 h-screen w-full max-w-md md:w-1/3 lg:w-1/4"
+        className="pt-28 p-6 md:pt-60 h-screen w-full max-w-md md:w-1/3 lg:w-1/4"
       >
-        <div className="flex">
+        <div className="flex items-center mb-4 gap-8">
           <div>
             <BiArrowBack
               onClick={comeBackBTN}
-              className="text-xl mr-2 mt-2 text-white"
+              className="text-3xl cursor-pointer text-white"
             />
           </div>
-          <h2 className="text-2xl mb-4 text-white">INGRESA TUS DATOS</h2>
+          <h2 className="text-xl font-semibold text-white ">
+            Ingresá tus datos
+          </h2>
         </div>
 
-        <p className="text-white">
-          Completa tus datos personales, para acceder a tu cuenta en Workwave.
+        <p className="text-white text-sm md:text-base">
+          Completa tus datos personales, para crear una cuenta en Workwave.{" "}
         </p>
 
         <div className="inputsContainer mt-8">
@@ -97,14 +108,14 @@ const Login: React.FC = () => {
               htmlFor="email"
               className="block text-sm font-medium text-white"
             >
-              Email
+              Usuario*
             </label>
             <input
               autoComplete="username"
               type="email"
               id="email"
               {...register("email")}
-              placeholder="Ingresa tu email"
+              placeholder="lucialopez@mail.com"
               className="mt-1 p-2 border rounded-xl w-full bg-transparent"
             />
             {errors.email && (
@@ -116,14 +127,14 @@ const Login: React.FC = () => {
               htmlFor="password"
               className="block text-sm font-medium text-white"
             >
-              Contraseña
+              Contraseña*
             </label>
             <input
               type="password"
               id="password"
               autoComplete="current-password"
               {...register("password")}
-              placeholder="Ingresa tu contraseña"
+              placeholder="************"
               className="mt-1 p-2 border rounded-xl w-full bg-transparent"
             />
             {errors.password && (
@@ -134,17 +145,17 @@ const Login: React.FC = () => {
 
         <button
           type="submit"
-          className="bg-blue-500 text-white p-2 rounded w-full mt-5"
+          className="bg-[#4318FF] text-white p-2 rounded-full w-full mt-5"
         >
-          Siguiente
+          Continuar
         </button>
 
-        <p className="text-center mt-2 text-white">
+        {/* <p className="text-center mt-6 text-white">
           ¿No tienes un usuario?{" "}
           <Link to={"/registro"} className="link">
             Registrate
           </Link>
-        </p>
+        </p> */}
       </form>
       <div className="hidden md:block">
         <Link to={"/"}>

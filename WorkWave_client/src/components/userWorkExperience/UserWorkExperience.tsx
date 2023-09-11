@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import exampleProject1 from "../../assets/exProject1.png";
-import exampleProject2 from "../../assets/exProject2.png";
-import exampleProject3 from "../../assets/exProject3.png";
-
+import exampleProject1 from "../../assets/exProject1.avif";
+import exampleProject2 from "../../assets/exProject2.avif";
+import exampleProject3 from "../../assets/exProject3.avif";
+import FormAddExperience from "../FormAddExperience/FormAddExperience";
 const UserWorkExperience: React.FC = () => {
+  const [showmeForm, setShowMeForm] = useState(false);
   const [projects] = useState([
     {
       projectName: "Lorem ipsum dolor sit",
@@ -21,7 +22,10 @@ const UserWorkExperience: React.FC = () => {
       descrip: "UX/UI, 02.09.2022",
     },
   ]);
-  
+  const addExperience = () => {
+    console.log("ejecutandooo");
+    setShowMeForm(true);
+  };
   return (
     <div className="container">
       <div className="bg-black rounded-md">
@@ -40,11 +44,11 @@ const UserWorkExperience: React.FC = () => {
           ))}
         </div>
       </div>
-
       <div className="projects rounded-md my-2 bg-black mb-2 gap-2 p-2 ">
         <div className="flex flex-col md:flex-row">
-          <div className="bg-[#B9A2FF] m-2 w-[125px] h-[50px] rounded-full"></div>
-          <div className="md:ml-2">
+          <div className="bg-[#B9A2FF] md:w-[125px] w-[50px] h-12 rounded-full"></div>
+
+          <div className="md:ml-2 ">
             <h2 className="text-xl">Voluntariado</h2>
             <p>Freelance UX/UI designer</p>
             <p>Lorem ipsum Lorem ipsum </p>
@@ -60,12 +64,13 @@ const UserWorkExperience: React.FC = () => {
           </div>
         </div>
 
-        <div className="addExperience mt-2 md:mt-0 w-full md:w-[188px] h-[36px] inline-block p-2">
-          <button className="text-[#4318FF] text-lg">
+        <div className="addExperience mt-2 md:mt-0 w-full md:w-[188px]  inline p-2">
+          <button className="text-[#4318FF] text-lg" onClick={addExperience}>
             <span style={{ fontSize: "25px" }}>+ </span> Añadir Experiencia
           </button>
         </div>
       </div>
+      <FormAddExperience showMeForm={showmeForm} />
     </div>
   );
 };

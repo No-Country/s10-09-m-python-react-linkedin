@@ -1,0 +1,18 @@
+paths:
+  /api/typesofubication:
+    get:
+      tags:
+        - Tipo de Ubicación (Empleo)
+      summary: Obtiene una lista de todos los tipos de ubicación de empleo.
+      description: Obtiene una lista de todos los tipos de ubicación de empleo disponibles.
+      responses:
+        200:
+          description: Lista de tipos de ubicación de empleo obtenida con éxito.
+          examples:
+            application/json:
+              - id: 1
+                name: "Presencial"
+              - id: 2
+                name: "Híbrido"
+              - id: 3
+                name: "En remoto"

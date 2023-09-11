@@ -1,5 +1,4 @@
 import { AiOutlineQuestionCircle } from "react-icons/ai";
-import logo from "../../assets/LOGOHorizontal.png";
 import { Link } from "react-router-dom";
 
 import {
@@ -13,6 +12,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 
+import logo from "../../assets/LOGOHorizontal.avif";
 function Footer() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
