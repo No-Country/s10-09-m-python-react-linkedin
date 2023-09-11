@@ -20,34 +20,45 @@ import Cookie from "./pages/cookie/index";
 import TermsServices from "./pages/termsServices/index";
 import LayoutLanding from "./pages/layout/LayoutLanding";
 
+import { useState } from "react";
+
+import { TokenContext } from "./context/TokenContext";
 function App() {
+  const [token, setToken] = useState<string | null>(
+    localStorage.getItem("token")
+  );
   return (
-    <main className="app dark">
-      <BrowserRouter>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/panel" element={<Navigate to="/perfil" replace />} />
+    <TokenContext.Provider value={{ token, setToken }}>
+      <main className="app dark">
+        <BrowserRouter>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route
+                path="/panel"
+                element={<Navigate to="/perfil" replace />}
+              />
 
-            <Route path="/perfil" element={<Profile />} />
-            <Route path="/empleos" element={<Empleos />} />
-          </Route>
+              <Route path="/perfil" element={<Profile />} />
+              <Route path="/empleos" element={<Empleos />} />
+            </Route>
 
-          <Route element={<LayoutLanding />}>
-            <Route path="/" element={<Landing />} />
-            <Route path="/cookie" element={<Cookie />} />
-            <Route path="/equipo" element={<Teams />} />
-            <Route path="/nosotros" element={<AboutUs />} />
-            <Route path="/vision" element={<Vision />} />
-            <Route path="/terminos-uso" element={<TermsUso />} />
-            <Route path="/politica-servicio" element={<TermsServices />} />
-          </Route>
+            <Route element={<LayoutLanding />}>
+              <Route path="/" element={<Landing />} />
+              <Route path="/cookie" element={<Cookie />} />
+              <Route path="/equipo" element={<Teams />} />
+              <Route path="/nosotros" element={<AboutUs />} />
+              <Route path="/vision" element={<Vision />} />
+              <Route path="/terminos-uso" element={<TermsUso />} />
+              <Route path="/politica-servicio" element={<TermsServices />} />
+            </Route>
 
-          <Route path="/login" element={<Login />} />
-          <Route path="/registro" element={<Register />} />
-          <Route path="/registro/:step" element={<RegisterDetail />} />
-        </Routes>
-      </BrowserRouter>
-    </main>
+            <Route path="/login" element={<Login />} />
+            <Route path="/registro" element={<Register />} />
+            <Route path="/registro/:step" element={<RegisterDetail />} />
+          </Routes>
+        </BrowserRouter>
+      </main>
+    </TokenContext.Provider>
   );
 }
 

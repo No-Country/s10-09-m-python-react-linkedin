@@ -33,12 +33,12 @@ function Footer() {
           </div>
           <div className="flex flex-col gap-2 ss:gap-4">
             <Link to={"/nosotros"} className="link link-hover">
-              <p>Quienes Somos</p>
+              <p>Nosotros</p>
             </Link>
-            <Link to={"/empleos"} className="link link-hover">
-              <p>Acerca de WorkWake</p>
+            <Link to={"/equipo"} className="link link-hover">
+              <p>Equipo y vision</p>
             </Link>
-            <Link to={"feed"} className="link link-hover">
+            <Link to={"/cookie"} className="link link-hover">
               <p>Politicas de Cookies</p>
             </Link>
             <Link to={"notificaciones"} className="link link-hover">
@@ -85,7 +85,9 @@ function Footer() {
                 </p>
                 <p>
                   Si quiere contactarnos escribanos a nuestro correo{" "}
-                  <span className="link link-hover">WorkWave2023@gmail.com</span>
+                  <span className="link link-hover">
+                    WorkWave2023@gmail.com
+                  </span>
                 </p>
               </ModalBody>
               <ModalFooter>

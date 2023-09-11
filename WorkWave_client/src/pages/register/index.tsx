@@ -52,6 +52,7 @@ const schema = yup
   })
   .required();
 
+// million-ignore
 const Register: React.FC = () => {
   const [UserData, setUserData] = useState({});
   const navigate = useNavigate();
