@@ -7,15 +7,22 @@ type ButtonProps = {
   routing?: string;
   width?: string;
   height?: string;
+  className?: string;
   // ruta a la que va a enviar el boton
 };
 function Buttons(props: ButtonProps) {
-  const { text = "", routing = "/", blue = true, width = "" } = props;
+  const {
+    text = "",
+    routing = "/",
+    blue = true,
+    width = "",
+    className,
+  } = props;
 
   return (
     <Link to={routing}>
       <button
-        className={`h-16 ${width} text-[#D9D9D9] w-[300px] sm:w-[350px] md:w-[450px] rounded-full p-1 text-center border-2  ${
+        className={`h-16 ${width} ${className} text-[#D9D9D9] w-[300px] sm:w-[350px] md:w-[450px] rounded-full p-1 text-center border-2  ${
           blue ? "bg-[#4F46E5] text-[#000C2C]" : "bg-inherit "
         } `}
       >

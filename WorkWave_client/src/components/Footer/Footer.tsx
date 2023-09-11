@@ -1,52 +1,103 @@
 import { AiOutlineQuestionCircle } from "react-icons/ai";
+import { Link } from "react-router-dom";
+
+import {
+  Modal,
+  Image,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
+
 import logo from "../../assets/LOGOHorizontal.avif";
 function Footer() {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
-    <footer className="footer gap-20 p-5 md:p-10 pt-16 bg-deep-blue flex flex-col md:flex-row  md:justify-around text-white h-auto lg:h-[215px]">
-      <div className="flex w-full justify-around gap-6 ss:gap-20">
-        <div>
-          <div className="w-24">
-            <img src={logo} alt="logo" className="object-contain" />
+    <>
+      <footer className="footer gap-20 p-5 md:p-10 pt-16 bg-deep-blue flex flex-col md:flex-row  md:justify-around text-white h-auto lg:h-[215px]">
+        <div className="flex w-full justify-around gap-6 ss:gap-20">
+          <div>
+            <div className="w-24">
+              <Link to={"/"}>
+                <Image
+                  isZoomed
+                  src={logo}
+                  alt="logo"
+                  className="object-contain"
+                />
+              </Link>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2 ss:gap-4">
+            <Link to={"/nosotros"} className="link link-hover">
+              <p>Quienes Somos</p>
+            </Link>
+            <Link to={"/empleos"} className="link link-hover">
+              <p>Acerca de WorkWake</p>
+            </Link>
+            <Link to={"feed"} className="link link-hover">
+              <p>Politicas de Cookies</p>
+            </Link>
+            <Link to={"notificaciones"} className="link link-hover">
+              <p>Politicas de Uso</p>
+            </Link>
+          </div>
+          <div className="flex w-40 flex-col gap-2 ss:gap-4">
+            <Link to={"notificaciones"} className="link link-hover">
+              <p>Politicas de Seguridad</p>
+            </Link>
+            <Link to={"notificaciones"} className="link link-hover">
+              <p>Politicas de Copyrigtht</p>
+            </Link>
+            <Link to={"notificaciones"} className="link link-hover">
+              <p>Politicas de Privacidad</p>
+            </Link>
           </div>
         </div>
-        <div className="flex flex-col gap-2 ss:gap-4">
-          <a className="link link-hover">Sobre Nosotros</a>
-          <a className="link link-hover">Empleos</a>
-          <a className="link link-hover">Feed</a>
-          <a className="link link-hover">Notificaciones</a>
+        <div className="flex relative w-full justify-center sx:gap-16 sm:gap-5">
+          <button
+            onClick={() => void onOpen()}
+            className="btn flex justify-between text-white hover:text-black bg-[#3311DB] w-28 sm:w-[166px]"
+          >
+            AYUDA
+            <AiOutlineQuestionCircle />
+          </button>
         </div>
-        <div className="flex flex-col gap-2 ss:gap-4">
-          <a className="link link-hover">Términos y privacidad</a>
-          <a className="link link-hover">Aplición Móvil</a>
-        </div>
-      </div>
-      <div className="flex relative w-full justify-center sx:gap-16 sm:gap-5">
-        <button className="btn flex justify-between  bg-[#628CFB] w-28 sm:w-[166px]">
-          AYUDA
-          <AiOutlineQuestionCircle />
-        </button>
-        <div className="form-control w-36 sm:w-80 ">
-          <label className="label absolute top-[-40px]">
-            <span className="label-text text-white">Lenguaje</span>
-          </label>
-          <div className="relative">
-            <select className="select border-white max-w-xs bg-[#404258] w-36 sm:w-[290px]">
-              <option disabled selected>
-                ESPAÑOL
-              </option>
-              <option>Java</option>
-              <option>Go</option>
-              <option>C</option>
-              <option>C#</option>
-              <option>C++</option>
-              <option>Rust</option>
-              <option>JavaScript</option>
-              <option>Python</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </footer>
+      </footer>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Ayuda</ModalHeader>
+              <ModalBody>
+                <p>
+                  Si tiene algun inconveniente al usar la app escribanos en{" "}
+                  <a
+                    href="https://github.com/No-Country/s10-09-m-python-react-linkedin/issues"
+                    target="_blank"
+                    className="link link-hover"
+                  >
+                    Github
+                  </a>
+                </p>
+                <p>
+                  Si quiere contactarnos escribanos a nuestro correo{" "}
+                  <span className="link link-hover">WorkWave2023@gmail.com</span>
+                </p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Cerrar
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
   );
 }
 

@@ -1,11 +1,11 @@
 import { Outlet } from "react-router";
-import Navbar from "../../components/Navbar/Navbar";
+import LandingNavbar from "../../components/LandingNavbar/LandingNavbar";
 import Footer from "../../components/Footer/Footer";
 function Layout() {
   return (
     <div>
-      <div className="mt-0">
-        <Navbar />
+      <div className="py-5 hidden lg:flex justify-center items-center">
+        <LandingNavbar />
       </div>
 
       <Outlet />
