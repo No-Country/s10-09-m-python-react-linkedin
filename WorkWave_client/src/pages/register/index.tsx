@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Stepper from "../../components/Stepper";
@@ -9,13 +10,13 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 type FormData = {
-  name: string;
-  surname: string;
   email: string;
-  phone: string;
-  phonePrefix: string;
+  first_name: string;
+  last_name: string;
+  phone_number: string;
+  country?: string;
   password: string;
-  confirmedPassword: string;
+  password2: string;
 };
 
 const schema = yup
@@ -24,23 +25,18 @@ const schema = yup
       .string()
       .required("El campo es requerido")
       .email("El email no es válido"),
-    name: yup
+    first_name: yup
       .string()
       .required("El campo es requerido")
       .min(3, "El nombre debe tener al menos 3 caracteres"),
-    surname: yup
+    last_name: yup
       .string()
       .required("El campo es requerido")
       .min(3, "El apellido debe tener al menos 3 caracteres"),
-    phone: yup
+    phone_number: yup
       .string()
       .required("Ambos campos son requeridos")
       .min(4, "Un numero debe tener al menos 8 numeros "),
-    phonePrefix: yup
-      .string()
-      .matches(/\+/, "El prefijo debe contener el símbolo +")
-      .min(2, "Ingrese el prefijo telefonico")
-      .required("Ambos campos son requeridos"),
     password: yup
       .string()
       .required("El campo es requerido")
@@ -49,7 +45,7 @@ const schema = yup
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]+$/,
         "La contraseña debe contener al menos una mayúscula, una minúscula y un número"
       ),
-    confirmedPassword: yup
+    password2: yup
       .string()
       .required("El campo es requerido")
       .oneOf([yup.ref("password")], "Las contraseñas no coinciden"),
@@ -57,8 +53,8 @@ const schema = yup
   .required();
 
 const Register: React.FC = () => {
+  const [UserData, setUserData] = useState({});
   const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -68,9 +64,29 @@ const Register: React.FC = () => {
   });
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
-    navigate("/register/step1");
+    // console.log(data)
+    setUserData({ ...data });
+    // navigate("/register/step1");
   };
+  useEffect(() => {
+    console.log(UserData);
+    const sendUserData = async () => {
+      console.log(UserData);
+      if (UserData) {
+        try {
+          const response = await axios.post(
+            `https://workwave-django.onrender.com/register/`,
+            UserData
+          );
+          console.log("Solicitud POST exitosa:", response.data);
+          navigate("/registro/step1");
+        } catch (error) {
+          console.error("Error al hacer la solicitud POST:", error);
+        }
+      }
+    };
+    sendUserData();
+  }, [UserData]);
 
   return (
     <>
@@ -78,7 +94,7 @@ const Register: React.FC = () => {
         <Stepper step={"step1"} width="" />
       </div>
 
-      <div className=" md:pt-32 pt-16 flex flex-col md:flex-row items-center justify-center bg-[url('./assets/fondo1.png')] bg-no-repeat bg-cover ">
+      <div className=" md:pt-32 pt-16 flex flex-col md:flex-row items-center justify-center bg-no-repeat bg-cover ">
         <section className=" px-4 py-8 w-full flex flex-col md:justify-start md:items-start md:w-1/2 justify-center items-center">
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -124,11 +140,11 @@ const Register: React.FC = () => {
                   id="name"
                   placeholder="Lucia"
                   className="mt-1 p-2 border rounded-xl w-full bg-transparent"
-                  {...register("name")}
+                  {...register("first_name")}
                 />
-                {errors.name && (
+                {errors.first_name && (
                   <span className="text-orange-400">
-                    {errors.name?.message}
+                    {errors.first_name?.message}
                   </span>
                 )}
               </li>
@@ -142,14 +158,14 @@ const Register: React.FC = () => {
                 </label>
                 <input
                   type="string"
-                  id="surname"
+                  id="lastname"
                   placeholder="Lopez"
                   className="mt-1 p-2 border rounded-xl w-full bg-transparent"
-                  {...register("surname")}
+                  {...register("last_name")}
                 />
-                {errors.surname && (
+                {errors.last_name && (
                   <span className="text-orange-400">
-                    {errors.surname.message}
+                    {errors.last_name.message}
                   </span>
                 )}
               </li>
@@ -167,25 +183,25 @@ const Register: React.FC = () => {
                 </label>
                 <li className="flex gap-4">
                   <input
-                    type="phonePrefix"
-                    id="phonePrefix"
+                    type="phone_number"
+                    id="phone_number"
                     placeholder="+54"
                     className="mt-1 p-2 border rounded-xl w-16 bg-transparent"
-                    {...register("phonePrefix")}
+                    {...register("phone_number")}
                   />
                   <input
                     type="phone"
-                    id="phone"
+                    id="phone_number"
                     placeholder="111-1111111"
                     className="mt-1 p-2 border rounded-xl w-full bg-transparent"
-                    {...register("phone")}
+                    {...register("phone_number")}
                   />
                 </li>
-                {errors.phone || errors.phonePrefix ? (
+                {errors.phone_number || errors.phone_number ? (
                   <span className="text-orange-400">
-                    {errors.phone
-                      ? errors.phone.message
-                      : errors.phonePrefix?.message}
+                    {errors.phone_number
+                      ? errors.phone_number.message
+                      : errors.phone_number}
                   </span>
                 ) : null}
               </li>
@@ -225,11 +241,11 @@ const Register: React.FC = () => {
                   id="confirmedPassword"
                   placeholder="************"
                   className="mt-1 p-2 border rounded-xl w-full bg-transparent"
-                  {...register("confirmedPassword")}
+                  {...register("password2")}
                 />
-                {errors.confirmedPassword && (
+                {errors.password2 && (
                   <span className="text-orange-400">
-                    {errors.confirmedPassword.message}
+                    {errors.password2.message}
                   </span>
                 )}
               </li>
@@ -245,10 +261,7 @@ const Register: React.FC = () => {
               <input type="checkbox" />
               <span>
                 He leído y acepto los{" "}
-                <Link
-                  className="link hover:text-celeste-claro"
-                  to="/terms-and-conditions"
-                >
+                <Link className="link hover:text-celeste-claro" to="/terminos">
                   términos y condiciones.
                 </Link>
               </span>
@@ -263,7 +276,9 @@ const Register: React.FC = () => {
           </form>
         </section>
         <div className="hidden md:block ">
-          <img src={logo} alt="image logo" className="mb-36" />
+          <Link to={"/"}>
+            <img src={logo} alt="image logo" className="mb-36" />
+          </Link>
         </div>
       </div>
     </>
