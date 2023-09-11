@@ -76,7 +76,7 @@ jobs:
         DB_PORT = 5432 
         EMAIL_HOST=smtp.gmail.com 
         USER_EMAIL=workwave2023@gmail.com
-        PASSWORD_EMAIL=xcvxjpfewjufdush
+        PASSWORD_EMAIL=${EMAIL_PASSWORD}
         EMAIL_PORT=587" > .env
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
