@@ -4,6 +4,9 @@ import landing from "../../assets/landing.avif";
 import landing1 from "../../assets/landing1.avif";
 import landing2 from "../../assets/landing2.avif";
 import logoWork from "../../assets/logo.svg";
+
+import { Image } from "@nextui-org/react";
+
 const buttonContents = [
   "Ingeniería",
   "Finanzas",
@@ -61,7 +64,10 @@ function Landing() {
               className="hover:bg-black duration-500"
             />
           </div>
-          <img src={logoWork} className="hidden sm:block self-center" />
+          <Image
+            src={logoWork}
+            className="hidden hover:scale-110 sm:block self-center"
+          />
           <LogoVertical />
         </div>
         <div className="flex flex-col  md:items-start gap-8 sm:gap-20 mt-28 sm:mt-40">
@@ -81,7 +87,10 @@ function Landing() {
           </div>
           <div className="w-full flex flex-col ss:flex-row ss:justify-around items-center  gap-10 ">
             <div className=" w-40 ss:w-56 sm:w-96 ">
-              <img src={landing2} className=" object-contain" />
+              <Image
+                src={landing2}
+                className=" hover:scale-110 object-contain"
+              />
             </div>
             <div className="flex flex-col items-center gap-y-5 sm:gap-y-12">
               <h1 className=" text-xl sm:text-4xl md:text-6xl sm:leading-[15px] md:leading-[75.6px]  ">
@@ -94,7 +103,10 @@ function Landing() {
           </div>
           <div className="w-full flex flex-col ss:flex-row-reverse ss:justify-around items-center  gap-10 ">
             <div className=" w-40 ss:w-56 sm:w-96 ">
-              <img src={landing1} className=" object-contain" />
+              <Image
+                src={landing1}
+                className=" hover:scale-110 object-contain"
+              />
             </div>
             <div className="flex flex-col items-center gap-y-5 sm:gap-y-12">
               <h1 className=" text-xl sm:text-4xl md:text-6xl sm:leading-[15px] md:leading-[75.6px]  ">
@@ -107,7 +119,10 @@ function Landing() {
           </div>
           <div className="w-full flex flex-col ss:flex-row ss:justify-around items-center  gap-10 ">
             <div className=" w-40 ss:w-56 sm:w-96 ">
-              <img src={landing} className=" object-contain" />
+              <Image
+                src={landing}
+                className=" hover:scale-110 object-contain"
+              />
             </div>
             <div className="flex flex-col items-center gap-y-5 sm:gap-y-12">
               <h1 className=" text-xl sm:text-4xl md:text-6xl sm:leading-[15px] md:leading-[75.6px]  ">

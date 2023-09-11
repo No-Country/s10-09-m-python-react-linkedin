@@ -5,10 +5,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 
+import { useContext } from "react";
+import { TokenContext } from "../../context/TokenContext";
+
 import axios, { AxiosError } from "axios";
 import logo from "../../assets/LOGOHorizontal.avif";
 
-  
 const schema = yup.object().shape({
   email: yup.string().email("Email inválido").required("Email requerido"),
   password: yup
@@ -31,8 +33,9 @@ interface Error {
   statusCode: number;
 }
 
-        
+// million-ignore
 const Login: React.FC = () => {
+  const { setToken } = useContext(TokenContext);
   const {
     register,
     handleSubmit,
@@ -59,6 +62,7 @@ const Login: React.FC = () => {
       );
       const token = response.data.token;
       localStorage.setItem("token", token);
+      setToken(token);
       navigate("/empleos");
     } catch (err) {
       const error = err as AxiosError<Error>;

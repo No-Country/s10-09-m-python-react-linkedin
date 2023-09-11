@@ -1,12 +1,6 @@
-import LandingHeader from "../../components/LandingNavbar/LandingNavbar";
-
 const CookiePolicy = () => {
   return (
     <div className="p-4 shadow rounded">
-      <div className="hidden sm:flex justify-center items-center">
-        <LandingHeader />
-      </div>
-
       <h2 className="text-2xl font-bold mb-4">Política de Cookies</h2>
       <p>
         Esta Política de Cookies explica cómo WorkWave utiliza cookies y
