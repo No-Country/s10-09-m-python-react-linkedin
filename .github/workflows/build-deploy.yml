@@ -69,11 +69,17 @@ jobs:
       run: |
         cd workwave-back-node/
 
-        echo "DB_NAME=workwave_db
-        DB_USER=workwave
-        DB_PASSWORD=${DB_PWD}
-        DB_HOST=${DB_HOST}
-        DB_PORT=5432" > .env
+        echo "DB_NAME = workwave_db
+        DB_USER = workwave
+        DB_PASSWORD = workwave09
+        DB_HOST = workwave-1.cthm6sfrssli.us-west-2.rds.amazonaws.com
+        DB_PORT = 5432 
+        
+        
+        EMAIL_HOST=smtp.gmail.com 
+        USER_EMAIL=workwave2023@gmail.com
+        PASSWORD_EMAIL=xcvxjpfewjufdush
+        EMAIL_PORT=587" > .env
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
