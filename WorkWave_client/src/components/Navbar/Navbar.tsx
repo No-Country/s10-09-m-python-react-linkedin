@@ -27,36 +27,39 @@ function Navbar() {
           </div>
         </div>
       </div>
-      <div className="flex justif-center items-center gap-20">
+      <div className="flex items-center gap-20 justif-center">
         <button
           onClick={() => navigate("/perfil")}
-          className="flex flex-col justify-center items-center w-9 h-11 text-base"
+          className="flex flex-col items-center justify-center text-base w-9 h-11"
         >
           <AiFillHome className="text-xl" />
           <p>Inicio</p>
         </button>
         <button
           onClick={() => navigate("/empleos")}
-          className="flex flex-col justify-center items-center w-9 h-11 text-base "
+          className="flex flex-col items-center justify-center text-base w-9 h-11 "
         >
           <IoMdBriefcase className="text-xl" />
           <p>Empleo</p>
         </button>
-        <button className="flex flex-col justify-center items-center w-9 h-11 text-base ">
+        <button
+          onClick={() => navigate("/mensajes")}
+          className="flex flex-col items-center justify-center text-base w-9 h-11 "
+        >
           <MdMessage className="text-xl" />
           <p>Mensajes</p>
         </button>
-        <button className="flex flex-col justify-center items-center w-9 h-11 text-base ">
+        <button className="flex flex-col items-center justify-center text-base w-9 h-11 ">
           <MdFavorite className="text-xl" />
           <p>Favoritos</p>
         </button>
-        <button className="flex flex-col justify-center items-center w-9 h-11 text-base ">
+        <button className="flex flex-col items-center justify-center text-base w-9 h-11 ">
           <AiTwotoneAlert className="text-xl" />
           <p>Alertas</p>
         </button>
         <button
           onClick={() => navigate("/profile")}
-          className="flex flex-col justify-center items-center w-9 h-11 text-base "
+          className="flex flex-col items-center justify-center text-base w-9 h-11 "
         >
           <FaUserCircle className="text-xl" />
           <p>Perfil</p>

@@ -13,6 +13,7 @@ import Terms from "./pages/terms/index";
 
 import AboutUs from "./pages/AboutUs/index";
 import Vision from "./pages/vision/VisionPage";
+import Chat from "./pages/chat/Chat";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
 
             <Route path="/perfil" element={<Profile />} />
             <Route path="/empleos" element={<Empleos />} />
+            <Route path="/mensajes" element={<Chat />} />
           </Route>
 
           <Route path="/registro" element={<Register />} />
