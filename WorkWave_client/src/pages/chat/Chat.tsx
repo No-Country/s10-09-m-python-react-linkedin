@@ -3,7 +3,7 @@ import Conversations from "../../components/Conversations/Conversations";
 import Message from "../../components/Message/Message";
 import FriendsOnline from "../../components/FriendsOnline/FriendsOnline";
 function Chat() {
-  const [currentChat, setCurrentChat] = useState(null);
+  const [currentChat] = useState(null);
   return (
     <div className="h-[calc(100vh-70px)] flex  justify-around  bg-[#2B3674]">
       {/* chatMenu */}
