@@ -31,11 +31,6 @@ interface Error {
   statusCode: number;
 }
 
-=======
-type dataSubmit = {
-  email: string;
-  password: string;
-};
         
 const Login: React.FC = () => {
   const {
