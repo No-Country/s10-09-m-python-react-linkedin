@@ -4,7 +4,7 @@ import Footer from "../../components/Footer/Footer";
 function Layout() {
   return (
     <div>
-      <div className="mt-0">
+      <div className="mt-12">
         <Navbar />
       </div>
 

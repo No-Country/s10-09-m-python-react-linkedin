@@ -1,4 +1,4 @@
-FROM node:20.5.0-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -6,9 +6,9 @@ WORKDIR /app
 COPY . .
 
 # Install the dependencies
-RUN npm install 
+RUN npm install --force
 
-# Build the app
+# Build the Angular app
 RUN npm run build
 
 # Stage 2: Serve the built app using Nginx
