@@ -165,7 +165,9 @@ jobs:
           eni_id=$(aws ecs describe-tasks --cluster ${{ steps.get-ecs-cluster-arn.outputs.cluster_arn }} --tasks $task_arn --query 'tasks[0].attachments[0].details[?name==`networkInterfaceId`].value' --output text)
           public_ip=$(aws ec2 describe-network-interfaces --network-interface-ids $eni_id --query 'NetworkInterfaces[0].Association.PublicIp' --output text)
           echo "::set-output name=task_ip::$public_ip"
+          
         fi
+        echo $public_ip
 
     - name: Update Route 53 A Record
       run: |
