@@ -94,11 +94,10 @@ jobs:
         cd workwave_server/ 
         # Create or overwrite the .env file with the desired content
         echo "SECRET_KEY='django-insecure-bkmaj4vof7s61^)=4!n727#nzt3ti&5toi&%j80s@vx_0(86-)'
-        DEBUG=False
+        DEBUG=True
         ALLOWED_HOSTS=['*']
         WSGI_CONFIG='workwave.config.render'
         DATABASE_URL=postgres://workwave:workwave09@workwave-1.cthm6sfrssli.us-west-2.rds.amazonaws.com:5432/workwave_db
-        
         
         #Email vars
         EMAIL_HOST=smtp.gmail.com 
