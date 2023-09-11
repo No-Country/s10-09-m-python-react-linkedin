@@ -5,13 +5,14 @@ import FriendsOnline from "../../components/FriendsOnline/FriendsOnline";
 function Chat() {
   const [currentChat, setCurrentChat] = useState(null);
   return (
-    <div className="h-[calc(100vh-70px)] flex  justify-around mt-4">
+    <div className="h-[calc(100vh-70px)] flex  justify-around  bg-[#2B3674]">
       {/* chatMenu */}
-      <div>
+      <div className="pt-4">
         <div>
           <input
-            placeholder="Search for friends"
-            className="p-2 border border-b border-gray-300 w-90 focus:outline-none focus:border-blue-500"
+            type="text"
+            placeholder="Buscar amigos"
+            className="w-full max-w-xs input input-bordered input-sm"
           />
           <Conversations />
           <Conversations />
@@ -20,7 +21,7 @@ function Chat() {
         </div>
       </div>
       {/* chatBox */}
-      <div>
+      <div className="pt-4">
         <div className="relative flex flex-col justify-between h-full ">
           {!currentChat ? (
             <>
@@ -50,7 +51,7 @@ function Chat() {
         </div>
       </div>
       {/* chatOnline */}
-      <div>
+      <div className="pt-4">
         <div className="h-full p-10">
           <FriendsOnline />
         </div>

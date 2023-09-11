@@ -1,6 +1,6 @@
 import React from "react";
-import banner from "../../assets/bannerUser.png";
-import UserImg from "../../assets/userImg.png";
+import banner from "../../assets/bannerUser.avif";
+import UserImg from "../../assets/userImg.avif";
 
 import { AiOutlineMail } from "react-icons/ai";
 import { FaPhoneAlt } from "react-icons/fa";

@@ -1,16 +1,16 @@
 from .base import *
 
+import os
+import dj_database_url
+
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
 
+CLOUDINARY_URL = env('CLOUDINARY_URL')
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('NAME'),
-        'USER': env('USER'),
-        'PASSWORD': env('PASSWORD'),
-        'HOST': env('HOST'),
-        'PORT': env('PORT'),
-    }
+    'default': dj_database_url.config(
+        default = os.environ.get('DATABASE_URL')
+    )
 }
 
 REST_FRAMEWORK = {
@@ -25,6 +25,9 @@ AUTH_PASSWORD_VALIDATORS += [
         "NAME": "workwave.apps.users.validators.CustomPasswordValidator",
     },
 ]
+
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 #Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Landing from "../components/LandingHeader/LandingHeader";
+import Landing from "../components/LandingNavbar/LandingNavbar";
 
 const meta = {
   title: "Example/PageLanding",

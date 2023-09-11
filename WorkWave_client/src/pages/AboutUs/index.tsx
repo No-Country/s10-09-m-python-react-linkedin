@@ -1,12 +1,8 @@
 import { Link } from "react-router-dom";
-import LandingHeader from "../../components/LandingHeader/LandingHeader";
 
 const AboutUsPage: React.FC = () => {
   return (
     <div className="min-h-screen">
-      <div className="py-5 hidden lg:flex justify-center items-center">
-        <LandingHeader />
-      </div>
       <div className=" py-1">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-black mb-4">Nosotros</h2>

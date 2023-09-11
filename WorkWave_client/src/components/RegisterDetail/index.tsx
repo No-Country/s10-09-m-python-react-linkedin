@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import logo from "../../assets/LOGOHorizontal.png";
+import logo from "../../assets/LOGOHorizontal.avif";
 import Footer from "../Footer";
 import Stepper from "../Stepper";
 import Step1 from "./Step1";

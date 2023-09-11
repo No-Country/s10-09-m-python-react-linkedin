@@ -5,9 +5,11 @@ from .models import CustomUser
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ("email", "first_name", "last_name", "phone_number", "country", "is_active", "is_staff")
+        read_only_fields = ("id",)
+        fields = ("email", "first_name", "last_name", "phone_number", "country", "headline", "about", "avatar", "banner", "is_active", "is_staff")
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
-        fields = ("email", "first_name", "last_name", "phone_number", "country",)
+        read_only_fields = ("id",)
+        fields = ("email", "first_name", "last_name", "phone_number", "country", "headline", "about", "avatar", "banner")
