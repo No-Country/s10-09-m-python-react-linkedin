@@ -69,7 +69,7 @@ function Step1() {
               className={`mt-1 p-2 border rounded-xl w-full bg-inherit 
         } `}
             >
-              <option className="bg-black" value="default">
+              <option selected disabled className="bg-black" value="default">
                 Selecciona tipo de empleo
               </option>
               <option className="bg-black" value="Full-Time">

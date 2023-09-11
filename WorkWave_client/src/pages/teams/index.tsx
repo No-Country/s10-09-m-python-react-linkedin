@@ -1,5 +1,3 @@
-import LandingHeader from "../../components/LandingHeader/LandingHeader";
-
 import {
   Card,
   CardHeader,
@@ -289,9 +287,6 @@ const Equipo = () => {
 const TeamsPage = () => {
   return (
     <div className="min-h-screen">
-      <div className="py-5 hidden lg:flex justify-center items-center">
-        <LandingHeader />
-      </div>
       <div className="py-1">
         <div className="container mx-auto px-4">
           <div className="container lg:grid gap-4 hidden grid-cols-2 mx-auto px-4">

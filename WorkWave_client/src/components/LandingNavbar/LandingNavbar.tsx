@@ -2,11 +2,16 @@ import { Link, useNavigate } from "react-router-dom";
 import logoheader from "../../assets/logoheader.svg";
 import logoheader1 from "../../assets/logoheader1.svg";
 import logoheader2 from "../../assets/logoheader2.svg";
+import logo from "../../../public/logo-nav.svg";
+import { Image } from "@nextui-org/react";
 
-function LandingHeader() {
+function LandingNavbar() {
   const navigate = useNavigate();
   return (
     <div className="flex justify-end items-center ">
+      <Link to={"/"}>
+        <Image src={logo} width={200} height={200} />
+      </Link>
       <div className="flex ">
         <div className=" pl-8 border-e-2 hover:border-black transform hover:scale-90 transition duration-300">
           <Link to={"/personas"}>
@@ -42,4 +47,4 @@ function LandingHeader() {
   );
 }
 
-export default LandingHeader;
+export default LandingNavbar;

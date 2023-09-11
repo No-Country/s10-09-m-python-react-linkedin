@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Empleos from "../pages/empleos/Empleos";
+import Empleos from "../pages/jobs/Empleos";
 
 const meta = {
   title: "Example/ComponentEmpleos",

@@ -1,4 +1,4 @@
-import LandingHeader from "../../components/LandingHeader/LandingHeader";
+import LandingHeader from "../../components/LandingNavbar/LandingNavbar";
 
 const CookiePolicy = () => {
   return (

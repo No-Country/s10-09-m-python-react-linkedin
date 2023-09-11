@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
-import LandingHeader from "../../components/LandingHeader/LandingHeader";
 
 const PageVision: React.FC = () => {
   return (
     <div className="min-h-screen">
-      <div className="py-5 hidden lg:flex justify-center items-center">
-        <LandingHeader />
-      </div>
-      <div className="py-1">
+      <div className="">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-black mb-4">Nuestra Visión</h2>
+          <h2 className="text-3xl font-bold text-white/80 mb-4">
+            Nuestra Visión
+          </h2>
           <p className="mb-6 text-white/80">
             Nuestra visión es transformar la forma en que las personas se
             conectan profesionalmente en todo el mundo. Queremos construir una

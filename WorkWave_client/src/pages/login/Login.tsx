@@ -5,26 +5,66 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/LOGOHorizontal.png";
-
+import axios, { AxiosError } from "axios";
 const schema = yup.object().shape({
   email: yup.string().email("Email inválido").required("Email requerido"),
-  password: yup.string().required("Contraseña requerida"),
+  password: yup
+    .string()
+    .required("El campo es requerido")
+    .min(8, "La contraseña debe tener al menos 8 caracteres")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]+$/,
+      "La contraseña debe contener al menos una mayúscula, una minúscula y un número"
+    ),
 });
+
+interface FormData {
+  email: string;
+  password: string;
+}
+
+interface Error {
+  message: string[];
+  statusCode: number;
+}
 
 const Login: React.FC = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+    setError,
+  } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
 
   const navigate = useNavigate();
 
-  const onSubmit = (data: any) => {
-    console.log("Email:", data.email);
-    console.log("Password:", data.password);
+  const onSubmit = async (data: FormData) => {
+    try {
+      const { email, password } = data;
+
+      const dataJson = {
+        email,
+        password,
+      };
+
+      const response = await axios.post(
+        "https://workwave-django.onrender.com/login/",
+        dataJson
+      );
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+      navigate("/empleos");
+    } catch (err) {
+      const error = err as AxiosError<Error>;
+      if (error.response?.status === 401) {
+        setError("password", {
+          type: "manual",
+          message: "Usuario no encontrado",
+        });
+      }
+    }
   };
 
   const comeBackBTN = () => {
@@ -60,6 +100,7 @@ const Login: React.FC = () => {
               Email
             </label>
             <input
+              autoComplete="username"
               type="email"
               id="email"
               {...register("email")}
@@ -80,6 +121,7 @@ const Login: React.FC = () => {
             <input
               type="password"
               id="password"
+              autoComplete="current-password"
               {...register("password")}
               placeholder="Ingresa tu contraseña"
               className="mt-1 p-2 border rounded-xl w-full bg-transparent"

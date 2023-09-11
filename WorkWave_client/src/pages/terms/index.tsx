@@ -1,11 +1,6 @@
-import LandingHeader from "../../components/LandingHeader/LandingHeader";
-
 const PolicyComponent = () => {
   return (
     <>
-      <div className="hidden sm:flex justify-center items-center">
-        <LandingHeader />
-      </div>
       <div className="max-w-2xl mx-auto p-4">
         <h2 className="text-2xl font-bold mb-4">Bienvenido a Worwave</h2>
         <p className="mb-4">
@@ -76,31 +71,41 @@ const PolicyComponent = () => {
         <span className="font-bold">4.2. Cumplimiento Legal:</span> Debes
         cumplir con todas las leyes y regulaciones aplicables al utilizar
         WorkWave. No debes participar en actividades ilegales.
-<h3 className="text-xl font-bold mb-2">5. Denuncias y Moderación</h3>
-      <p className="mb-4">
-        <span className="font-bold">5.1. Denuncias:</span> Si observas un comportamiento que viola estas políticas, te instamos a denunciarlo utilizando las herramientas proporcionadas por Worwave.
-        <br />
-        <span className="font-bold">5.2. Moderación:</span> Worwave se reserva el derecho de tomar medidas, incluyendo la eliminación de contenido o la suspensión de cuentas, en respuesta a violaciones de estas políticas.
-      </p>
-
-      <h3 className="text-xl font-bold mb-2">6. Cambios en las Políticas</h3>
-      <p className="mb-4">
-        <span className="font-bold">6.1. Actualizaciones:</span> WorkWave puede actualizar estas políticas en cualquier momento. Los usuarios serán notificados de cualquier cambio importante en las políticas.
-        <br />
-        <span className="font-bold">6.2. Aceptación Continua:</span> El uso continuado de Worwave después de la publicación de cambios en las políticas implica la aceptación de las mismas.
-      </p>
-
-      <h3 className="text-xl font-bold mb-2">7. Terminación de Cuenta</h3>
-      <p className="mb-4">
-        <span className="font-bold">7.1. Derecho de Terminación:</span> Worwave se reserva el derecho de suspender o terminar cuentas de usuario que violen estas políticas de uso de manera repetida o grave.
-      </p>
-
-      <h3 className="text-xl font-bold mb-2">8. Contacto</h3>
-      <p>
-        Si tienes preguntas o necesitas asistencia relacionada con estas políticas de uso, no dudes en contactarnos a través de WorkWave2023@gmail.com.
-      </p>
-      <p className="mt-4">Fecha de última revisión: 7 de septiembre 2023</p>
-    </div>
+        <h3 className="text-xl font-bold mb-2">5. Denuncias y Moderación</h3>
+        <p className="mb-4">
+          <span className="font-bold">5.1. Denuncias:</span> Si observas un
+          comportamiento que viola estas políticas, te instamos a denunciarlo
+          utilizando las herramientas proporcionadas por Worwave.
+          <br />
+          <span className="font-bold">5.2. Moderación:</span> Worwave se reserva
+          el derecho de tomar medidas, incluyendo la eliminación de contenido o
+          la suspensión de cuentas, en respuesta a violaciones de estas
+          políticas.
+        </p>
+        <h3 className="text-xl font-bold mb-2">6. Cambios en las Políticas</h3>
+        <p className="mb-4">
+          <span className="font-bold">6.1. Actualizaciones:</span> WorkWave
+          puede actualizar estas políticas en cualquier momento. Los usuarios
+          serán notificados de cualquier cambio importante en las políticas.
+          <br />
+          <span className="font-bold">6.2. Aceptación Continua:</span> El uso
+          continuado de Worwave después de la publicación de cambios en las
+          políticas implica la aceptación de las mismas.
+        </p>
+        <h3 className="text-xl font-bold mb-2">7. Terminación de Cuenta</h3>
+        <p className="mb-4">
+          <span className="font-bold">7.1. Derecho de Terminación:</span>{" "}
+          Worwave se reserva el derecho de suspender o terminar cuentas de
+          usuario que violen estas políticas de uso de manera repetida o grave.
+        </p>
+        <h3 className="text-xl font-bold mb-2">8. Contacto</h3>
+        <p>
+          Si tienes preguntas o necesitas asistencia relacionada con estas
+          políticas de uso, no dudes en contactarnos a través de
+          WorkWave2023@gmail.com.
+        </p>
+        <p className="mt-4">Fecha de última revisión: 7 de septiembre 2023</p>
+      </div>
     </>
   );
 };
