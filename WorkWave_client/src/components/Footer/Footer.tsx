@@ -1,5 +1,5 @@
 import { AiOutlineQuestionCircle } from "react-icons/ai";
-import logo from "../../assets/LOGOHorizontal.png";
+import logo from "../../assets/LOGOHorizontal.avif";
 function Footer() {
   return (
     <footer className="footer gap-20 p-5 md:p-10 pt-16 bg-deep-blue flex flex-col md:flex-row  md:justify-around text-white h-auto lg:h-[215px]">

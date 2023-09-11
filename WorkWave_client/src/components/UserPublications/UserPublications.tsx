@@ -1,4 +1,4 @@
-import UserImg from "../../assets/userImg.png";
+import UserImg from "../../assets/userImg.avif";
 import Publication from "./Publication";
 type PublicationProps = {
   text: string;
