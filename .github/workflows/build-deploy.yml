@@ -93,23 +93,22 @@ jobs:
       run: |
         cd workwave_server/ 
         # Create or overwrite the .env file with the desired content
-        echo "SECRET_KEY=${DJANGO_SECRET_KEY}
+        echo "SECRET_KEY='django-insecure-bkmaj4vof7s61^)=4!n727#nzt3ti&5toi&%j80s@vx_0(86-)'
         DEBUG=False
         ALLOWED_HOSTS=['*']
-
-        # Database vars
-        DB_NAME=workwave_db
-        DB_USER=workwave
-        DB_PASSWORD=workwave09
-        DB_HOST=workwave-1.cthm6sfrssli.us-west-2.rds.amazonaws.com
-        DB_PORT=5432
-
-        # Email vars
-        EMAIL_HOST=smtp.gmail.com
+        WSGI_CONFIG='workwave.config.render'
+        DATABASE_URL=postgres://workwave:workwave09@workwave-1.cthm6sfrssli.us-west-2.rds.amazonaws.com:5432/workwave_db
+        
+        
+        #Email vars
+        EMAIL_HOST=smtp.gmail.com 
         EMAIL_HOST_USER=workwave2023@gmail.com
-        EMAIL_HOST_PASSWORD=${EMAIL_PASSWORD}
+        EMAIL_HOST_PASSWORD=xcvxjpfewjufdush
         EMAIL_PORT=587
-        EMAIL_USE_TLS=True" > .env
+        EMAIL_USE_TLS=True
+        
+        #Cloudinary credentials
+        CLOUDINARY_URL=cloudinary://854472554794786:sIAU-O8zcteurSa8kxhfYYhxHU4@dey5v9yb0" > .env
 
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
