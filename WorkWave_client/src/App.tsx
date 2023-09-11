@@ -22,14 +22,15 @@ import TermsServices from "./pages/termsServices/index";
 import LayoutLanding from "./pages/layout/LayoutLanding";
 
 import { useState } from "react";
-
+import { User } from "./models/user";
 import { TokenContext } from "./context/TokenContext";
 function App() {
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token")
   );
+  const [user, setUser] = useState<User | null>(null);
   return (
-    <TokenContext.Provider value={{ token, setToken }}>
+    <TokenContext.Provider value={{ token, setToken, user, setUser }}>
       <main className="app dark">
         <BrowserRouter>
           <Routes>

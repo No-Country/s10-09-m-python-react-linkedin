@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Conversations from "../../components/Conversations/Conversations";
 import Message from "../../components/Message/Message";
 import FriendsOnline from "../../components/FriendsOnline/FriendsOnline";
+import { TokenContext } from "../../context/TokenContext";
+
 function Chat() {
+  const { token, user } = useContext(TokenContext);
   const [currentChat, setCurrentChat] = useState(null);
+  console.log(user, token);
+
   return (
     <div className="h-[calc(100vh-70px)] flex  justify-around  bg-[#2B3674]">
       {/* chatMenu */}

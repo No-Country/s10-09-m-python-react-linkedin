@@ -35,7 +35,7 @@ interface Error {
 
 // million-ignore
 const Login: React.FC = () => {
-  const { setToken } = useContext(TokenContext);
+  const { setToken, setUser } = useContext(TokenContext);
   const {
     register,
     handleSubmit,
@@ -60,9 +60,11 @@ const Login: React.FC = () => {
         "https://workwave-django.onrender.com/login/",
         dataJson
       );
-      const token = response.data.token;
-      localStorage.setItem("token", token);
-      setToken(token);
+      const user = response.data;
+
+      localStorage.setItem("token", user.token);
+      setUser(user);
+      setToken(user.token);
       navigate("/empleos");
     } catch (err) {
       const error = err as AxiosError<Error>;
@@ -80,16 +82,16 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center  bg-no-repeat bg-cover ">
+    <div className="flex flex-col items-center justify-center bg-no-repeat bg-cover md:flex-row ">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="pt-28 p-6 md:pt-60 h-screen w-full max-w-md md:w-1/3 lg:w-1/4"
+        className="w-full h-screen max-w-md p-6 pt-28 md:pt-60 md:w-1/3 lg:w-1/4"
       >
-        <div className="flex items-center mb-4 gap-8">
+        <div className="flex items-center gap-8 mb-4">
           <div>
             <BiArrowBack
               onClick={comeBackBTN}
-              className="text-3xl cursor-pointer text-white"
+              className="text-3xl text-white cursor-pointer"
             />
           </div>
           <h2 className="text-xl font-semibold text-white ">
@@ -97,11 +99,11 @@ const Login: React.FC = () => {
           </h2>
         </div>
 
-        <p className="text-white text-sm md:text-base">
+        <p className="text-sm text-white md:text-base">
           Completa tus datos personales, para crear una cuenta en Workwave.{" "}
         </p>
 
-        <div className="inputsContainer mt-8">
+        <div className="mt-8 inputsContainer">
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -115,7 +117,7 @@ const Login: React.FC = () => {
               id="email"
               {...register("email")}
               placeholder="lucialopez@mail.com"
-              className="mt-1 p-2 border rounded-xl w-full bg-transparent"
+              className="w-full p-2 mt-1 bg-transparent border rounded-xl"
             />
             {errors.email && (
               <p className="text-red-500">{errors.email.message}</p>
@@ -134,7 +136,7 @@ const Login: React.FC = () => {
               autoComplete="current-password"
               {...register("password")}
               placeholder="************"
-              className="mt-1 p-2 border rounded-xl w-full bg-transparent"
+              className="w-full p-2 mt-1 bg-transparent border rounded-xl"
             />
             {errors.password && (
               <p className="text-red-500">{errors.password.message}</p>
@@ -149,7 +151,7 @@ const Login: React.FC = () => {
           Continuar
         </button>
 
-        {/* <p className="text-center mt-6 text-white">
+        {/* <p className="mt-6 text-center text-white">
           ¿No tienes un usuario?{" "}
           <Link to={"/registro"} className="link">
             Registrate
