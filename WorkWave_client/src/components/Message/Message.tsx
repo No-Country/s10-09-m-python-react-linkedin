@@ -1,10 +1,18 @@
 import React from "react";
-
+import { format } from "timeago.js";
 interface MessageProps {
   own: boolean;
+  message: {
+    id: number;
+    text: string;
+    createdAt: string;
+    updatedAt: string;
+    ConversationId: number;
+    usersCustomuserId: number;
+  };
 }
 
-const Message: React.FC<MessageProps> = ({ own }) => {
+const Message: React.FC<MessageProps> = ({ message, own }) => {
   return (
     <div className={`flex flex-col mt-4 ${own ? "items-end" : ""}`}>
       <div className="flex">
@@ -18,10 +26,10 @@ const Message: React.FC<MessageProps> = ({ own }) => {
             own ? "bg-gray-300 text-black" : "bg-blue-500 text-white"
           } max-w-xs`}
         >
-          Hola
+          {message.text}
         </p>
       </div>
-      <div className="mt-2 text-sm">Hace 1 hora</div>
+      <div className="mt-2 text-sm">{format(message.createdAt)}</div>
     </div>
   );
 };

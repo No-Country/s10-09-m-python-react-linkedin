@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import imgAvatar from "../../assets/noAvatar.png";
 import { User } from "../../models/user";
 import axios from "axios";
-interface Conversation {
+
+export interface Conversation {
   id: string;
   members: string[];
   createdAt: string;
@@ -11,7 +12,7 @@ interface Conversation {
 
 interface ConversationsProps {
   conversation: Conversation;
-  currentUser: User;
+  currentUser: User | null;
 }
 
 const Conversations: React.FC<ConversationsProps> = ({
@@ -20,6 +21,7 @@ const Conversations: React.FC<ConversationsProps> = ({
 }) => {
   const [user, setUser] = useState<User | null>(null);
   const API = process.env.REACT_APP_API_BACK;
+
   useEffect(() => {
     const friendId = conversation.members.find(
       (m) => m !== String(currentUser?.id)
@@ -28,7 +30,7 @@ const Conversations: React.FC<ConversationsProps> = ({
     const getUser = async () => {
       try {
         const res = await axios(`${API}/users?userId=` + friendId);
-        console.log(res.data);
+
         setUser(res.data);
       } catch (err) {
         console.log(err);
@@ -46,7 +48,9 @@ const Conversations: React.FC<ConversationsProps> = ({
           <img src={user?.avatar ? user.avatar : imgAvatar} alt="Avatar" />
         </div>
       </div>
-      <span className="font-semibold">{user && user.first_name}</span>
+      <span className="font-semibold">
+        {user && `${user.first_name} ${user.last_name}`}
+      </span>
     </div>
   );
 };
