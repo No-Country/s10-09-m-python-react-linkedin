@@ -47,22 +47,6 @@ function Landing() {
               className="hover:bg-black duration-500"
             />
 
-            <Buttons
-              text={"Ingresá con Google"}
-              width=""
-              blue={false}
-              routing={"/"}
-              height={"16"}
-              className="hover:bg-black duration-500"
-            />
-            <Buttons
-              text={"Ingresá con Facebook"}
-              width=""
-              blue={false}
-              routing={"/"}
-              height={"16"}
-              className="hover:bg-black duration-500"
-            />
           </div>
           <Image
             src={logoWork}
