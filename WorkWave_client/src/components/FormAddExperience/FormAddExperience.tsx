@@ -27,6 +27,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
   };
 
   const selectOption = (option: string) => {
+    console.log(selectedOption)
     setSelectedOption(option);
     setFormData({
       ...formData,
