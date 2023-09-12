@@ -1,13 +1,36 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Conversations from "../../components/Conversations/Conversations";
 import Message from "../../components/Message/Message";
 import FriendsOnline from "../../components/FriendsOnline/FriendsOnline";
 import { TokenContext } from "../../context/TokenContext";
+import axios from "axios";
 
 function Chat() {
-  const { token, user } = useContext(TokenContext);
+  const API = process.env.REACT_APP_API_BACK;
+  const { user } = useContext(TokenContext);
+  const [conversations, setConversations] = useState([]);
   const [currentChat] = useState(null);
-  console.log(user, token);
+  // const [currentChat] = useState(null);
+
+  useEffect(() => {
+    const getConversations = async () => {
+      try {
+        if (user) {
+          const res = await axios.get(`${API}/conversations/${user.id}`);
+          // Resto de tu código aquí
+          setConversations(res.data);
+        } else {
+          console.error(
+            "El usuario no existe. No se puede realizar la solicitud."
+          );
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getConversations();
+  }, [user?.id]);
+  console.log(conversations);
 
   return (
     <div className="h-[calc(100vh-70px)] flex  justify-around  bg-[#2B3674]">
@@ -19,10 +42,11 @@ function Chat() {
             placeholder="Buscar amigos"
             className="w-full max-w-xs input input-bordered input-sm"
           />
-          <Conversations />
-          <Conversations />
-          <Conversations />
-          <Conversations />
+          {conversations.map((obj, index) => (
+            <div key={index}>
+              <Conversations conversation={obj} currentUser={user} />
+            </div>
+          ))}
         </div>
       </div>
       {/* chatBox */}
