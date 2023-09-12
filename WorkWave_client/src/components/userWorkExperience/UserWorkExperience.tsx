@@ -24,10 +24,10 @@ const UserWorkExperience: React.FC = () => {
   ]);
   const [showMeForm, setShowMeForm] = useState(false);
 
-  const addExperience = () => {
-    console.log("ejecutandooo");
-    setShowMeForm(true);
-  };
+  // const addExperience = () => {
+  //   console.log("ejecutandooo");
+  //   setShowMeForm(true);
+  // };
 
   return (
     <div className="container">
