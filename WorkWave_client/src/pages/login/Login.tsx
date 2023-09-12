@@ -14,7 +14,10 @@ import axios, { AxiosError } from "axios";
 import logo from "../../assets/logoWorkNavbar.svg";
 import queryString from "query-string";
 import { Button } from "@nextui-org/button";
-import { Image } from "@nextui-org/react";
+import { Image, Input } from "@nextui-org/react";
+
+import { EyeSlashFilledIcon } from "../../assets/EyeSlashFilledIcon.tsx";
+import { EyeFilledIcon } from "../../assets/EyeFilledIcon.tsx";
 
 const schema = yup.object().shape({
   email: yup.string().email("Email inválido").required("Email requerido"),
@@ -40,6 +43,9 @@ interface Error {
 
 // million-ignore
 const Login: React.FC = () => {
+  const [isVisible, setIsVisible] = React.useState(false);
+  const toggleVisibility = () => setIsVisible(!isVisible);
+
   const { setToken, setUser } = useContext(TokenContext);
   const {
     register,
@@ -134,13 +140,16 @@ const Login: React.FC = () => {
             >
               Usuario*
             </label>
-            <input
+            <Input
+              color="primary"
+              variant={"bordered"}
               autoComplete="username"
               type="email"
               id="email"
               {...register("email")}
+              size="lg"
+              fullWidth
               placeholder="lucialopez@mail.com"
-              className="w-full p-2 mt-1 bg-transparent border rounded-xl"
             />
             {errors.email && (
               <p className="text-red-500">{errors.email.message}</p>
@@ -153,13 +162,29 @@ const Login: React.FC = () => {
             >
               Contraseña*
             </label>
-            <input
-              type="password"
+            <Input
+              color="primary"
               id="password"
               autoComplete="current-password"
               {...register("password")}
               placeholder="************"
-              className="w-full p-2 mt-1 bg-transparent border rounded-xl"
+              size="lg"
+              fullWidth
+              type={isVisible ? "text" : "password"}
+              variant={"bordered"}
+              endContent={
+                <button
+                  className="focus:outline-none"
+                  type="button"
+                  onClick={toggleVisibility}
+                >
+                  {isVisible ? (
+                    <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                  ) : (
+                    <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                  )}
+                </button>
+              }
             />
             {errors.password && (
               <p className="text-red-500">{errors.password.message}</p>

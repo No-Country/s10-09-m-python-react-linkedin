@@ -9,7 +9,11 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BiArrowBack } from "react-icons/bi";
-import { Image } from "@nextui-org/react";
+import { Image, Input } from "@nextui-org/react";
+
+import { EyeSlashFilledIcon } from "../../assets/EyeSlashFilledIcon.tsx";
+import { EyeFilledIcon } from "../../assets/EyeFilledIcon.tsx";
+
 type FormData = {
   email: string;
   first_name: string;
@@ -55,6 +59,12 @@ const schema = yup
 
 // million-ignore
 const Register: React.FC = () => {
+  const [isVisible, setIsVisible] = React.useState(false);
+  const toggleVisibility = () => setIsVisible(!isVisible);
+
+  const [isVisible1, setIsVisible1] = React.useState(false);
+  const toggleVisibility1 = () => setIsVisible1(!isVisible1);
+
   const [UserData, setUserData] = useState({});
   const navigate = useNavigate();
   const {
@@ -226,12 +236,27 @@ const Register: React.FC = () => {
                 >
                   Contraseña*
                 </label>
-                <input
+                <Input
+                  endContent={
+                    <button
+                      className="focus:outline-none"
+                      type="button"
+                      onClick={toggleVisibility}
+                    >
+                      {isVisible ? (
+                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                      ) : (
+                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                      )}
+                    </button>
+                  }
+                  type={isVisible ? "text" : "password"}
                   autoComplete="new-password"
-                  type="password"
                   id="password"
                   placeholder="************"
-                  className="mt-1 p-2 border rounded-xl w-full bg-transparent"
+                  size="lg"
+                  fullWidth
+                  className="mt-1 border-white  bg-none rounded-xl w-full  "
                   {...register("password")}
                 />
                 {errors.password && (
@@ -248,13 +273,28 @@ const Register: React.FC = () => {
                 >
                   Confirmar Contraseña*
                 </label>
-                <input
+                <Input
                   autoComplete="new-password"
-                  type="password"
                   id="confirmedPassword"
                   placeholder="************"
-                  className="mt-1 p-2 border rounded-xl w-full bg-transparent"
+                  type={isVisible1 ? "text" : "password"}
+                  size="lg"
+                  fullWidth
+                  className="mt-1 border-white  bg-none rounded-xl w-full  "
                   {...register("password2")}
+                  endContent={
+                    <button
+                      className="focus:outline-none"
+                      type="button"
+                      onClick={toggleVisibility1}
+                    >
+                      {isVisible1 ? (
+                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                      ) : (
+                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                      )}
+                    </button>
+                  }
                 />
                 {errors.password2 && (
                   <span className="text-orange-400">
