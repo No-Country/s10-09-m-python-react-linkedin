@@ -36,7 +36,7 @@ export default {
     themes: [
       {
         mytheme: {
-          primary: "#a991f7",
+          primary: "#61A9FD",
           secondary: "#f6d860",
           accent: "#37cdbe",
           neutral: "#3d4451",
@@ -56,5 +56,11 @@ export default {
     ],
   },
   darkMode: "dark",
-  plugins: [daisyui, scrollbar, nextui()],
+  plugins: [
+    daisyui,
+    scrollbar,
+    nextui({
+      addCommonColors: true,
+    }),
+  ],
 };
