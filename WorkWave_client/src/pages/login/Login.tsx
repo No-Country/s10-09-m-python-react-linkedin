@@ -5,11 +5,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useContext } from "react";
+import { Toaster, toast } from "sonner";
+import { useLocation } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import { TokenContext } from "../../context/TokenContext";
 
 import axios, { AxiosError } from "axios";
 import logo from "../../assets/LOGOHorizontal.avif";
+import queryString from "query-string";
+import { Button } from "@nextui-org/button";
 
 const schema = yup.object().shape({
   email: yup.string().email("Email inválido").required("Email requerido"),
@@ -24,8 +28,8 @@ const schema = yup.object().shape({
 });
 
 interface FormData {
-  email: string;
   password: string;
+  email: string;
 }
 
 interface Error {
@@ -39,13 +43,22 @@ const Login: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isLoading },
     setError,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
 
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const { noauth } = queryString.parse(location.search);
+
+  useEffect(() => {
+    if (noauth) {
+      toast.error("Usuario no autentificado");
+    }
+  }, []);
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -63,7 +76,6 @@ const Login: React.FC = () => {
       const user = response.data;
 
       localStorage.setItem("token", user.token);
-
       localStorage.setItem("user", JSON.stringify(user));
 
       setUser(user);
@@ -92,6 +104,7 @@ const Login: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center bg-no-repeat bg-cover md:flex-row ">
+      <Toaster richColors />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full h-screen max-w-md p-6 pt-28 md:pt-60 md:w-1/3 lg:w-1/4"
@@ -153,12 +166,12 @@ const Login: React.FC = () => {
           </div>
         </div>
 
-        <button
+        <Button
           type="submit"
           className="bg-[#4318FF] text-white p-2 rounded-full w-full mt-5"
         >
           Continuar
-        </button>
+        </Button>
 
         {/* <p className="mt-6 text-center text-white">
           ¿No tienes un usuario?{" "}

@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 // import LogoHorizontal from "../Logo/LogoHorizontal";
-import logo from "../../assets/LOGOHorizontal.avif";
+import logo from "../../assets/logoWorkNavbar.svg";
 
 function Navbar() {
   const navigate = useNavigate();
