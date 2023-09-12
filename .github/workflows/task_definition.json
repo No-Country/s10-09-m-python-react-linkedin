@@ -23,7 +23,15 @@
             "name": "backend",
             "image": "411951638844.dkr.ecr.us-east-2.amazonaws.com/backend:latest",
             "cpu": 0,
-            "portMappings": [],
+            "portMappings": [
+                 {
+                "name": "backend-8000-tcp",
+                "containerPort": 8000,
+                "hostPort": 8000,
+                "protocol": "tcp",
+                "appProtocol": "http"
+            }
+        ],
             "essential": false,
             "environment": [],
             "mountPoints": [],
@@ -33,7 +41,14 @@
             "name": "backend-node",
             "image": "411951638844.dkr.ecr.us-east-2.amazonaws.com/backend-node:latest",
             "cpu": 0,
-            "portMappings": [],
+            "portMappings": [      {
+                "name": "backend-3002-tcp",
+                "containerPort": 3002,
+                "hostPort": 3002,
+                "protocol": "tcp",
+                "appProtocol": "http"
+            }
+        ],
             "essential": false,
             "environment": [],
             "environmentFiles": [],
