@@ -3,12 +3,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Stepper from "../../components/Stepper";
-import logo from "../../assets/LOGOHorizontal.avif";
+import logo from "../../assets/logoWorkNavbar.svg";
 import Country from "../../components/RegisterDetail/Country";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BiArrowBack } from "react-icons/bi";
+import { Image } from "@nextui-org/react";
 type FormData = {
   email: string;
   first_name: string;
@@ -65,25 +66,26 @@ const Register: React.FC = () => {
   });
 
   const onSubmit = (data: FormData) => {
-
-    setUserData({...data});
+    setUserData({ ...data });
   };
   useEffect(() => {
     const sendUserData = async () => {
-          console.log(UserData)
-          if (UserData) {
-            try {
-              const response = await axios.post(`https://workwave-django.onrender.com/register/`,UserData);
-              console.log('Solicitud POST exitosa:', response.data);
-              navigate('/register/step1');
-            } catch (error) {
-              console.error('Error al hacer la solicitud POST:', error);
-            }
-          }
-        };
-        sendUserData()
-  }, [UserData,navigate]);
-
+      console.log(UserData);
+      if (UserData) {
+        try {
+          const response = await axios.post(
+            `https://workwave-django.onrender.com/register/`,
+            UserData
+          );
+          console.log("Solicitud POST exitosa:", response.data);
+          navigate("/register/step1");
+        } catch (error) {
+          console.error("Error al hacer la solicitud POST:", error);
+        }
+      }
+    };
+    sendUserData();
+  }, [UserData, navigate]);
 
   const comeBackBTN = () => {
     navigate("/");
@@ -288,7 +290,13 @@ const Register: React.FC = () => {
         </section>
         <div className="hidden md:block ">
           <Link to={"/"}>
-            <img src={logo} alt="image logo" className="mb-36" />
+            <Image
+              width={600}
+              height={600}
+              src={logo}
+              alt="image logo"
+              className="mb-36"
+            />
           </Link>
         </div>
       </div>
