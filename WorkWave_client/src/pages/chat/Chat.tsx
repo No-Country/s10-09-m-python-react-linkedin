@@ -6,7 +6,7 @@ import { TokenContext } from "../../context/TokenContext";
 
 function Chat() {
   const { token, user } = useContext(TokenContext);
-  const [currentChat, setCurrentChat] = useState(null);
+  const [currentChat] = useState(null);
   console.log(user, token);
 
   return (

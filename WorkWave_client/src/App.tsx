@@ -28,7 +28,9 @@ function App() {
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token")
   );
-  const [user, setUser] = useState<User | null>(null);
+  const storedUser = JSON.parse(localStorage.getItem("user") || "null");
+
+  const [user, setUser] = useState<User | null>(storedUser);
   return (
     <TokenContext.Provider value={{ token, setToken, user, setUser }}>
       <main className="app dark">
