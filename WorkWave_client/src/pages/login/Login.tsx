@@ -43,7 +43,7 @@ const Login: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isLoading },
+    formState: { errors, isSubmitting },
     setError,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
@@ -167,6 +167,7 @@ const Login: React.FC = () => {
         </div>
 
         <Button
+          isLoading={isSubmitting}
           type="submit"
           className="bg-[#4318FF] text-white p-2 rounded-full w-full mt-5"
         >
