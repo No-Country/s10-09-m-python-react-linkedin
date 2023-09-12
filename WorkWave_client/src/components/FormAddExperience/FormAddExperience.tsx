@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 interface FormAddExperienceProps {
@@ -50,7 +49,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
   console.log(showMeForm);
   return (
     <div className="container flex flex-col  bg-black ">
-      <form onSubmit={(e)=>handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div className="flex justify-between items-center">
           <div className="p-2">
             <h1>Añadir experiencia</h1>
@@ -61,25 +60,25 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="titulo1" className="mx-2">Cargo</label>
+          <label htmlFor="titulo1" className="mx-2">
+            Cargo
+          </label>
           <input
-  type="text"
-  id="titulo1"
-  name="cargo" 
-  onChange={handleInputChange}
-  placeholder="Ejemplo: grado en diseño"
-  className="bg-black border border-gray-500 p-2 rounded-lg mx-2"
-  value={formData.cargo}
-
-/>
-
+            type="text"
+            id="titulo1"
+            name="cargo"
+            onChange={handleInputChange}
+            placeholder="Ejemplo: grado en diseño"
+            className="bg-black border border-gray-500 p-2 rounded-lg mx-2"
+            value={formData.cargo}
+          />
         </div>
         <div className="flex flex-col">
           <label htmlFor="titulo2">Tipo de empleo</label>
           <input
             type="text"
             id="titulo2"
-            name="tipoEmpleo" 
+            name="tipoEmpleo"
             onChange={handleInputChange}
             placeholder="Ejemplo: grado en diseño"
             className="bg-black border border-gray-500 p-2 rounded-lg mx-2"
@@ -90,7 +89,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
           <input
             type="text"
             id="titulo2"
-            name="ubicacion" 
+            name="ubicacion"
             onChange={handleInputChange}
             placeholder="Ejemplo: grado en diseño"
             className="bg-black border border-gray-500 p-2 rounded-lg mx-2"
@@ -103,7 +102,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
             onClick={toggleCollapse}
             className="flex items-center justify-between px-4 py-2 text-gray-700 bg-black border border-gray-500 p-2 rounded-lg mx-2"
           >
-            <span>{formData.tipoUbicacion|| "Seleccionar una opción"}</span>
+            <span>{formData.tipoUbicacion || "Seleccionar una opción"}</span>
             <IoIosArrowDown
               className={`w-5 h-5 transform ${
                 isOpen ? "rotate-180" : "rotate-0"
@@ -126,7 +125,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
           )}
         </div>
         <div className="flex gap-2">
-        <input
+          <input
             type="checkbox"
             name="actualmenteTengoCargo"
             id="actualmenteTengoCargo"
@@ -140,19 +139,35 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
         <div className="flex">
           <div>
             <label>Sector*</label>
-            <input type="date" name="fechaInicio" onChange={handleInputChange} className="m-2 
+            <input
+              type="date"
+              name="fechaInicio"
+              onChange={handleInputChange}
+              className="m-2 
             
-               w-25 bg-black border border-gray-500 p-2 rounded-lg mx-2"  />
+               w-25 bg-black border border-gray-500 p-2 rounded-lg mx-2"
+            />
           </div>
           <div>
             <label>Fecha de Finalización*</label>
-            <input type="date" name="fechafinalizacion" onChange={handleInputChange} className="m-2  w-42 bg-black border border-gray-500 p-2 rounded-lg mx-2 " />
+            <input
+              type="date"
+              name="fechafinalizacion"
+              onChange={handleInputChange}
+              className="m-2  w-42 bg-black border border-gray-500 p-2 rounded-lg mx-2 "
+            />
           </div>
         </div>
         <div className="flex flex-col">
           <label htmlFor="titulo2">Sector</label>
-          <input type="text" id="titulo2"          name="sector"
-            onChange={handleInputChange} placeholder="Ejemplo: Tecnologia"     className="bg-black border border-gray-500 p-2 rounded-lg mx-2" />
+          <input
+            type="text"
+            id="titulo2"
+            name="sector"
+            onChange={handleInputChange}
+            placeholder="Ejemplo: Tecnologia"
+            className="bg-black border border-gray-500 p-2 rounded-lg mx-2"
+          />
         </div>
         <div className="flex flex-col">
           <label htmlFor="titulo2">Descripción</label>
@@ -166,13 +181,12 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
           />
         </div>
         <div className="flex justify-center items-center ">
-        <button className="bg-[#4318FF] text-white rounded-xl p-3 m-4 w-60">Publicar</button>
+          <button className="bg-[#4318FF] text-white rounded-xl p-3 m-4 w-60">
+            Publicar
+          </button>
         </div>
-   
       </form>
     </div>
-
-
   );
 };
 
