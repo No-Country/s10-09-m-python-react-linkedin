@@ -15,6 +15,7 @@ import logo from "../../assets/logoWorkNavbar.svg";
 import queryString from "query-string";
 import { Button } from "@nextui-org/button";
 import { Image } from "@nextui-org/react";
+import { Loading } from "notiflix/build/notiflix-loading-aio";
 
 const schema = yup.object().shape({
   email: yup.string().email("Email inválido").required("Email requerido"),
@@ -62,6 +63,7 @@ const Login: React.FC = () => {
   }, []);
 
   const onSubmit = async (data: FormData) => {
+    Loading.circle();
     try {
       const { email, password } = data;
 
@@ -82,6 +84,7 @@ const Login: React.FC = () => {
       setUser(user);
       setToken(user.token);
       navigate("/empleos");
+      Loading.remove();
     } catch (err) {
       const error = err as AxiosError<Error>;
       if (error.response?.status === 401) {
