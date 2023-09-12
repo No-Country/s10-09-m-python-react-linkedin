@@ -1,6 +1,6 @@
 import React from "react";
-import banner from "../../assets/bannerUser.png";
-import UserImg from "../../assets/userImg.png";
+import banner from "../../assets/bannerUser.avif";
+import UserImg from "../../assets/userImg.avif";
 
 import { AiOutlineMail } from "react-icons/ai";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -11,7 +11,7 @@ const Profile: React.FC = () => {
   return (
     <div className="container mx-auto">
       {/* BANNER DEL USUARIO */}
-      <div className="w-full md:flex md:w-2/3 mx-auto bg-black">
+      <div className="w-full mx-auto bg-black md:flex md:w-2/3">
         <div className="w-full">
           <div className="bannerProfileContainer">
             <div className="bannerProfileUser">
@@ -21,13 +21,13 @@ const Profile: React.FC = () => {
                 className="w-full rounded-sm"
               />
             </div>
-            <div className="dataUser bg-black">
+            <div className="bg-black dataUser">
               <div>
                 <div className="ml-4">
                   <img
                     src={UserImg}
                     alt=""
-                    className="userImg border border-white rounded-full p-2 my-2 mx-6"
+                    className="p-2 mx-6 my-2 border border-white rounded-full userImg"
                   />
                 </div>
               </div>
@@ -39,10 +39,10 @@ const Profile: React.FC = () => {
                 </p>
               </div>
               <div className="flex justify-around mt-3">
-                <div className="rounded-xl bg-blue-500 p-1 mb-2">
+                <div className="p-1 mb-2 bg-blue-500 rounded-xl">
                   300 CONEXIONES
                 </div>
-                <div className="rounded-xl bg-transparent border-solid border-2 px-10 mb-2">
+                <div className="px-10 mb-2 bg-transparent border-2 border-solid rounded-xl">
                   EMPLEADO
                 </div>
               </div>
@@ -50,10 +50,10 @@ const Profile: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row gap-2 p-2 justify-center">
+      <div className="flex flex-col justify-center gap-2 p-2 md:flex-row">
         {/* INFORMACIÓN DEL USUARIO */}
-        <div className="flex flex-col aboutTheUserData md:w-1/2 sm:w-full mt-3">
-          <div className="p-3 bg-black rounded-md mb-3">
+        <div className="flex flex-col mt-3 aboutTheUserData md:w-1/2 sm:w-full">
+          <div className="p-3 mb-3 bg-black rounded-md">
             <h2 className="text-xl">Sobre mí</h2>
             <div className="UserInfo">
               <p className="text-sm md:text-base">
@@ -64,21 +64,21 @@ const Profile: React.FC = () => {
               </p>
             </div>
           </div>
-          <div className="aboutTheUserContact p-3 bg-black rounded-md">
-            <h2 className="border-b-2 border-gray-500 text-xl">CONTACTO</h2>
-            <div className="m-1 flex gap-1">
+          <div className="p-3 bg-black rounded-md aboutTheUserContact">
+            <h2 className="text-xl border-b-2 border-gray-500">CONTACTO</h2>
+            <div className="flex gap-1 m-1">
               <h2>
                 <AiOutlineMail className="mt-1 text-xl" />
               </h2>
               <p>usuario1@gmail.com</p>
             </div>
-            <div className="m-1 flex gap-1">
+            <div className="flex gap-1 m-1">
               <h2>
-                <FaPhoneAlt className="mt-1 flex gap-1" />
+                <FaPhoneAlt className="flex gap-1 mt-1" />
               </h2>
               <p>+549114777777</p>
             </div>
-            <div className="m-1 flex gap-1">
+            <div className="flex gap-1 m-1">
               <h2>
                 <AiFillBehanceSquare className="mt-1 text-xl" />
               </h2>
@@ -87,7 +87,7 @@ const Profile: React.FC = () => {
           </div>
         </div>
         {/* PROYECTOS Y EXPERIENCIA DEL USUARIO */}
-        <div className="UserProjectsContainer sm:w-full md:w-1/2 mt-3 p-2">
+        <div className="p-2 mt-3 UserProjectsContainer sm:w-full md:w-1/2">
           <NavbarUserProfile />
         </div>
       </div>

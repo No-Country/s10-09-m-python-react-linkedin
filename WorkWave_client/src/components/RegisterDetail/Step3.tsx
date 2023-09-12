@@ -48,13 +48,13 @@ function Step3() {
           height=""
           width="!w-full"
           blue={true}
-          routing="/register/step4"
+          routing="/registro/step4"
         />
         <Buttons
           text="Omitir"
           height=""
           width="!w-full"
-          routing="/register/step4"
+          routing="/registro/step4"
           blue={false}
         />
       </div>

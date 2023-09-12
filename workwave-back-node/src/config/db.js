@@ -58,8 +58,25 @@ const {
   Job,
   JobPreferences,
   JobApplication,
+  Education,
+  Skill,
+  Conversation,
+  Message,
 } = sequelize.models;
 
+// conversations and Messages
+Conversation.hasMany(Message);
+Message.belongsTo(Conversation);
+//user and messages
+Users_customuser.hasMany(Message);
+Message.belongsTo(Users_customuser);
+
+//User and Skills
+Users_customuser.hasMany(Skill);
+Skill.belongsTo(Users_customuser);
+//User and Education
+Users_customuser.hasMany(Education);
+Education.belongsTo(Users_customuser);
 //jobs and User
 Users_customuser.hasMany(Job);
 Job.belongsTo(Users_customuser);

@@ -1,21 +1,20 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Stepper from "../../components/Stepper";
-import logo from "../../assets/LOGOHorizontal.png";
+import logo from "../../assets/LOGOHorizontal.avif";
 import Country from "../../components/RegisterDetail/Country";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Loading } from "notiflix/build/notiflix-loading-aio";
-import { Report } from "notiflix/build/notiflix-report-aio";
+import { BiArrowBack } from "react-icons/bi";
 type FormData = {
   email: string;
   first_name: string;
-  last_name:string; 
+  last_name: string;
   phone_number: string;
-  country? : string,
+  country?: string;
   password: string;
   password2: string;
 };
@@ -26,19 +25,19 @@ const schema = yup
       .string()
       .required("El campo es requerido")
       .email("El email no es válido"),
-      first_name: yup
+    first_name: yup
       .string()
       .required("El campo es requerido")
       .min(3, "El nombre debe tener al menos 3 caracteres"),
-      last_name: yup
+    last_name: yup
       .string()
       .required("El campo es requerido")
       .min(3, "El apellido debe tener al menos 3 caracteres"),
-      phone_number: yup
+    phone_number: yup
       .string()
       .required("Ambos campos son requeridos")
       .min(4, "Un numero debe tener al menos 8 numeros "),
-      password: yup
+    password: yup
       .string()
       .required("El campo es requerido")
       .min(8, "La contraseña debe tener al menos 8 caracteres")
@@ -46,15 +45,16 @@ const schema = yup
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]+$/,
         "La contraseña debe contener al menos una mayúscula, una minúscula y un número"
       ),
-      password2: yup
+    password2: yup
       .string()
       .required("El campo es requerido")
       .oneOf([yup.ref("password")], "Las contraseñas no coinciden"),
   })
   .required();
 
+// million-ignore
 const Register: React.FC = () => {
-  const[UserData,setUserData]=useState({})
+  const [UserData, setUserData] = useState({});
   const navigate = useNavigate();
   const {
     register,
@@ -65,6 +65,7 @@ const Register: React.FC = () => {
   });
 
   const onSubmit = (data: FormData) => {
+
     setUserData({...data});
   };
   useEffect(() => {
@@ -83,21 +84,36 @@ const Register: React.FC = () => {
         sendUserData()
   }, [UserData,navigate]);
 
+
+  const comeBackBTN = () => {
+    navigate("/");
+  };
   return (
     <>
       <div className="absolute top-5 left-0 right-0">
         <Stepper step={"step1"} width="" />
       </div>
 
-      <div className=" md:pt-32 pt-16 flex flex-col md:flex-row items-center justify-center bg-[url('./assets/fondo1.png')] bg-no-repeat bg-cover ">
+      <div className=" md:pt-32 pt-16 flex flex-col md:flex-row items-center justify-center bg-no-repeat bg-cover ">
         <section className=" px-4 py-8 w-full flex flex-col md:justify-start md:items-start md:w-1/2 justify-center items-center">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="pt-12 md:w-2/3 w-full"
           >
-            <h2 className="text-2xl mb-4 text-white">INGRESA TUS DATOS</h2>
-            <p className="text-white">
-              Completa tus datos personales, para crear una cuenta en Workwave.
+            <div className="flex items-center mb-4 gap-8">
+              <div>
+                <BiArrowBack
+                  onClick={comeBackBTN}
+                  className="text-3xl cursor-pointer  text-white"
+                />
+              </div>
+              <h2 className="text-2xl font-medium text-white ">
+                Ingresá tus datos
+              </h2>
+            </div>
+
+            <p className="text-white  text-sm md:text-base">
+              Completa tus datos personales, para crear una cuenta en Workwave.{" "}
             </p>
             <ul className="inputsContainer mt-8">
               <li className="mb-4">
@@ -112,7 +128,7 @@ const Register: React.FC = () => {
                   type="text"
                   id="email"
                   className="mt-1 p-2 border rounded-xl w-full bg-transparent"
-                  placeholder="lucia@gmail.com"
+                  placeholder="lucialopez@mail.com"
                   {...register("email")}
                 />
                 {errors.email && (
@@ -121,7 +137,7 @@ const Register: React.FC = () => {
                   </span>
                 )}
               </li>
-              {/*Usuario*/}
+              {/*Email*/}
               <li className="mb-4">
                 <label
                   htmlFor="name"
@@ -143,7 +159,7 @@ const Register: React.FC = () => {
                   </span>
                 )}
               </li>
-              {/*Usuario*/}
+              {/*Nombre*/}
               <li className="mb-4">
                 <label
                   htmlFor="surname"
@@ -164,8 +180,8 @@ const Register: React.FC = () => {
                   </span>
                 )}
               </li>
-              {/*Nombre y Apellido*/}
-              <li className="mb-4">
+              {/*Apellido*/}
+              <li className="mb-36 md:mb-4">
                 <Country />
               </li>
               {/*Pais*/}
@@ -253,13 +269,10 @@ const Register: React.FC = () => {
             </ul>
 
             <div className="flex gap-4 my-4">
-              <input type="checkbox" />
+              <input type="checkbox" className="w-4" />
               <span>
                 He leído y acepto los{" "}
-                <Link
-                  className="link hover:text-celeste-claro"
-                  to="/terms-and-conditions"
-                >
+                <Link className="link hover:text-celeste-claro" to="/terminos">
                   términos y condiciones.
                 </Link>
               </span>
@@ -267,15 +280,16 @@ const Register: React.FC = () => {
             {/*Terminos y condiciones*/}
             <button
               type="submit"
-              className="btn btn-info min-w-full bg-celeste-claro"
-              
+              className="bg-[#4318FF] text-white p-2  rounded-full w-full mt-5"
             >
               Continuar
             </button>
           </form>
         </section>
         <div className="hidden md:block ">
-          <img src={logo} alt="image logo" className="mb-36" />
+          <Link to={"/"}>
+            <img src={logo} alt="image logo" className="mb-36" />
+          </Link>
         </div>
       </div>
     </>

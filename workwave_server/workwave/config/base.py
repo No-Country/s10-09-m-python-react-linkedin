@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "cloudinary_storage",
+    "cloudinary",
     "workwave.apps.users",
     "rest_framework",
     "rest_framework.authtoken",
@@ -134,4 +136,4 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:5173',]
+CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'http://dev.weworkwave.net', 'https://workwave-django.onrender.com']

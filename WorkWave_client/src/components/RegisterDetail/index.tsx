@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import logo from "../../assets/LOGOHorizontal.png";
+import logo from "../../assets/LOGOHorizontal.avif";
 import Footer from "../Footer";
 import Stepper from "../Stepper";
 import Step1 from "./Step1";
@@ -17,7 +17,7 @@ const Register: React.FC = () => {
         <Stepper step={step} width="" />
       </div>
 
-      <div className=" pt-16 w-full flex md:flex-row flex-col  justify-center items-center bg-[url('./assets/fondo1.png')] bg-no-repeat bg-cover ">
+      <div className=" pt-16 w-full flex md:flex-row flex-col  justify-center items-center  bg-no-repeat bg-cover ">
         {step === "step1" ? (
           <>
             <Step1 />

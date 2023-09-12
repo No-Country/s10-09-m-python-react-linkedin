@@ -12,10 +12,14 @@ WORKDIR /app
 COPY . .
 RUN pip install psycopg2-binary
 # Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Expose the port that the Django app will run on
 EXPOSE 8000
+
+RUN python manage.py collectstatic --no-input --settings=workwave.config.prod
+RUN python manage.py migrate --settings=workwave.config.prod
+
 
 # Command to start the Django app
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

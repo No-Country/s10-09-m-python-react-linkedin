@@ -1,0 +1,146 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "API de Educación"
+basePath: "api/education"
+tags:
+  - name: "Educación"
+    description: "Endpoints para gestionar registros de educación."
+paths:
+  /api/education:
+    post:
+      tags:
+        - "Educación"
+      summary: "Crear una nueva entrada de educación."
+      description: "Crea un nuevo registro de educación."
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "educational_institution"
+          in: "body"
+          description: "Nombre de la institución educativa."
+          required: true
+          schema:
+            type: "string"
+        - name: "degree"
+          in: "body"
+          description: "Grado académico obtenido."
+          required: true
+          schema:
+            type: "string"
+        - name: "academic_discipline"
+          in: "body"
+          description: "Disciplina académica."
+          required: true
+          schema:
+            type: "string"
+        - name: "note"
+          in: "body"
+          description: "Nota adicional (opcional)."
+          required: false
+          schema:
+            type: "string"
+        - name: "description"
+          in: "body"
+          description: "Descripción de la educación."
+          required: true
+          schema:
+            type: "string"
+        - name: "start_date"
+          in: "body"
+          description: "Fecha de inicio de la educación."
+          required: true
+          schema:
+            type: "string"
+            format: "date"
+        - name: "end_date"
+          in: "body"
+          description: "Fecha de finalización de la educación."
+          required: true
+          schema:
+            type: "string"
+            format: "date"
+        - name: "activities_and_groups"
+          in: "body"
+          description: "Actividades y grupos (opcional)."
+          required: false
+          schema:
+            type: "string"
+        - name: "usersCustomuserId"
+          in: "body"
+          description: "ID del usuario al que pertenece esta educación."
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        201:
+          description: "Educación creada exitosamente."
+    get:
+      tags:
+        - "Educación"
+      summary: "Obtener todas las entradas de educación."
+      description: "Devuelve una lista de todos los registros de educación."
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Éxito al obtener todas las entradas de educación."
+  /api/education/{id}:
+    get:
+      tags:
+        - "Educación"
+      summary: "Obtener una entrada de educación por ID."
+      description: "Devuelve un registro de educación por su ID."
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID de la educación a obtener."
+          required: true
+          type: "integer"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Éxito al obtener la educación por ID."
+        404:
+          description: "Educación no encontrada."
+    put:
+      tags:
+        - "Educación"
+      summary: "Actualizar una entrada de educación por ID."
+      description: "Actualiza un registro de educación existente por su ID."
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID de la educación a actualizar."
+          required: true
+          type: "integer"
+        - name: "education"
+          in: "body"
+          description: "Datos actualizados de educación."
+          required: true
+          schema:
+            type: "object"
+      responses:
+        204:
+          description: "Educación actualizada exitosamente."
+    delete:
+      tags:
+        - "Educación"
+      summary: "Eliminar una entrada de educación por ID."
+      description: "Elimina un registro de educación existente por su ID."
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID de la educación a eliminar."
+          required: true
+          type: "integer"
+      responses:
+        204:
+          description: "Educación eliminada exitosamente."

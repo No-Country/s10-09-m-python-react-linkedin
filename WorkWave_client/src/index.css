@@ -1,33 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-*{
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
+* {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
 }
+
 html,
 body,
 #root,
 .app {
+
  overflow-x: hidden;
   /* background-color: #000C2C; */
-  background-image: url("./assets/main.png");
+  background-image: url("./assets/main.avif");
   background-size: cover;
   background-repeat: no-repeat;
-  @apply text-white;
+  color: white;
 }
-@media(max-width:780px) {
+
+@media (max-width: 780px) {
   .app {
     height: 100%;
-   
-    background-image: url("./assets/bgUserProfile.png");
+    background-image: url("./assets/bgUserProfile.avif");
     background-repeat: no-repeat;
-    background-size: cover; 
-    @apply text-white;
+    background-size: cover;
+    color: white;
   }
+
 } 
 @media (min-width: 1060px){
   .md\:w-1\/2 {
@@ -38,3 +41,7 @@ body,
 .userImg{
   box-shadow: 1px -2px 61px 16px rgba(109,104,252,1);
 }
+
+}
+
+

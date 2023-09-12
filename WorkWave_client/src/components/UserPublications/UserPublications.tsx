@@ -1,4 +1,4 @@
-import UserImg from "../../assets/userImg.png";
+import UserImg from "../../assets/userImg.avif";
 import Publication from "./Publication";
 type PublicationProps = {
   text: string;
@@ -14,7 +14,7 @@ const userPublications = (props: PublicationProps) => {
     footText = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam porro, reiciendis corporis adipisci dolores ullam officiis.",
   } = props;
   return (
-    <main className="bg-[#000] border-2 border-[#22232B] rounded-xl px-6 py-4">
+    <div className="bg-[#000] dark border-2 border-[#22232B] rounded-xl px-6 py-4">
       <section className="flex justify-between items-start">
         {" "}
         {/*aca va la info del perfil */}
@@ -73,7 +73,7 @@ const userPublications = (props: PublicationProps) => {
           </ul>
         </article>
       </section>
-    </main>
+    </div>
   );
 };
 
