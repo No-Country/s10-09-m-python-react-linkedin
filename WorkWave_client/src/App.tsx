@@ -24,6 +24,7 @@ import LayoutLanding from "./pages/layout/LayoutLanding";
 import { useState } from "react";
 import { User } from "./models/user";
 import { TokenContext } from "./context/TokenContext";
+import Cursos from "./components/Cursos/Cursos";
 function App() {
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token")
@@ -44,6 +45,7 @@ function App() {
               <Route path="/perfil" element={<Profile />} />
               <Route path="/empleos" element={<Empleos />} />
               <Route path="/mensajes" element={<Chat />} />
+              <Route path="/cursos" element={<Cursos />} />
             </Route>
 
             <Route element={<LayoutLanding />}>
