@@ -5,6 +5,7 @@ import removeConsole from "vite-plugin-remove-console";
 import TurboConsole from "vite-plugin-turbo-console";
 import mpaPlugin from "vite-plugin-mpa-plus";
 import { compression } from "vite-plugin-compression2";
+import { VitePluginRadar } from "vite-plugin-radar";
 
 export default defineConfig({
   plugins: [
@@ -21,5 +22,10 @@ export default defineConfig({
     removeConsole(),
     TurboConsole(),
     compression(),
+    VitePluginRadar({
+      analytics: {
+        id: "G-KZYQZ2GL5V",
+      },
+    }),
   ],
 });

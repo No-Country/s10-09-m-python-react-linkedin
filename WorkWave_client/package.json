@@ -66,6 +66,7 @@
     "vite-plugin-compression2": "^0.10.4",
     "vite-plugin-imp": "^2.4.0",
     "vite-plugin-mkcert": "^1.16.0",
+    "vite-plugin-radar": "^0.9.1",
     "vite-plugin-react-mpa": "^1.1.4",
     "vite-plugin-remove-console": "^2.1.1",
     "vite-plugin-turbo-console": "^0.1.0"

@@ -11,9 +11,10 @@ import { useContext, useEffect } from "react";
 import { TokenContext } from "../../context/TokenContext";
 
 import axios, { AxiosError } from "axios";
-import logo from "../../assets/LOGOHorizontal.avif";
+import logo from "../../assets/logoWorkNavbar.svg";
 import queryString from "query-string";
 import { Button } from "@nextui-org/button";
+import { Image } from "@nextui-org/react";
 
 const schema = yup.object().shape({
   email: yup.string().email("Email inválido").required("Email requerido"),
@@ -43,7 +44,7 @@ const Login: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isLoading },
+    formState: { errors, isSubmitting },
     setError,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
@@ -167,6 +168,7 @@ const Login: React.FC = () => {
         </div>
 
         <Button
+          isLoading={isSubmitting}
           type="submit"
           className="bg-[#4318FF] text-white p-2 rounded-full w-full mt-5"
         >
@@ -182,7 +184,13 @@ const Login: React.FC = () => {
       </form>
       <div className="hidden md:block">
         <Link to={"/"}>
-          <img src={logo} alt="image logo" className="mb-36" />
+          <Image
+            height={500}
+            width={500}
+            src={logo}
+            alt="image logo"
+            className="m-auto"
+          />
         </Link>
       </div>
     </div>
