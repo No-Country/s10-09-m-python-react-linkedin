@@ -65,25 +65,26 @@ const Register: React.FC = () => {
   });
 
   const onSubmit = (data: FormData) => {
-
-    setUserData({...data});
+    setUserData({ ...data });
   };
   useEffect(() => {
     const sendUserData = async () => {
-          console.log(UserData)
-          if (UserData) {
-            try {
-              const response = await axios.post(`https://workwave-django.onrender.com/register/`,UserData);
-              console.log('Solicitud POST exitosa:', response.data);
-              navigate('/register/step1');
-            } catch (error) {
-              console.error('Error al hacer la solicitud POST:', error);
-            }
-          }
-        };
-        sendUserData()
-  }, [UserData,navigate]);
-
+      console.log(UserData);
+      if (UserData) {
+        try {
+          const response = await axios.post(
+            `https://workwave-django.onrender.com/register/`,
+            UserData
+          );
+          console.log("Solicitud POST exitosa:", response.data);
+          navigate("/register/step1");
+        } catch (error) {
+          console.error("Error al hacer la solicitud POST:", error);
+        }
+      }
+    };
+    sendUserData();
+  }, [UserData, navigate]);
 
   const comeBackBTN = () => {
     navigate("/");
