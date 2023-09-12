@@ -76,7 +76,7 @@ const Register: React.FC = () => {
       if (UserData) {
         try {
           const response = await axios.post(
-            `localhost:8000/register`,
+            `http://localhost:8000/register`,
             UserData
           );
           console.log("Solicitud POST exitosa:", response.data);
