@@ -5,7 +5,6 @@ import exampleProject2 from "../../assets/exProject2.avif";
 import exampleProject3 from "../../assets/exProject3.avif";
 import FormAddExperience from "../FormAddExperience/FormAddExperience";
 const UserWorkExperience: React.FC = () => {
-  const [showmeForm, setShowMeForm] = useState(false);
   const [projects] = useState([
     {
       projectName: "Lorem ipsum dolor sit",
@@ -23,6 +22,7 @@ const UserWorkExperience: React.FC = () => {
       descrip: "UX/UI, 02.09.2022",
     },
   ]);
+  const [showMeForm, setShowMeForm] = useState(false);
 
   return (
     <div className="container">
@@ -72,7 +72,7 @@ const UserWorkExperience: React.FC = () => {
         </div>
       </div>
 
-      <FormAddExperience showMeForm={showmeForm} />
+      <FormAddExperience showMeForm={showMeForm} />
     </div>
   );
 };

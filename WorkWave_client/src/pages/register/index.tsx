@@ -14,6 +14,9 @@ import { Image, Input } from "@nextui-org/react";
 import { EyeSlashFilledIcon } from "../../assets/EyeSlashFilledIcon.tsx";
 import { EyeFilledIcon } from "../../assets/EyeFilledIcon.tsx";
 
+import { Loading } from "notiflix/build/notiflix-loading-aio";
+import { Report } from "notiflix/build/notiflix-report-aio";
+
 type FormData = {
   email: string;
   first_name: string;
@@ -77,6 +80,7 @@ const Register: React.FC = () => {
 
   const onSubmit = (data: FormData) => {
     setUserData({ ...data });
+    Loading.circle();
   };
   useEffect(() => {
     const sendUserData = async () => {
@@ -88,9 +92,18 @@ const Register: React.FC = () => {
             UserData
           );
           console.log("Solicitud POST exitosa:", response.data);
-          navigate("/register/step1");
+          Loading.remove();
+          Report.success(
+            "Registro exitoso",
+            "Ingrese con su usuario",
+            "Okay",
+            () => {
+              navigate("/login");
+            }
+          );
         } catch (error) {
           console.error("Error al hacer la solicitud POST:", error);
+          Loading.remove();
         }
       }
     };
