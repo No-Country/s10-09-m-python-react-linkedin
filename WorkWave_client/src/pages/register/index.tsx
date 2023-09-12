@@ -76,7 +76,7 @@ const Register: React.FC = () => {
       if (UserData) {
         try {
           const response = await axios.post(
-            `http://localhost:8000/register`,
+            "https://workwave-django.onrender.com/register/",
             UserData
           );
           console.log("Solicitud POST exitosa:", response.data);
