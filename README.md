@@ -61,9 +61,9 @@ WorkWake es un clon de LinkedIn creado como parte del reto de NoCountry para rei
 |-----------------|--------------------------|
 | Adhemir Sabino  | Front-end / Back-End     |
 | Ignacio Benitez | Front-end                |
-| Jose Cardozo     | Front-end                |
+| Jose Cardozo    | Front-end                |
 | Elias Velazquez | Back-end                 |
-| Micaela Bustos   | Tester QA                |
+| Micaela Bustos  | Tester QA                |
 | Matias Diaz     | Devops                   |
 | Ana Diaz        | UX / UI                  |
 | Daniela Perea   | UX / UI                  |
