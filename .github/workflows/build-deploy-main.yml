@@ -1,0 +1,191 @@
+---  
+name: Deploy to Amazon ECS 
+
+on:
+  push:
+    branches: 
+      - main
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-east-2                   
+  # ECR_REPOSITORY: frontend          
+  ECS_SERVICE: serverfrontend                  
+  ECS_CLUSTER: demo-deploy                 
+  ECS_TASK_DEFINITION: .github/workflows/task_definition.json                                              
+  # CONTAINER_NAME: frontend
+  DB_PWD: ${{secrets.DB_PWD}} 
+  DB_HOST: ${{secrets.DB_HOST}} 
+  DJANGO_SECRET_KEY: ${{secrets.DJANGO_SECRET_KEY}}
+  EMAIL_PASSWORD: ${{secrets.EMAIL_PASSWORD}}
+
+                                             
+# permissions:
+#   contents: read
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    # environment: production
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push frontend image to Amazon ECR
+      id: build-image-front
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: frontend
+         # IMAGE_TAG: ${{ github.sha }}
+        IMAGE_TAG: latest
+      run: |
+        cd WorkWave_client/ 
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+        cd ..
+        pwd
+
+    - name: Build, tag, and push backend-node image to Amazon ECR
+      id: build-image-backend-node
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: backend-node
+          # IMAGE_TAG: ${{ github.sha }}
+        IMAGE_TAG: latest
+      run: |
+        cd workwave-back-node/
+
+        echo "DB_NAME = workwave_db
+        DB_USER = workwave
+        DB_PASSWORD = ${DB_PWD}
+        DB_HOST = ${DB_HOST}
+        DB_PORT = 5432 
+        EMAIL_HOST=smtp.gmail.com 
+        USER_EMAIL=workwave2023@gmail.com
+        PASSWORD_EMAIL=${EMAIL_PASSWORD}
+        EMAIL_PORT=587" > .env
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+        cd ..
+
+    - name: Build, tag, and push backend image to Amazon ECR
+      id: build-image-back
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: backend
+         # IMAGE_TAG: ${{ github.sha }}
+        IMAGE_TAG: latest
+      run: |
+        cd workwave_server/ 
+        # Create or overwrite the .env file with the desired content
+        echo "SECRET_KEY='django-insecure-bkmaj4vof7s61^)=4!n727#nzt3ti&5toi&%j80s@vx_0(86-)'
+        DEBUG=False
+        ALLOWED_HOSTS=[weworkwave.net,dev.weworkwave.net]
+        WSGI_CONFIG='workwave.config.render'
+        DATABASE_URL=postgres://workwave:workwave09@workwave-1.cthm6sfrssli.us-west-2.rds.amazonaws.com:5432/workwave_db
+        
+        #Email vars
+        EMAIL_HOST=smtp.gmail.com 
+        EMAIL_HOST_USER=workwave2023@gmail.com
+        EMAIL_HOST_PASSWORD=xcvxjpfewjufdush
+        EMAIL_PORT=587
+        EMAIL_USE_TLS=True
+        
+        #Cloudinary credentials
+        CLOUDINARY_URL=cloudinary://854472554794786:sIAU-O8zcteurSa8kxhfYYhxHU4@dey5v9yb0" > .env
+
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+        cd ..
+        pwd
+
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def-front
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: .github/workflows/task_definition.json
+        container-name: frontend
+        image: ${{ steps.build-image-front.outputs.image }}
+
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def-back
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: .github/workflows/task_definition.json
+        container-name: backend
+        image: ${{ steps.build-image-back.outputs.image }}
+
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        # task-definition: ${{ steps.task-def-back.outputs.task-definition }}
+        task-definition: .github/workflows/task_definition.json
+        service: workwave-service
+        cluster: workwave-dev
+        wait-for-service-stability: true
+    
+    - name: Get ECS Cluster ARN
+      id: get-ecs-cluster-arn
+      run: |
+        # Replace 'your-cluster-name' with your ECS cluster name
+        CLUSTER_NAME="workwave-dev"
+        CLUSTER_ARN=$(aws ecs describe-clusters --clusters $CLUSTER_NAME --query 'clusters[0].clusterArn' --output text)
+        if [ -z "$CLUSTER_ARN" ]; then
+          echo "Error: ECS cluster '$CLUSTER_NAME' not found or an error occurred."
+          exit 1
+        fi
+        echo "::set-output name=cluster_arn::$CLUSTER_ARN"
+
+    - name: Get ECS Task Public IP
+      id: get-ecs-task-ip
+      run: |
+        # Use the cluster ARN obtained in the previous step
+        task_arn=$(aws ecs list-tasks --cluster ${{ steps.get-ecs-cluster-arn.outputs.cluster_arn }} --desired-status RUNNING --query 'taskArns[0]' --output text)
+        if [ -z "$task_arn" ]; then
+          echo "::set-output name=task_ip::NoRunningTasks"
+        else
+          eni_id=$(aws ecs describe-tasks --cluster ${{ steps.get-ecs-cluster-arn.outputs.cluster_arn }} --tasks $task_arn --query 'tasks[0].attachments[0].details[?name==`networkInterfaceId`].value' --output text)
+          public_ip=$(aws ec2 describe-network-interfaces --network-interface-ids $eni_id --query 'NetworkInterfaces[0].Association.PublicIp' --output text)
+          echo "::set-output name=task_ip::$public_ip"
+          
+        fi
+        echo $public_ip
+
+    - name: Update Route 53 A Record
+      run: |
+        # Replace 'your-hosted-zone-id' and 'your-record-set-name' with your Route 53 hosted zone ID and record set name.
+        if [ "${{ steps.get-ecs-task-ip.outputs.task_ip }}" != "NoRunningTasks" ]; then
+        aws route53 change-resource-record-sets --hosted-zone-id Z0201908RVKCBGER6OFM --change-batch '{
+          "Changes": [
+            {
+              "Action": "UPSERT",
+              "ResourceRecordSet": {
+                "Name": "dev.weworkwave.net",
+                "Type": "A",
+                "TTL": 300,
+                "ResourceRecords": [
+                  {
+                    "Value": "'"${{ steps.get-ecs-task-ip.outputs.task_ip }}"'"
+                  }
+                ]
+              }
+            }
+          ]
+        }'
+        fi
