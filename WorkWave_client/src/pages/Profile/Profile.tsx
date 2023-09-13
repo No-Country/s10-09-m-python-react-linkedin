@@ -11,7 +11,7 @@ const Profile: React.FC = () => {
   return (
     <div className="container mx-auto">
       {/* BANNER DEL USUARIO */}
-      <div className="w-full mx-auto bg-black md:flex md:w-2/3">
+      <div className="w-full mx-auto bg-black md:flex ">
         <div className="w-full">
           <div className="bannerProfileContainer">
             <div className="bannerProfileUser">
@@ -87,7 +87,7 @@ const Profile: React.FC = () => {
           </div>
         </div>
         {/* PROYECTOS Y EXPERIENCIA DEL USUARIO */}
-        <div className="p-2 mt-3 UserProjectsContainer sm:w-full md:w-1/2">
+        <div className="p-2 mt-3 UserProjectsContainer sm:w-full md:w-4/6">
           <NavbarUserProfile />
         </div>
       </div>

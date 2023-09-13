@@ -98,12 +98,14 @@ const Login: React.FC = () => {
           type: "manual",
           message: "Usuario no encontrado",
         });
+        Loading.remove();
       }
       if (error.response?.status === 500) {
         setError("password", {
           type: "manual",
           message: "Error de Servidor, vuelva mas tarde",
         });
+        Loading.remove();
       }
     }
   };
