@@ -38,7 +38,7 @@ const Message: React.FC<MessageProps> = ({ message, own }) => {
           </div>
         </div>
       </div>
-      <div className="mt-2 text-sm">{format(message.createdAt)}</div>
+      {/* <div className="mt-2 text-sm">{format(message.createdAt)}</div> */}
     </div>
   );
 };
