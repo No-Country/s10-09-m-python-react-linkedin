@@ -5,11 +5,20 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useContext } from "react";
+import { Toaster, toast } from "sonner";
+import { useLocation } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import { TokenContext } from "../../context/TokenContext";
 
 import axios, { AxiosError } from "axios";
-import logo from "../../assets/LOGOHorizontal.avif";
+import logo from "../../assets/logoWorkNavbar.svg";
+import queryString from "query-string";
+import { Button } from "@nextui-org/button";
+import { Image, Input } from "@nextui-org/react";
+
+import { EyeSlashFilledIcon } from "../../assets/EyeSlashFilledIcon.tsx";
+import { EyeFilledIcon } from "../../assets/EyeFilledIcon.tsx";
+import { Loading } from "notiflix/build/notiflix-loading-aio";
 
 const schema = yup.object().shape({
   email: yup.string().email("Email inválido").required("Email requerido"),
@@ -24,8 +33,8 @@ const schema = yup.object().shape({
 });
 
 interface FormData {
-  email: string;
   password: string;
+  email: string;
 }
 
 interface Error {
@@ -35,11 +44,14 @@ interface Error {
 
 // million-ignore
 const Login: React.FC = () => {
+  const [isVisible, setIsVisible] = React.useState(false);
+  const toggleVisibility = () => setIsVisible(!isVisible);
+
   const { setToken, setUser } = useContext(TokenContext);
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     setError,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
@@ -47,7 +59,17 @@ const Login: React.FC = () => {
 
   const navigate = useNavigate();
 
+  const location = useLocation();
+  const { noauth } = queryString.parse(location.search);
+
+  useEffect(() => {
+    if (noauth) {
+      toast.error("Usuario no autentificado");
+    }
+  }, []);
+
   const onSubmit = async (data: FormData) => {
+    Loading.circle();
     try {
       const { email, password } = data;
 
@@ -63,12 +85,12 @@ const Login: React.FC = () => {
       const user = response.data;
 
       localStorage.setItem("token", user.token);
-
       localStorage.setItem("user", JSON.stringify(user));
 
       setUser(user);
       setToken(user.token);
       navigate("/empleos");
+      Loading.remove();
     } catch (err) {
       const error = err as AxiosError<Error>;
       if (error.response?.status === 401) {
@@ -92,6 +114,7 @@ const Login: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center bg-no-repeat bg-cover md:flex-row ">
+      <Toaster richColors />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full h-screen max-w-md p-6 pt-28 md:pt-60 md:w-1/3 lg:w-1/4"
@@ -120,13 +143,16 @@ const Login: React.FC = () => {
             >
               Usuario*
             </label>
-            <input
+            <Input
+              color="primary"
+              variant={"bordered"}
               autoComplete="username"
               type="email"
               id="email"
               {...register("email")}
+              size="lg"
+              fullWidth
               placeholder="lucialopez@mail.com"
-              className="w-full p-2 mt-1 bg-transparent border rounded-xl"
             />
             {errors.email && (
               <p className="text-red-500">{errors.email.message}</p>
@@ -139,13 +165,29 @@ const Login: React.FC = () => {
             >
               Contraseña*
             </label>
-            <input
-              type="password"
+            <Input
+              color="primary"
               id="password"
               autoComplete="current-password"
               {...register("password")}
               placeholder="************"
-              className="w-full p-2 mt-1 bg-transparent border rounded-xl"
+              size="lg"
+              fullWidth
+              type={isVisible ? "text" : "password"}
+              variant={"bordered"}
+              endContent={
+                <button
+                  className="focus:outline-none"
+                  type="button"
+                  onClick={toggleVisibility}
+                >
+                  {isVisible ? (
+                    <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                  ) : (
+                    <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                  )}
+                </button>
+              }
             />
             {errors.password && (
               <p className="text-red-500">{errors.password.message}</p>
@@ -153,12 +195,13 @@ const Login: React.FC = () => {
           </div>
         </div>
 
-        <button
+        <Button
+          isLoading={isSubmitting}
           type="submit"
           className="bg-[#4318FF] text-white p-2 rounded-full w-full mt-5"
         >
           Continuar
-        </button>
+        </Button>
 
         {/* <p className="mt-6 text-center text-white">
           ¿No tienes un usuario?{" "}
@@ -169,7 +212,13 @@ const Login: React.FC = () => {
       </form>
       <div className="hidden md:block">
         <Link to={"/"}>
-          <img src={logo} alt="image logo" className="mb-36" />
+          <Image
+            height={500}
+            width={500}
+            src={logo}
+            alt="image logo"
+            className="m-auto"
+          />
         </Link>
       </div>
     </div>

@@ -137,6 +137,10 @@ function Empleos() {
           01 Empleos Solicitados
         </Button>
       </div>
+
+      {data.map((empleo) => (
+        <Card className="col-span-3 m-5">{empleo.company_name}</Card>
+      ))}
     </div>
   );
 }

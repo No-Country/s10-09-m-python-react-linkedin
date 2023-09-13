@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 // import LogoHorizontal from "../Logo/LogoHorizontal";
-import logo from "../../assets/LOGOHorizontal.avif";
+import logo from "../../assets/logoWorkNavbar.svg";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -106,9 +106,9 @@ function Navbar() {
           </p>
         </button>
         <button
-          onClick={() => navigate("/profile")}
+          onClick={() => navigate("/perfil")}
           className={`flex flex-col justify-center group items-center w-9 h-11 text-base ${
-            location.pathname === "/profile" ? "text-blue-500" : ""
+            location.pathname === "/perfil" ? "text-blue-500" : ""
           }`}
         >
           <FaUserCircle className="text-xl group-hover:text-orange-300" />

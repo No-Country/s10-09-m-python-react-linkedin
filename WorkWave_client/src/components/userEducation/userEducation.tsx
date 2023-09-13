@@ -8,7 +8,7 @@ const userEducation: React.FC  = () => {
             <h2 className="ml-1">Experiencía</h2>
           </div>
           <div className="projects flex p-2  mb-2 gap-2 border border-b-1 border-r-0 border-l-0 border-t-0 border-gray-700">
-            <div className="bg-[#B9A2FF] w-[150px] h-[50px] rounded-full"></div>
+            <div className="bg-[#B9A2FF] sm: w-[300px] md:w-[230px] h-[50px] rounded-full"></div>
             <div>
               <h2>Freelance UX/UI designer</h2>
               <p>Lorem ipsum Lorem ipsum </p>
@@ -29,7 +29,7 @@ const userEducation: React.FC  = () => {
         </div>
 
         <div className="projects flex   gap-2 mt-2 border-b-1 border-r-0 border-l-0 border-t-0 border-gray-700">
-          <div className="bg-[#9374FF] w-[125px] h-[50px] rounded-full"></div>
+          <div className="bg-[#9374FF] sm: w-[300px] md:w-[230px] h-[50px] rounded-full"></div>
           <div>
             <h2>Freelance UX/UI designer</h2>
             <p>Lorem ipsum Lorem ipsum </p>
