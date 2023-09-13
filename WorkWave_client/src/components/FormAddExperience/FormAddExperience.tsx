@@ -1,52 +1,103 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import axios from "axios";
+import { number } from "yup";
 interface FormAddExperienceProps {
   showMeForm: boolean;
 }
+interface interfaceExperience{
+  job_position: string;
+  company_name: string;
+  ubication: string;
+  sector: string;
+  description: string;
+  start_date: string;
+  end_date: string;
+  typesOfEmploymentId: number;
+  typesOfUbicationId: number;
+  usersCustomuserId: number;
+}
+const getUserIdFromLocalStorage = (): number | null => {
+  const userString = localStorage.getItem("user");
+  const storedUser = userString ? JSON.parse(userString) : null;
+  return storedUser ? storedUser.id : null;
+};
 const FormAddExperience: React.FC<FormAddExperienceProps> = ({
   showMeForm,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(""); // Estado para almacenar la opción seleccionada
-  const options = ["Presencial", "Híbrido", "Remoto"];
-  const [formData, setFormData] = useState({
-    cargo: "",
-    tipoEmpleo: "",
-    ubicacion: "",
-    tipoUbicacion: "",
-    actualmenteTengoCargo: false,
-    sector: "",
-    fechaInicio: "",
-    fechaFinalizacion: "",
-    descripcion: "",
-  });
+  const options = [
+    {
+      "id": 1,
+      "name": "Presencial"
+    },
+    {
+      "id": 2,
+      "name": "Hibrido"
+    },
+    {
+      "id": 3,
+      "name": "En remoto"
+    }
+  ]
 
+  const [userID, setUserID] = useState<number | null>(getUserIdFromLocalStorage());
+  const [formData, setFormData] = useState<interfaceExperience>({
+    job_position: "",
+    company_name: "",
+    ubication: "",
+    sector: "",
+    description: "",
+    start_date: "",
+    end_date: "",
+    typesOfEmploymentId: "",
+    typesOfUbicationId: 0, // Puedes inicializarlo con 0 o el valor por defecto que prefieras
+    usersCustomuserId: userID ,
+  });
   const toggleCollapse = () => {
     setIsOpen(!isOpen);
   };
 
   const selectOption = (option: string) => {
-    console.log(selectedOption)
-    setSelectedOption(option);
-    setFormData({
-      ...formData,
-      tipoUbicacion: option,
-    });
+    const selectedOptionObject = options.find((opt) => opt.name === option);
+  
+    if (selectedOptionObject) {
+      setFormData({
+        ...formData,
+        typesOfUbicationId: selectedOptionObject.id,
+      });
+    }
+  
     setIsOpen(false);
   };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value,
+      [name]:value,
     });
   };
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Aquí puedes enviar los datos al endpoint utilizando fetch o axios
     console.log("Datos a enviar:", formData);
   };
-  console.log(showMeForm);
+  const sendDataToTheServer = async (e: React.FormEvent)=>{
+    e.preventDefault();
+    try {
+      const response = await axios.post('https://work-wave.onrender.com/api/experience', formData);
+      console.log('Respuesta del servidor:', response.data);
+    } catch (error) {
+      console.error('Error al enviar datos:', error);
+    }
+  }
+  useEffect(() => {
+    const userId = getUserIdFromLocalStorage();
+    setUserID(userId);
+    
+  }, []);
+
+
   return (
     <div className="container flex flex-col  bg-black ">
       <form onSubmit={(e) => handleSubmit(e)}>
@@ -66,22 +117,23 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
           <input
             type="text"
             id="titulo1"
-            name="cargo"
+            name="job_position"
             onChange={handleInputChange}
             placeholder="Ejemplo: grado en diseño"
             className="bg-black border border-gray-500 p-2 rounded-lg mx-2"
-            value={formData.cargo}
+            value={formData?.job_position}
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="titulo2">Tipo de empleo</label>
+          <label htmlFor="titulo2">Nombre de la empresa</label>
           <input
             type="text"
             id="titulo2"
-            name="tipoEmpleo"
+            name="company_name"
             onChange={handleInputChange}
             placeholder="Ejemplo: grado en diseño"
             className="bg-black border border-gray-500 p-2 rounded-lg mx-2"
+            value={formData?.company_name}
           />
         </div>
         <div className="flex flex-col">
@@ -89,10 +141,11 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
           <input
             type="text"
             id="titulo2"
-            name="ubicacion"
+            name="ubication"
             onChange={handleInputChange}
             placeholder="Ejemplo: grado en diseño"
             className="bg-black border border-gray-500 p-2 rounded-lg mx-2"
+            value={formData?.ubication}
           />
         </div>
         <div className="flex flex-col">
@@ -102,7 +155,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
             onClick={toggleCollapse}
             className="flex items-center justify-between px-4 py-2 text-gray-700 bg-black border border-gray-500 p-2 rounded-lg mx-2"
           >
-            <span>{formData.tipoUbicacion || "Seleccionar una opción"}</span>
+            <span>{formData?.typesOfUbicationId || "Seleccionar una opción"}</span>
             <IoIosArrowDown
               className={`w-5 h-5 transform ${
                 isOpen ? "rotate-180" : "rotate-0"
@@ -114,37 +167,25 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
             <ul className="absolute z-10 w-40 mt-2 bg-black border shadow-md rounded-md">
               {options.map((option) => (
                 <li
-                  key={option}
-                  onClick={() => selectOption(option)}
+                  key={option.id}
+                  onClick={() => selectOption(option.name)}
                   className="px-4 py-2 cursor-pointer hover:bg-blue-100"
                 >
-                  {option}
+                  {option.name}
                 </li>
               ))}
             </ul>
           )}
         </div>
-        <div className="flex gap-2">
-          <input
-            type="checkbox"
-            name="actualmenteTengoCargo"
-            id="actualmenteTengoCargo"
-            className="bg-black border border-gray-500 p-2 rounded-lg mx-2"
-            checked={formData.actualmenteTengoCargo}
-            onChange={handleInputChange}
-          />
 
-          <span>Actualmente tengo este cargo</span>
-        </div>
         <div className="flex">
           <div>
-            <label>Sector*</label>
+            <label>Fecha de inicio*</label>
             <input
               type="date"
-              name="fechaInicio"
+              name="start_date"
               onChange={handleInputChange}
               className="m-2 
-            
                w-25 bg-black border border-gray-500 p-2 rounded-lg mx-2"
             />
           </div>
@@ -152,7 +193,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
             <label>Fecha de Finalización*</label>
             <input
               type="date"
-              name="fechafinalizacion"
+              name="end_date"
               onChange={handleInputChange}
               className="m-2  w-42 bg-black border border-gray-500 p-2 rounded-lg mx-2 "
             />
@@ -173,7 +214,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
           <label htmlFor="titulo2">Descripción</label>
           <input
             type="text"
-            name="descripcion"
+            name="description"
             onChange={handleInputChange}
             id="titulo2"
             placeholder="Añadir descripción del puesto"
@@ -181,7 +222,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
           />
         </div>
         <div className="flex justify-center items-center ">
-          <button className="bg-[#4318FF] text-white rounded-xl p-3 m-4 w-60">
+          <button className="bg-[#4318FF] text-white rounded-xl p-3 m-4 w-60"  type="submit" onClick={(e)=>sendDataToTheServer(e)}>
             Publicar
           </button>
         </div>
