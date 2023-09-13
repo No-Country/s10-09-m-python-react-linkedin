@@ -5,16 +5,57 @@ import FriendsOnline from "../../components/FriendsOnline/FriendsOnline";
 import { TokenContext } from "../../context/TokenContext";
 import { Conversation } from "../../components/Conversations/Conversations";
 import axios from "axios";
+import { io, Socket } from "socket.io-client";
+interface ArrivalMessage {
+  sender: string;
+  text: string;
+  createdAt: number;
+}
 
 function Chat() {
   const API = process.env.REACT_APP_API_BACK;
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState<Conversation | null>(null);
-  const [messages, setMessages] = useState([]);
+  // const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<ArrivalMessage[]>([]);
   const [newMessage, setNewMessage] = useState("");
+  const socket = useRef<Socket | null>(null);
 
+  const [arrivalMessage, setArrivalMessage] = useState<ArrivalMessage | null>(
+    null
+  );
   const { user } = useContext(TokenContext);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    console.log("useEffect se está ejecutando");
+    socket.current = io("http://localhost:3002");
+    socket.current.on("getMessage", (data) => {
+      console.log("data viene back", data);
+
+      setArrivalMessage({
+        sender: data.senderId,
+        text: data.text,
+        createdAt: Date.now(),
+      });
+    });
+  }, []);
+  console.log(arrivalMessage);
+
+  useEffect(() => {
+    arrivalMessage &&
+      currentChat?.members.includes(arrivalMessage.sender) &&
+      setMessages((prev) => [...prev, arrivalMessage]);
+  }, [arrivalMessage, currentChat]);
+
+  useEffect(() => {
+    if (socket.current) {
+      socket.current.emit("addUser", user?.id);
+      socket.current.on("getUsers", (users) => {
+        console.log(users);
+      });
+    }
+  }, [user]);
 
   useEffect(() => {
     const getConversations = async () => {
@@ -34,7 +75,6 @@ function Chat() {
     };
     getConversations();
   }, [user?.id]);
-  console.log(conversations);
 
   useEffect(() => {
     const getMessages = async () => {
@@ -55,11 +95,21 @@ function Chat() {
       text: newMessage,
       ConversationId: currentChat?.id,
     };
-    console.log(message);
+
+    const receiverId =
+      currentChat &&
+      currentChat.members.find((member) => member !== user?.id.toString());
+
+    if (socket.current) {
+      socket.current.emit("sendMessage", {
+        senderId: user?.id,
+        receiverId,
+        text: newMessage,
+      });
+    }
 
     try {
       const res = await axios.post(`${API}/messages`, message);
-      console.log(res.data);
       setMessages((prevMessages) => [...prevMessages, res.data]);
       setNewMessage("");
     } catch (err) {
@@ -78,11 +128,12 @@ function Chat() {
             className="w-full max-w-xs input input-bordered input-sm bg-[#2B3674]"
           />
 
-          {conversations.map((obj, index) => (
-            <div key={index} onClick={() => setCurrentChat(obj)}>
-              <Conversations conversation={obj} currentUser={user} />
-            </div>
-          ))}
+          {conversations &&
+            conversations.map((obj, index) => (
+              <div key={index} onClick={() => setCurrentChat(obj)}>
+                <Conversations conversation={obj} currentUser={user} />
+              </div>
+            ))}
         </div>
       </div>
       {/* chatBox */}
