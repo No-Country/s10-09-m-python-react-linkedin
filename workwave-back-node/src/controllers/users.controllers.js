@@ -9,6 +9,28 @@ const getUsers = async (re, res) => {
     handleHttpError(res, { error: error.message }, 500);
   }
 };
+const getUser = async (req, res) => {
+  const userId = req.query.userId;
+  const username = req.query.username;
+
+  try {
+    let user;
+    if (userId) {
+      user = await Users_customuser.findByPk(userId);
+    } else if (username) {
+      user = await Users_customuser.findOne({ where: { username: username } });
+    }
+
+    if (user) {
+      const { password, updatedAt, ...other } = user.toJSON();
+      res.status(200).json(other);
+    } else {
+      res.status(404).json({ message: "Usuario no encontrado" });
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
 const createUser = async (req, res) => {
   try {
     const { body } = req;
@@ -25,4 +47,4 @@ const createUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, getUsers };
+module.exports = { createUser, getUsers, getUser };

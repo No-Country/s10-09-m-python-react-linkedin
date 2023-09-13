@@ -8,6 +8,12 @@ import { compression } from "vite-plugin-compression2";
 import { VitePluginRadar } from "vite-plugin-radar";
 
 export default defineConfig({
+  define: {
+    "process.env": {
+      REACT_APP_API_BACK: "http://localhost:3002/api",
+    },
+  },
+
   plugins: [
     mpaPlugin({
       entry: "src/main.tsx",

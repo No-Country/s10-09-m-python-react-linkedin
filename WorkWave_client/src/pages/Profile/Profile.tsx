@@ -5,6 +5,7 @@ import UserImg from "../../assets/userImg.avif";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaPhoneAlt } from "react-icons/fa";
 import { AiFillBehanceSquare } from "react-icons/ai";
+import { BsSend } from 'react-icons/bs';
 import NavbarUserProfile from "../../components/NavbarUserProfile/NavbarUserProfile";
 
 const Profile: React.FC = () => {
@@ -39,11 +40,15 @@ const Profile: React.FC = () => {
                 </p>
               </div>
               <div className="flex justify-around mt-3">
-                <div className="p-1 mb-2 bg-blue-500 rounded-xl">
-                  300 CONEXIONES
+                <div className="p-2  flex  justify-center items-center gap-2 mb-2 bg-[#68769F] rounded-xl ">
+                <BsSend />
+               <button> Enviar mensaje</button>
                 </div>
-                <div className="px-10 mb-2 bg-transparent border-2 border-solid rounded-xl">
-                  EMPLEADO
+                <div className="px-10  flex  justify-center items-center gap-2 mb-2 bg-transparent border-2 border-solid rounded-xl">
+                <button> Conectar +</button>
+                </div>
+                <div className="px-10  flex  justify-center items-center gap-2 mb-2 bg-black ">
+                <p className="text-[#3311DB]"> 300 Conexiones</p>
                 </div>
               </div>
             </div>

@@ -1,0 +1,18 @@
+/* Cambia el color del fondo del scrollbar */
+.scroll-container::-webkit-scrollbar {
+    width: 10px;
+    background-color: #1E3A8A; /* Color de fondo del scrollbar */
+  }
+  
+  /* Cambia el color del pulgar (thumb) del scrollbar */
+  .scroll-container::-webkit-scrollbar-thumb {
+    background-color: #172554; /* Color del pulgar (thumb) */
+    border-radius: 5px;
+    height: 80px;
+  }
+  
+  
+  
+  
+  
+  
