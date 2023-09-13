@@ -23,6 +23,7 @@ import LayoutLanding from "./pages/layout/LayoutLanding";
 
 import { useState } from "react";
 import { User } from "./models/user";
+import { FavoriteJobs } from "./models/favoriteJobs";
 import { TokenContext } from "./context/TokenContext";
 import Cursos from "./components/Cursos/Cursos";
 function App() {
@@ -32,8 +33,20 @@ function App() {
   const storedUser = JSON.parse(localStorage.getItem("user") || "null");
 
   const [user, setUser] = useState<User | null>(storedUser);
+
+  const storedValue = localStorage.getItem("favorite");
+  const storedFavorite = storedValue ? JSON.parse(storedValue) : [];
+  const storedFavoriteJobs: FavoriteJobs[] = Array.isArray(storedFavorite)
+    ? storedFavorite
+    : [];
+
+  const [favoriteJobs, setFavoriteJobs] =
+    useState<FavoriteJobs[]>(storedFavoriteJobs);
+
   return (
-    <TokenContext.Provider value={{ token, setToken, user, setUser }}>
+    <TokenContext.Provider
+      value={{ token, setToken, user, setUser, favoriteJobs, setFavoriteJobs }}
+    >
       <main className="app dark">
         <BrowserRouter>
           <Routes>

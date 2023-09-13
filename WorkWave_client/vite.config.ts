@@ -21,11 +21,16 @@ export default defineConfig({
     react(),
     removeConsole(),
     TurboConsole(),
-    compression(),
     VitePluginRadar({
       analytics: {
         id: "G-KZYQZ2GL5V",
       },
+    }),
+    compression(),
+    compression({
+      algorithm: "brotliCompress",
+      exclude: [/\.(br)$/, /\.(gz)$/],
+      deleteOriginalAssets: true,
     }),
   ],
   build: {

@@ -48,6 +48,7 @@ function Landing() {
             />
           </div>
           <Image
+            rel="preload"
             src={logoWork}
             className="hidden hover:scale-110 sm:block self-center"
           />

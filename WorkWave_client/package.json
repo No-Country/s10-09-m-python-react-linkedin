@@ -56,6 +56,7 @@
     "typescript": "^5.0.2",
     "use-view-transitions": "^1.0.16",
     "vite": "^4.4.5",
+    "vite-plugin-head": "^1.0.2",
     "vite-plugin-mpa": "^1.2.0",
     "vite-plugin-mpa-plus": "^0.5.4",
     "yup": "^1.2.0"
