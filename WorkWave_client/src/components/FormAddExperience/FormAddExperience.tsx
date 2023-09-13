@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import axios from "axios";
-import { number } from "yup";
+
 interface FormAddExperienceProps {
   showMeForm: boolean;
 }
@@ -22,11 +22,9 @@ const getUserIdFromLocalStorage = (): number | null => {
   const storedUser = userString ? JSON.parse(userString) : null;
   return storedUser ? storedUser.id : null;
 };
-const FormAddExperience: React.FC<FormAddExperienceProps> = ({
-  showMeForm,
-}) => {
+const FormAddExperience: React.FC<FormAddExperienceProps> = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(""); // Estado para almacenar la opción seleccionada
+  // const [selectedOption, setSelectedOption] = useState(""); // Estado para almacenar la opción seleccionada
   const options = [
     {
       "id": 1,
@@ -51,9 +49,9 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
     description: "",
     start_date: "",
     end_date: "",
-    typesOfEmploymentId: "",
-    typesOfUbicationId: 0, // Puedes inicializarlo con 0 o el valor por defecto que prefieras
-    usersCustomuserId: userID ,
+    typesOfEmploymentId: 0,
+    typesOfUbicationId: 0, 
+    usersCustomuserId: userID || 0,
   });
   const toggleCollapse = () => {
     setIsOpen(!isOpen);
@@ -72,7 +70,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
     setIsOpen(false);
   };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value,  } = e.target;
     setFormData({
       ...formData,
       [name]:value,
