@@ -3,7 +3,7 @@ import LogoVertical from "../../components/Logo/LogoVertical";
 import landing from "../../assets/landing.avif";
 import landing1 from "../../assets/landing1.avif";
 import landing2 from "../../assets/landing2.avif";
-import logoWork from "../../assets/logo.svg";
+import logoWork from "../../assets/logoLanding.svg";
 
 import { Image } from "@nextui-org/react";
 
@@ -46,9 +46,9 @@ function Landing() {
               height={"16"}
               className="hover:bg-black duration-500"
             />
-
           </div>
           <Image
+            rel="preload"
             src={logoWork}
             className="hidden hover:scale-110 sm:block self-center"
           />

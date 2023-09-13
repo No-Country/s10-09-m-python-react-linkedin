@@ -5,9 +5,9 @@ import { FaUserCircle } from "react-icons/fa";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-
 // import LogoHorizontal from "../Logo/LogoHorizontal";
-import logo from "../../assets/LOGOHorizontal.avif";
+import logo from "../../assets/logoWorkNavbar.svg";
+import { Image } from "@nextui-org/react";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -16,9 +16,9 @@ function Navbar() {
   return (
     <div className="flex justify-center navbar bg-deep-blue h-[71px] gap-16">
       <div className="flex gap-12">
-        <div className="w-24">
+        <div className="w-36">
           <Link to={"/"}>
-            <img src={logo} alt="logo" className="object-contain" />
+            <Image src={logo} width={500} height={500} alt="logo" />
           </Link>
         </div>
         <div className="flex-none gap-2">
@@ -106,9 +106,9 @@ function Navbar() {
           </p>
         </button>
         <button
-          onClick={() => navigate("/profile")}
+          onClick={() => navigate("/perfil")}
           className={`flex flex-col justify-center group items-center w-9 h-11 text-base ${
-            location.pathname === "/profile" ? "text-blue-500" : ""
+            location.pathname === "/perfil" ? "text-blue-500" : ""
           }`}
         >
           <FaUserCircle className="text-xl group-hover:text-orange-300" />

@@ -1,24 +1,45 @@
+//millon-ignore
+
 import { useState, useContext, useEffect, useRef } from "react";
 import Conversations from "../../components/Conversations/Conversations";
 import Message from "../../components/Message/Message";
 import FriendsOnline from "../../components/FriendsOnline/FriendsOnline";
 import { TokenContext } from "../../context/TokenContext";
-import { Conversation } from "../../components/Conversations/Conversations";
+import "./chat.css";
 import axios from "axios";
 import { io, Socket } from "socket.io-client";
+import { useForm } from "react-hook-form";
+
 interface ArrivalMessage {
-  sender: string;
+  usersCustomuserId: string;
   text: string;
   createdAt: number;
 }
 
+interface Messages {
+  id: number;
+  text: string;
+  createdAt: string;
+  updatedAt: string;
+  ConversationId: number;
+  usersCustomuserId: number;
+}
+interface CurrentChate {
+  id: number;
+  members: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type MessageTypes = Messages | ArrivalMessage;
 function Chat() {
+  const { register, handleSubmit, setValue } = useForm();
   const API = process.env.REACT_APP_API_BACK;
   const [conversations, setConversations] = useState([]);
-  const [currentChat, setCurrentChat] = useState<Conversation | null>(null);
-  // const [messages, setMessages] = useState([]);
-  const [messages, setMessages] = useState<ArrivalMessage[]>([]);
-  const [newMessage, setNewMessage] = useState("");
+  const [currentChat, setCurrentChat] = useState<CurrentChate | null>(null);
+
+  const [messages, setMessages] = useState<MessageTypes[]>([]);
+
   const socket = useRef<Socket | null>(null);
 
   const [arrivalMessage, setArrivalMessage] = useState<ArrivalMessage | null>(
@@ -33,19 +54,26 @@ function Chat() {
     socket.current.on("getMessage", (data) => {
       console.log("data viene back", data);
 
-      setArrivalMessage({
-        sender: data.senderId,
+      const date = {
+        usersCustomuserId: data.senderId.toString(),
         text: data.text,
         createdAt: Date.now(),
-      });
+      };
+
+      setArrivalMessage(date);
     });
   }, []);
-  console.log(arrivalMessage);
 
   useEffect(() => {
-    arrivalMessage &&
-      currentChat?.members.includes(arrivalMessage.sender) &&
+    console.log(arrivalMessage, currentChat);
+
+    if (
+      arrivalMessage &&
+      currentChat &&
+      currentChat.members.includes(arrivalMessage.usersCustomuserId)
+    ) {
       setMessages((prev) => [...prev, arrivalMessage]);
+    }
   }, [arrivalMessage, currentChat]);
 
   useEffect(() => {
@@ -78,23 +106,29 @@ function Chat() {
 
   useEffect(() => {
     const getMessages = async () => {
-      try {
-        const res = await axios.get(`${API}/messages/` + currentChat.id);
-        setMessages(res.data);
-      } catch (err) {
-        console.log(err);
+      if (currentChat) {
+        try {
+          const res = await axios.get(`${API}/messages/` + currentChat.id);
+          console.log(res.data);
+
+          setMessages(res.data);
+        } catch (err) {
+          console.log(err);
+        }
       }
     };
     getMessages();
   }, [currentChat]);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onSubmit = async (data: any) => {
+    console.log("me estoy ejecutando");
     const message = {
       usersCustomuserId: user?.id,
-      text: newMessage,
+      text: data.message,
       ConversationId: currentChat?.id,
     };
+    console.log(message);
 
     const receiverId =
       currentChat &&
@@ -104,18 +138,23 @@ function Chat() {
       socket.current.emit("sendMessage", {
         senderId: user?.id,
         receiverId,
-        text: newMessage,
+        text: data.message,
       });
     }
-
     try {
       const res = await axios.post(`${API}/messages`, message);
       setMessages((prevMessages) => [...prevMessages, res.data]);
-      setNewMessage("");
+      setValue("message", ""); // Aquí limpiamos el contenido del mensaje
     } catch (err) {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: "auto" });
+    }
+  }, [messages]);
 
   return (
     <div className="h-[calc(100vh-70px)] flex  justify-around  bg-[#2B3674] p-4">
@@ -141,9 +180,12 @@ function Chat() {
         <div className="relative flex flex-col justify-between h-full ">
           {currentChat ? (
             <>
-              <div className="h-full pr-10 overflow-y-scroll ">
+              <div className="h-full pr-10 overflow-y-scroll scroll-container ">
                 {messages.map((m, index) => (
-                  <div key={index} ref={scrollRef}>
+                  <div
+                    key={index}
+                    ref={index === messages.length - 1 ? scrollRef : null}
+                  >
                     <Message
                       message={m}
                       own={m.usersCustomuserId === user?.id}
@@ -152,14 +194,13 @@ function Chat() {
                 ))}
               </div>
               <form
-                onSubmit={handleSubmit}
+                onSubmit={handleSubmit(onSubmit)}
                 className="flex items-center gap-4 mt-5"
               >
                 <textarea
                   className="w-full textarea textarea-bordered textarea-xs bg-[#172554]"
                   placeholder="Escribe el mensaje..."
-                  onChange={(e) => setNewMessage(e.target.value)}
-                  value={newMessage}
+                  {...register("message")}
                 ></textarea>
                 <button
                   type="submit"

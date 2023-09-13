@@ -54,6 +54,27 @@ WorkWake es un clon de LinkedIn creado como parte del reto de NoCountry para rei
 
 6. Abre tu navegador web y accede a `http://localhost:5173` para ver la aplicación en funcionamiento.
 
+
+## Equipo
+
+| Nombre          | Rol                      |
+|-----------------|--------------------------|
+| Adhemir Sabino  | Front-end / Back-End     |
+| Ignacio Benitez | Front-end                |
+| Jose Cardozo     | Front-end                |
+| Elias Velazquez | Back-end                 |
+| Micaela Bustos   | Tester QA                |
+| Matias Diaz     | Devops                   |
+| Ana Diaz        | UX / UI                  |
+| Daniela Perea   | UX / UI                  |
+| Juan Quiroz     | Product Manager          |
+
+## Diseño / Mockup
+
+Figma: [Figma Link](https://www.figma.com/file/eCwzhdXoXqQvIM0pW8XTpN/Workwave-S10-09?type=design&node-id=1059%3A7576&mode=design&t=NGvA3kOVlVVosfPt-1)
+
+Prototipo: [Prototipo Link](https://www.figma.com/proto/eCwzhdXoXqQvIM0pW8XTpN/Workwave-S10-09?type=design&node-id=1759-41910&t=BKcBrq4kny7qc5vp-1&scaling=scale-down&page-id=1059%3A7576&starting-point-node-id=1759%3A41910&mode=design)
+
 ## Contribución
 
 Si deseas contribuir a este proyecto, puedes seguir los siguientes pasos:

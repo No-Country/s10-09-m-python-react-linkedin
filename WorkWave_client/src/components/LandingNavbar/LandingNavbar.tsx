@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logoheader from "../../assets/logoheader.svg";
 import logoheader1 from "../../assets/logoheader1.svg";
 import logoheader2 from "../../assets/logoheader2.svg";
-import logo from "../../../public/logo-nav.svg";
+import logo from "../../assets/logoWorkNavbar.svg";
 import { Image } from "@nextui-org/react";
 
 function LandingNavbar() {

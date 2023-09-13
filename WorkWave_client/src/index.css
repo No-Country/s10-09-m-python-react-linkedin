@@ -13,6 +13,8 @@ html,
 body,
 #root,
 .app {
+  overflow-x: hidden;
+  /* background-color: #000C2C; */
   background-image: url("./assets/main.avif");
   background-size: cover;
   background-repeat: no-repeat;
@@ -26,6 +28,11 @@ body,
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
+  }
+}
+@media (min-width: 1060px) {
+  .md\:w-1\/2 {
+    width: 33% !important;
   }
 }
 

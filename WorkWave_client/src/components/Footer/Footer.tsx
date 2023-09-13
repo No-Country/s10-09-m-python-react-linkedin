@@ -12,7 +12,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 
-import logo from "../../assets/LOGOHorizontal.avif";
+import logo from "../../assets/logominimo.svg";
 function Footer() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (

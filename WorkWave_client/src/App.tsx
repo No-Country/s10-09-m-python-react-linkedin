@@ -23,7 +23,9 @@ import LayoutLanding from "./pages/layout/LayoutLanding";
 
 import { useState } from "react";
 import { User } from "./models/user";
+import { FavoriteJobs } from "./models/favoriteJobs";
 import { TokenContext } from "./context/TokenContext";
+import Cursos from "./components/Cursos/Cursos";
 function App() {
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token")
@@ -31,8 +33,20 @@ function App() {
   const storedUser = JSON.parse(localStorage.getItem("user") || "null");
 
   const [user, setUser] = useState<User | null>(storedUser);
+
+  const storedValue = localStorage.getItem("favorite");
+  const storedFavorite = storedValue ? JSON.parse(storedValue) : [];
+  const storedFavoriteJobs: FavoriteJobs[] = Array.isArray(storedFavorite)
+    ? storedFavorite
+    : [];
+
+  const [favoriteJobs, setFavoriteJobs] =
+    useState<FavoriteJobs[]>(storedFavoriteJobs);
+
   return (
-    <TokenContext.Provider value={{ token, setToken, user, setUser }}>
+    <TokenContext.Provider
+      value={{ token, setToken, user, setUser, favoriteJobs, setFavoriteJobs }}
+    >
       <main className="app dark">
         <BrowserRouter>
           <Routes>
@@ -44,6 +58,7 @@ function App() {
               <Route path="/perfil" element={<Profile />} />
               <Route path="/empleos" element={<Empleos />} />
               <Route path="/mensajes" element={<Chat />} />
+              <Route path="/cursos" element={<Cursos />} />
             </Route>
 
             <Route element={<LayoutLanding />}>
