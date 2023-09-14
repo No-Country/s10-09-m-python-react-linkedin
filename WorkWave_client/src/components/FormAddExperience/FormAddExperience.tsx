@@ -1,7 +1,6 @@
 import {
   Modal,
   ModalContent,
-
   ModalBody,
   ModalFooter,
   Button,
@@ -36,7 +35,10 @@ const getUserIdFromLocalStorage = (): number | null => {
   return storedUser ? storedUser.id : null;
 };
 
-const FormAddExperience: React.FC<FormAddExperienceProps> = ({ showMeForm,setShowMeForm }) =>{
+const FormAddExperience: React.FC<FormAddExperienceProps> = ({
+  showMeForm,
+  setShowMeForm,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const options = [
@@ -66,7 +68,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({ showMeForm,setSho
     start_date: "",
     end_date: "",
     typesOfEmploymentId: 2,
-    typesOfUbicationId: 0, 
+    typesOfUbicationId: 0,
     usersCustomuserId: userID || 0,
   });
 
@@ -114,7 +116,6 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({ showMeForm,setSho
   };
 
   const sendDataToTheServer = async () => {
- 
     try {
       const response = await axios.post(
         "https://work-wave.onrender.com/api/experience",
@@ -129,14 +130,11 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({ showMeForm,setSho
   useEffect(() => {
     const userId = getUserIdFromLocalStorage();
     setUserID(userId);
-
   }, []);
-
-  
 
   return (
     <Modal
-      isOpen={showMeForm}  
+      isOpen={showMeForm}
       onClose={() => setShowMeForm(false)}
       title="Añadir experiencia"
     >
@@ -224,12 +222,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({ showMeForm,setSho
             </div>
             <div className="flex flex-col">
               <label>Tipo de ubicación</label>
-              <Button
-                type="button"
-                onClick={toggleCollapse}
-               
-             
-              >
+              <Button type="button" onClick={toggleCollapse}>
                 {selectedOption || "Seleccionar una opción"}
               </Button>
               {isOpen && (
@@ -238,7 +231,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({ showMeForm,setSho
                     <li
                       key={option.id}
                       onClick={() => selectOption(option.name)}
-                      className="cursor-pointer hover:bg-blue-100 p-2 rounded-md"
+                      className="p-2 rounded-md cursor-pointer hover:bg-blue-100"
                     >
                       {option.name}
                     </li>
@@ -248,7 +241,11 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({ showMeForm,setSho
             </div>
           </ModalBody>
           <ModalFooter>
-            <Button type="button" color="primary" onClick={(e)=>sendDataToTheServer}>
+            <Button
+              type="button"
+              color="primary"
+              onClick={() => sendDataToTheServer}
+            >
               Publicar
             </Button>
           </ModalFooter>
