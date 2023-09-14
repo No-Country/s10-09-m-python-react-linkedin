@@ -1,11 +1,11 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import axios from "axios";
-import { number } from "yup";
+// import { number } from "yup";
 interface FormAddExperienceProps {
   showMeForm: boolean;
 }
-interface interfaceExperience{
+interface interfaceExperience {
   job_position: string;
   company_name: string;
   ubication: string;
@@ -29,20 +29,22 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
   const [selectedOption, setSelectedOption] = useState(""); // Estado para almacenar la opción seleccionada
   const options = [
     {
-      "id": 1,
-      "name": "Presencial"
+      id: 1,
+      name: "Presencial",
     },
     {
-      "id": 2,
-      "name": "Hibrido"
+      id: 2,
+      name: "Hibrido",
     },
     {
-      "id": 3,
-      "name": "En remoto"
-    }
-  ]
+      id: 3,
+      name: "En remoto",
+    },
+  ];
 
-  const [userID, setUserID] = useState<number | null>(getUserIdFromLocalStorage());
+  const [userID, setUserID] = useState<number | null>(
+    getUserIdFromLocalStorage()
+  );
   const [formData, setFormData] = useState<interfaceExperience>({
     job_position: "",
     company_name: "",
@@ -53,7 +55,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
     end_date: "",
     typesOfEmploymentId: "",
     typesOfUbicationId: 0, // Puedes inicializarlo con 0 o el valor por defecto que prefieras
-    usersCustomuserId: userID ,
+    usersCustomuserId: userID,
   });
   const toggleCollapse = () => {
     setIsOpen(!isOpen);
@@ -61,52 +63,53 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
 
   const selectOption = (option: string) => {
     const selectedOptionObject = options.find((opt) => opt.name === option);
-  
+
     if (selectedOptionObject) {
       setFormData({
         ...formData,
         typesOfUbicationId: selectedOptionObject.id,
       });
     }
-  
+
     setIsOpen(false);
   };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]:value,
+      [name]: value,
     });
   };
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Datos a enviar:", formData);
   };
-  const sendDataToTheServer = async (e: React.FormEvent)=>{
+  const sendDataToTheServer = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://work-wave.onrender.com/api/experience', formData);
-      console.log('Respuesta del servidor:', response.data);
+      const response = await axios.post(
+        "https://work-wave.onrender.com/api/experience",
+        formData
+      );
+      console.log("Respuesta del servidor:", response.data);
     } catch (error) {
-      console.error('Error al enviar datos:', error);
+      console.error("Error al enviar datos:", error);
     }
-  }
+  };
   useEffect(() => {
     const userId = getUserIdFromLocalStorage();
     setUserID(userId);
-    
   }, []);
 
-
   return (
-    <div className="container flex flex-col  bg-black ">
+    <div className="container flex flex-col bg-black ">
       <form onSubmit={(e) => handleSubmit(e)}>
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <div className="p-2">
             <h1>Añadir experiencia</h1>
           </div>
           <div>
-            <button className="text-white mr-4">x</button>
+            <button className="mr-4 text-white">x</button>
           </div>
         </div>
 
@@ -120,7 +123,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
             name="job_position"
             onChange={handleInputChange}
             placeholder="Ejemplo: grado en diseño"
-            className="bg-black border border-gray-500 p-2 rounded-lg mx-2"
+            className="p-2 mx-2 bg-black border border-gray-500 rounded-lg"
             value={formData?.job_position}
           />
         </div>
@@ -132,7 +135,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
             name="company_name"
             onChange={handleInputChange}
             placeholder="Ejemplo: grado en diseño"
-            className="bg-black border border-gray-500 p-2 rounded-lg mx-2"
+            className="p-2 mx-2 bg-black border border-gray-500 rounded-lg"
             value={formData?.company_name}
           />
         </div>
@@ -144,7 +147,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
             name="ubication"
             onChange={handleInputChange}
             placeholder="Ejemplo: grado en diseño"
-            className="bg-black border border-gray-500 p-2 rounded-lg mx-2"
+            className="p-2 mx-2 bg-black border border-gray-500 rounded-lg"
             value={formData?.ubication}
           />
         </div>
@@ -153,9 +156,11 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
           <button
             type="button"
             onClick={toggleCollapse}
-            className="flex items-center justify-between px-4 py-2 text-gray-700 bg-black border border-gray-500 p-2 rounded-lg mx-2"
+            className="flex items-center justify-between p-2 px-4 py-2 mx-2 text-gray-700 bg-black border border-gray-500 rounded-lg"
           >
-            <span>{formData?.typesOfUbicationId || "Seleccionar una opción"}</span>
+            <span>
+              {formData?.typesOfUbicationId || "Seleccionar una opción"}
+            </span>
             <IoIosArrowDown
               className={`w-5 h-5 transform ${
                 isOpen ? "rotate-180" : "rotate-0"
@@ -164,7 +169,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
           </button>
 
           {isOpen && (
-            <ul className="absolute z-10 w-40 mt-2 bg-black border shadow-md rounded-md">
+            <ul className="absolute z-10 w-40 mt-2 bg-black border rounded-md shadow-md">
               {options.map((option) => (
                 <li
                   key={option.id}
@@ -185,8 +190,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
               type="date"
               name="start_date"
               onChange={handleInputChange}
-              className="m-2 
-               w-25 bg-black border border-gray-500 p-2 rounded-lg mx-2"
+              className="p-2 m-2 mx-2 bg-black border border-gray-500 rounded-lg w-25"
             />
           </div>
           <div>
@@ -195,7 +199,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
               type="date"
               name="end_date"
               onChange={handleInputChange}
-              className="m-2  w-42 bg-black border border-gray-500 p-2 rounded-lg mx-2 "
+              className="p-2 m-2 mx-2 bg-black border border-gray-500 rounded-lg w-42 "
             />
           </div>
         </div>
@@ -207,7 +211,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
             name="sector"
             onChange={handleInputChange}
             placeholder="Ejemplo: Tecnologia"
-            className="bg-black border border-gray-500 p-2 rounded-lg mx-2"
+            className="p-2 mx-2 bg-black border border-gray-500 rounded-lg"
           />
         </div>
         <div className="flex flex-col">
@@ -218,11 +222,15 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
             onChange={handleInputChange}
             id="titulo2"
             placeholder="Añadir descripción del puesto"
-            className=" bg-black border border-gray-500 p-2 rounded-lg mx-2"
+            className="p-2 mx-2 bg-black border border-gray-500 rounded-lg "
           />
         </div>
-        <div className="flex justify-center items-center ">
-          <button className="bg-[#4318FF] text-white rounded-xl p-3 m-4 w-60"  type="submit" onClick={(e)=>sendDataToTheServer(e)}>
+        <div className="flex items-center justify-center ">
+          <button
+            className="bg-[#4318FF] text-white rounded-xl p-3 m-4 w-60"
+            type="submit"
+            onClick={(e) => sendDataToTheServer(e)}
+          >
             Publicar
           </button>
         </div>

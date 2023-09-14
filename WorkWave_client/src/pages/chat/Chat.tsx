@@ -152,7 +152,11 @@ function Chat() {
 
   useEffect(() => {
     if (scrollRef.current) {
-      scrollRef.current.scrollIntoView({ behavior: "auto" });
+      scrollRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
     }
   }, [messages]);
 
@@ -176,11 +180,11 @@ function Chat() {
         </div>
       </div>
       {/* chatBox */}
-      <div className="w-3/5 pt-4">
+      <div className="w-3/5 pt-4 pl-4 ">
         <div className="relative flex flex-col justify-between h-full ">
           {currentChat ? (
             <>
-              <div className="h-full pr-10 overflow-y-scroll scroll-container ">
+              <div className="h-full pt-4 pb-4 pr-10 overflow-y-scroll scroll-container ">
                 {messages.map((m, index) => (
                   <div
                     key={index}
@@ -206,7 +210,7 @@ function Chat() {
                   type="submit"
                   className=" btn w-20  text-white bg-[#172554] border-none hover:bg-[#1E3A8A]"
                 >
-                  Send
+                  Enviar
                 </button>
               </form>
             </>
