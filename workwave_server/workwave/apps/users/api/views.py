@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate
 from django.core.exceptions import ObjectDoesNotExist
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
@@ -48,6 +48,16 @@ class LogoutUserView(APIView):
             return Response({'message': 'Successfully logged out.'}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class UserViewSet(viewsets.ViewSet):
+    """
+    View for listing all users in the system
+    """
+
+    def list(self, request):
+        queryset = CustomUser.objects.all()
+        serializer = CustomUserSerializer(queryset, many=True)
+        return Response(serializer.data)
 
 class UserDetailView(APIView):
     permission_classes = [IsAuthenticated]
