@@ -41,18 +41,18 @@ function Footer() {
             <Link to={"/cookie"} className="link link-hover">
               <p>Politicas de Cookies</p>
             </Link>
-            <Link to={"notificaciones"} className="link link-hover">
+            <Link to={"/politica-uso"} className="link link-hover">
               <p>Politicas de Uso</p>
             </Link>
           </div>
           <div className="flex w-40 flex-col gap-2 ss:gap-4">
-            <Link to={"notificaciones"} className="link link-hover">
+            <Link to={"/politica-seguridad"} className="link link-hover">
               <p>Politicas de Seguridad</p>
             </Link>
-            <Link to={"notificaciones"} className="link link-hover">
+            <Link to={"politica-copy"} className="link link-hover">
               <p>Politicas de Copyrigtht</p>
             </Link>
-            <Link to={"notificaciones"} className="link link-hover">
+            <Link to={"politica-privacidad"} className="link link-hover">
               <p>Politicas de Privacidad</p>
             </Link>
           </div>

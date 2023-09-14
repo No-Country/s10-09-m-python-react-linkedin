@@ -20,6 +20,9 @@ import Cookie from "./pages/cookie/index";
 
 import TermsServices from "./pages/termsServices/index";
 import LayoutLanding from "./pages/layout/LayoutLanding";
+import TermsSecurity from "./pages/SecurityPolicyPage/index";
+import TermsCopy from "./pages/copiterms/index";
+import Privacidad from "./pages/privacidad/index";
 
 import { useState } from "react";
 import { User } from "./models/user";
@@ -67,8 +70,11 @@ function App() {
               <Route path="/equipo" element={<Teams />} />
               <Route path="/nosotros" element={<AboutUs />} />
               <Route path="/vision" element={<Vision />} />
-              <Route path="/terminos-uso" element={<TermsUso />} />
+              <Route path="/politica-uso" element={<TermsUso />} />
               <Route path="/politica-servicio" element={<TermsServices />} />
+              <Route path="/politica-seguridad" element={<TermsSecurity />} />
+              <Route path="/politica-copy" element={<TermsCopy />} />
+              <Route path="/politica-privacidad" element={<Privacidad />} />
             </Route>
 
             <Route path="/login" element={<Login />} />

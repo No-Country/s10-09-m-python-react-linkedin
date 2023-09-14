@@ -17,14 +17,7 @@ function Step4() {
           height=""
           width="!w-full"
           blue={true}
-          routing="/login"
-        />
-        <Buttons
-          text="Omitir"
-          height=""
-          width="!w-full"
-          routing="/"
-          blue={false}
+          routing="/perfil"
         />
       </div>
     </div>
