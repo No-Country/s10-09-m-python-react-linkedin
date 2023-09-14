@@ -1,18 +1,23 @@
-import UserImg from "../../assets/userImg.avif";
 import Publication from "./Publication";
 import NewPublication from "./NewPublication";
 type PublicationProps = {
   text: string;
   img: string;
   footText: string;
+  userData: userData;
 
   // ruta a la que va a enviar el boton
 };
+interface userData {
+  first_name: string;
+  last_name: string;
+}
 const userPublications = (props: PublicationProps) => {
   const {
     text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus augue eget scelerisque efficitur.",
     img = "/publicationImg.avif",
     footText = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam porro, reiciendis corporis adipisci dolores ullam officiis.",
+    userData,
   } = props;
   return (
     <>
@@ -21,9 +26,13 @@ const userPublications = (props: PublicationProps) => {
           {" "}
           {/*aca va la info del perfil */}
           <article className="flex items-center gap-4 pt-2">
-            <img src={UserImg} alt="userImg" />
+            <img
+              src="https://images.pexels.com/photos/17126623/pexels-photo-17126623/free-photo-of-artischocke-wilde.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              alt="userImg"
+              className="w-24 h-24 rounded-full object-cover bg-[#dfdfdf]"
+            />{" "}
             <ul>
-              <li className="text-xl">Lucia Lopez</li>
+              <li className="text-xl">{`${userData.first_name} ${userData.last_name}`}</li>
               <li className="text-sm">UX/UI</li>
               <li className="text-sm">1 semanas</li>
             </ul>
