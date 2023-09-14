@@ -49,7 +49,7 @@ const schema = yup
       .string()
       .required("Ambos campos son requeridos")
       .min(2, "Escriba el numero ")
-      .matches(/#/g, "El número debe contener un numeral '#'"),
+      .matches(/\+/g, "El número debe contener un signo '+'"),
     password: yup
       .string()
       .required("El campo es requerido")
