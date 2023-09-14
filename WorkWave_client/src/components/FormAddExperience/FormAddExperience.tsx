@@ -104,7 +104,7 @@ console.log("anda?",showMeForm)
 
 
   return (
-    <div className={` ${isOpen ? "block" : "hidden"} container flex flex-col  bg-black`} >
+    <div className={` ${isOpenForm ? "block" : "hidden"} container flex flex-col  bg-black`} >
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="flex justify-between items-center">
           <div className="p-2">
