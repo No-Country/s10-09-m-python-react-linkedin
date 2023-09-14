@@ -10,12 +10,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BiArrowBack } from "react-icons/bi";
 import { Image, Input } from "@nextui-org/react";
-
 import { EyeSlashFilledIcon } from "../../assets/EyeSlashFilledIcon.tsx";
 import { EyeFilledIcon } from "../../assets/EyeFilledIcon.tsx";
-
 import { Loading } from "notiflix/build/notiflix-loading-aio";
 import { Report } from "notiflix/build/notiflix-report-aio";
+import Footer from "../../components/Footer.tsx";
 
 type FormData = {
   email: string;
@@ -353,6 +352,7 @@ const Register: React.FC = () => {
           </Link>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
