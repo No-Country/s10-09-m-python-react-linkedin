@@ -10,7 +10,7 @@ import { VitePluginRadar } from "vite-plugin-radar";
 export default defineConfig({
   define: {
     "process.env": {
-      REACT_APP_API_BACK: "http://localhost:3002/api",
+      REACT_APP_API_BACK: " https://work-wave.onrender.com/api",
     },
   },
 
