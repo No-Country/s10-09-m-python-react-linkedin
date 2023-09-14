@@ -1,32 +1,31 @@
 import React, { useState,useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import axios from "axios";
-import { number } from "yup";
 interface FormAddExperienceProps {
   showMeForm: boolean;
 }
 interface interfaceExperience{
-  job_position: string;
-  company_name: string;
-  ubication: string;
-  sector: string;
-  description: string;
-  start_date: string;
-  end_date: string;
-  typesOfEmploymentId: number;
-  typesOfUbicationId: number;
-  usersCustomuserId: number;
+  "job_position": string;
+  "company_name": string;
+  "ubication": string;
+  "sector": string;
+  "description": string;
+  "start_date": string;
+  "end_date": string;
+  "typesOfEmploymentId": number;
+  "typesOfUbicationId": number;
+  "usersCustomuserId": number;
 }
 const getUserIdFromLocalStorage = (): number | null => {
   const userString = localStorage.getItem("user");
   const storedUser = userString ? JSON.parse(userString) : null;
   return storedUser ? storedUser.id : null;
 };
-const FormAddExperience: React.FC<FormAddExperienceProps> = ({
-  showMeForm,
-}) => {
+const FormAddExperience: React.FC<FormAddExperienceProps> = ({showMeForm}) => {
+
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(""); // Estado para almacenar la opción seleccionada
+  const [isOpenForm, setIsOpenForm] = useState(showMeForm);
+  const [selectedOption, setSelectedOption] = useState(""); 
   const options = [
     {
       "id": 1,
@@ -51,10 +50,11 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
     description: "",
     start_date: "",
     end_date: "",
-    typesOfEmploymentId: "",
+    typesOfEmploymentId: 2 ,
     typesOfUbicationId: 0, // Puedes inicializarlo con 0 o el valor por defecto que prefieras
-    usersCustomuserId: userID ,
+    usersCustomuserId: userID || 0,
   });
+  console.log(formData) 
   const toggleCollapse = () => {
     setIsOpen(!isOpen);
   };
@@ -67,12 +67,13 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
         ...formData,
         typesOfUbicationId: selectedOptionObject.id,
       });
+      setSelectedOption(selectedOptionObject.name); 
     }
   
     setIsOpen(false);
   };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value,  } = e.target;
     setFormData({
       ...formData,
       [name]:value,
@@ -81,6 +82,10 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Datos a enviar:", formData);
+  };
+  const handleCloseForm = () => {
+  setIsOpenForm(false);
+console.log("anda?",showMeForm)
   };
   const sendDataToTheServer = async (e: React.FormEvent)=>{
     e.preventDefault();
@@ -99,14 +104,14 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
 
 
   return (
-    <div className="container flex flex-col  bg-black ">
+    <div className={` ${isOpen ? "block" : "hidden"} container flex flex-col  bg-black`} >
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="flex justify-between items-center">
           <div className="p-2">
             <h1>Añadir experiencia</h1>
           </div>
           <div>
-            <button className="text-white mr-4">x</button>
+            <button className="text-white mr-4" type="button" onClick={handleCloseForm }>x</button>
           </div>
         </div>
 
@@ -155,7 +160,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
             onClick={toggleCollapse}
             className="flex items-center justify-between px-4 py-2 text-gray-700 bg-black border border-gray-500 p-2 rounded-lg mx-2"
           >
-            <span>{formData?.typesOfUbicationId || "Seleccionar una opción"}</span>
+            <span>{selectedOption || "Seleccionar una opción"}</span>
             <IoIosArrowDown
               className={`w-5 h-5 transform ${
                 isOpen ? "rotate-180" : "rotate-0"
@@ -222,9 +227,9 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
           />
         </div>
         <div className="flex justify-center items-center ">
-          <button className="bg-[#4318FF] text-white rounded-xl p-3 m-4 w-60"  type="submit" onClick={(e)=>sendDataToTheServer(e)}>
-            Publicar
-          </button>
+        <button className="bg-[#4318FF] text-white rounded-xl p-3 m-4 w-60" type="button" onClick={(e) => sendDataToTheServer(e)}>
+        Publicar
+        </button>
         </div>
       </form>
     </div>
