@@ -3,7 +3,6 @@ import UserWorkExperience from "../../components/userWorkExperience/UserWorkExpe
 import UserEducation from "../userEducation/userEducation";
 import UserPublications from "../UserPublications/UserPublications";
 const NavbarUserProfile: React.FC = () => {
-  const userData = JSON.parse(localStorage.getItem("user") ?? "{}");
   const [seccionActual, setSeccionActual] = useState<string>("publications");
   const cambiarSeccion = (seccion: string) => {
     setSeccionActual(seccion);
