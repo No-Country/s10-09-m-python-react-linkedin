@@ -5,8 +5,11 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { AiFillBehanceSquare } from "react-icons/ai";
 import { BsSend } from "react-icons/bs";
 import NavbarUserProfile from "../../components/NavbarUserProfile/NavbarUserProfile";
+import ProfileImg from "./ProfileImg";
 
 const Profile: React.FC = () => {
+  const userData = JSON.parse(localStorage.getItem("user") ?? "{}");
+  console.log(userData);
   return (
     <div className="container mx-auto">
       {/* BANNER DEL USUARIO */}
@@ -20,21 +23,12 @@ const Profile: React.FC = () => {
                 className="w-full rounded-sm"
               />
             </div>
-            <div className="bg-black dataUser flex  flex-col items-center">
-              <div className=" w-72 absolute left-32 top-40 z-50">
-                <img
-                  src="/frontimg.svg"
-                  alt="userImg"
-                  className="p-2  my-4  rounded-full w-full object-contain"
-                />
-              </div>
-              <div className="flex gap-4">
-                <div className="flex flex-col pl-64 pt-4 ">
-                  <h1 className="text-4xl">UserName</h1>
-                  <p className="pr-24">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                    dapibus eros eu vehicula interdum.
-                  </p>
+            <div className="bg-black dataUser flex  flex-row items-center">
+              <ProfileImg />
+              <div className="flex items-center justify-between w-full gap-4">
+                <div className="flex flex-col pt-4 ">
+                  <h1 className="text-4xl">{`${userData.first_name} ${userData.last_name}`}</h1>
+                  <p className="pr-24">soy una alcachofa jaja salu2</p>
                   <div className="flex justify-start pl-4 py-2  my-2 bg-black ">
                     <p className="text-[#3311DB]"> 300 Conexiones</p>
                   </div>
