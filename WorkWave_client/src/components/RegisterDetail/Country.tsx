@@ -13,7 +13,7 @@ export default function Country() {
         className={`mt-1 p-2 border rounded-xl w-full bg-inherit 
         } `}
       >
-        <option className="bg-black" value="default">
+        <option className="bg-black" disabled value="default">
           Selecciona un país
         </option>
         <option className="bg-black" value={countrys[0].value}>

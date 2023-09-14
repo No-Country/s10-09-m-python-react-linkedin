@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Stepper from "../../components/Stepper";
@@ -12,18 +12,19 @@ import { BiArrowBack } from "react-icons/bi";
 import { Image, Input } from "@nextui-org/react";
 import { EyeSlashFilledIcon } from "../../assets/EyeSlashFilledIcon.tsx";
 import { EyeFilledIcon } from "../../assets/EyeFilledIcon.tsx";
-import { Loading } from "notiflix/build/notiflix-loading-aio";
-import { Report } from "notiflix/build/notiflix-report-aio";
-import Footer from "../../components/Footer.tsx";
+import Footer from "../../components/Footer/Footer.tsx";
+import { Button } from "@nextui-org/react";
 
 type FormData = {
   email: string;
   first_name: string;
   last_name: string;
   phone_number: string;
+  phone_number_numeral: string;
   country?: string;
   password: string;
   password2: string;
+  terms?: boolean;
 };
 
 const schema = yup
@@ -44,6 +45,11 @@ const schema = yup
       .string()
       .required("Ambos campos son requeridos")
       .min(4, "Un numero debe tener al menos 8 numeros "),
+    phone_number_numeral: yup
+      .string()
+      .required("Ambos campos son requeridos")
+      .min(2, "Escriba el numero ")
+      .matches(/#/g, "El número debe contener un numeral '#'"),
     password: yup
       .string()
       .required("El campo es requerido")
@@ -56,6 +62,9 @@ const schema = yup
       .string()
       .required("El campo es requerido")
       .oneOf([yup.ref("password")], "Las contraseñas no coinciden"),
+    terms: yup
+      .boolean()
+      .oneOf([true], "Debes aceptar los términos y condiciones"),
   })
   .required();
 
@@ -67,47 +76,58 @@ const Register: React.FC = () => {
   const [isVisible1, setIsVisible1] = React.useState(false);
   const toggleVisibility1 = () => setIsVisible1(!isVisible1);
 
-  const [UserData, setUserData] = useState({});
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    setError,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: FormData) => {
-    setUserData({ ...data });
-    Loading.circle();
-  };
-  useEffect(() => {
-    const sendUserData = async () => {
-      console.log(UserData);
-      if (UserData) {
-        try {
-          const response = await axios.post(
-            `https://workwave-django.onrender.com/register/`,
-            UserData
-          );
-          console.log("Solicitud POST exitosa:", response.data);
-          Loading.remove();
-          Report.success(
-            "Registro exitoso",
-            "Ingrese con su usuario",
-            "Okay",
-            () => {
-              navigate("/login");
-            }
-          );
-        } catch (error) {
-          console.error("Error al hacer la solicitud POST:", error);
-          Loading.remove();
-        }
+  const onSubmit = async (data: FormData) => {
+    try {
+      const sanitizeData = (data: FormData) => {
+        const sanitizedData = {
+          email: data.email,
+          first_name: data.first_name,
+          last_name: data.last_name,
+          password: data.password,
+          password2: data.password2,
+        };
+
+        return sanitizedData;
+      };
+
+      const sanitizedData = sanitizeData(data);
+
+      const response = await axios.post(
+        "https://workwave-django.onrender.com/register/",
+        sanitizedData
+      );
+
+      console.log("Solicitud POST exitosa:", response.data);
+      // Realiza la redirección después de una solicitud exitosa
+      navigate("/registro/step1");
+    } catch (err) {
+      const error = err as AxiosError;
+      console.error("Error al hacer la solicitud POST:", error);
+      if (error.response?.status === 500) {
+        setError("password2", {
+          type: "manual",
+          message: "Error de Servidor, vuelva más tarde",
+        });
       }
-    };
-    sendUserData();
-  }, [UserData, navigate]);
+      if (error.response?.status === 400) {
+        setError("password2", {
+          type: "manual",
+          message:
+            "Posible usuario creado, ingrese a login o intente con otro usuario",
+        });
+      }
+    }
+  };
 
   const comeBackBTN = () => {
     navigate("/");
@@ -218,11 +238,11 @@ const Register: React.FC = () => {
                 </label>
                 <li className="flex gap-4">
                   <input
-                    type="phone_number"
-                    id="phone_number"
+                    type="phone_number_numeral"
+                    id="phone_number_numeral"
                     placeholder="+54"
                     className="mt-1 p-2 border rounded-xl w-16 bg-transparent"
-                    {...register("phone_number")}
+                    {...register("phone_number_numeral")}
                   />
                   <input
                     type="phone"
@@ -232,11 +252,11 @@ const Register: React.FC = () => {
                     {...register("phone_number")}
                   />
                 </li>
-                {errors.phone_number || errors.phone_number ? (
+                {errors.phone_number_numeral || errors.phone_number ? (
                   <span className="text-orange-400">
                     {errors.phone_number
                       ? errors.phone_number.message
-                      : errors.phone_number}
+                      : errors.phone_number_numeral?.message}
                   </span>
                 ) : null}
               </li>
@@ -323,21 +343,28 @@ const Register: React.FC = () => {
             </ul>
 
             <div className="flex gap-4 my-4">
-              <input type="checkbox" className="w-4" />
+              <input type="checkbox" className="w-4" {...register("terms")} />
               <span>
                 He leído y acepto los{" "}
-                <Link className="link hover:text-celeste-claro" to="/terminos">
+                <Link
+                  className="link hover:text-celeste-claro"
+                  to="/terminos-uso"
+                >
                   términos y condiciones.
                 </Link>
               </span>
             </div>
+            {errors.terms && (
+              <span className="text-orange-400">{errors.terms.message}</span>
+            )}
             {/*Terminos y condiciones*/}
-            <button
+            <Button
+              isLoading={isSubmitting}
               type="submit"
-              className="bg-[#4318FF] text-white p-2  rounded-full w-full mt-5"
+              className="bg-[#4318FF] text-white p-2 rounded-full w-full mt-5"
             >
               Continuar
-            </button>
+            </Button>
           </form>
         </section>
         <div className="hidden md:block ">
@@ -352,7 +379,9 @@ const Register: React.FC = () => {
           </Link>
         </div>
       </div>
-      <Footer />
+      <div className="mt-5">
+        <Footer />
+      </div>
     </>
   );
 };

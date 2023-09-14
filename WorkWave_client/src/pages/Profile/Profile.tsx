@@ -5,9 +5,12 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { AiFillBehanceSquare } from "react-icons/ai";
 import { BsSend } from "react-icons/bs";
 import NavbarUserProfile from "../../components/NavbarUserProfile/NavbarUserProfile";
+
 import { Usuario } from "../../models/user";
 import axios from "axios";
 import { TokenContext } from "../../context/TokenContext";
+
+import ProfileImg from "./ProfileImg";
 
 const API = process.env.REACT_APP_API_BACK;
 const Profile: React.FC = () => {

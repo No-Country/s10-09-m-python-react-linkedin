@@ -5,6 +5,7 @@ import landing1 from "../../assets/landing1.avif";
 import landing2 from "../../assets/landing2.avif";
 import logoWork from "../../assets/logoLanding.svg";
 
+import { Toaster, toast } from "sonner";
 import { Image } from "@nextui-org/react";
 
 const buttonContents = [
@@ -24,6 +25,7 @@ const buttonContents = [
 function Landing() {
   return (
     <>
+      <Toaster />
       <section className=" mx-4 ss:mx-8 sm:mx-16 md:mx-40 sm:py-10">
         <div className="flex flex-col-reverse  items-center sm:items-start sm:flex-row pt-40 sm:pt-28 sm:gap-10 md:gap-20 lg:gap-40  ">
           <div className="flex flex-col gap-4  ">
@@ -63,6 +65,11 @@ function Landing() {
             {buttonContents.map((content, index) => (
               <button
                 key={index}
+                onClick={() =>
+                  toast(
+                    "Algo muy interesante se acerca en la proxima actualizacion"
+                  )
+                }
                 className="btn btn-xs btn-outline  sm:btn-outline sm:btn-sm md:btn md:btn-outline text-white sm:text-white w-36 sm:w-44 md:w-50  lg:w-64 normal-case sm:normal-case rounded-full sm:rounded-full"
               >
                 {content}
