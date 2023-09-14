@@ -14,6 +14,7 @@ const corsOptions = {
     "http://localhost:5173",
     "https://weworkwave.net",
     "http://dev.weworkwave.net",
+    "https://workwake.onrender.com",
   ],
   optionsSuccessStatus: 200,
 };
