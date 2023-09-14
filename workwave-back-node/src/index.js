@@ -10,12 +10,7 @@ const swaggerUi = require("swagger-ui-express");
 
 const app = express();
 const corsOptions = {
-  origin: [
-    "http://localhost:5173",
-    "https://weworkwave.net",
-    "http://dev.weworkwave.net",
-    "https://workwake.onrender.com",
-  ],
+  origin: ["http://localhost:5173", "https://workwake.onrender.com"],
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));

@@ -50,7 +50,7 @@ function Chat() {
 
   useEffect(() => {
     console.log("useEffect se está ejecutando");
-    socket.current = io("http://localhost:3002");
+    socket.current = io("https://work-wave.onrender.com");
     socket.current.on("getMessage", (data) => {
       console.log("data viene back", data);
 
