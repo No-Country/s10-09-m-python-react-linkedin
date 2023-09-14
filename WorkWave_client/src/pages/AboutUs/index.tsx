@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-
+import nosotros from "../../assets/logonosotrospc.svg";
+import { Image } from "@nextui-org/react";
 const AboutUsPage: React.FC = () => {
   return (
-    <div className="min-h-screen">
+    <div className="grid grid-cols-2 min-h-screen">
       <div className=" py-1">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-black mb-4">Nosotros</h2>
+          <h2 className="text-3xl font-extrabold text-[#F5F5F5] mb-4">Nosotros</h2>
           <p className=" mb-6 text-white/80">
             Somos un proyecto open source que busca revolucionar el concepto de
             LinkedIn. Nacimos a través del desafío lanzado por NoCountry y
@@ -26,6 +27,7 @@ const AboutUsPage: React.FC = () => {
           </Link>
         </div>
       </div>
+      <Image src={nosotros} />
     </div>
   );
 };

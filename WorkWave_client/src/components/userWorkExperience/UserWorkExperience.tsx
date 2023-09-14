@@ -1,9 +1,21 @@
-import React, { useState } from "react";
 
+import React, { useState, useEffect } from "react";
 import exampleProject1 from "../../assets/exProject1.avif";
 import exampleProject2 from "../../assets/exProject2.avif";
 import exampleProject3 from "../../assets/exProject3.avif";
 import FormAddExperience from "../FormAddExperience/FormAddExperience";
+import axios from "axios";
+
+interface ExperienceData {
+  id: number
+  job_position: string;
+  company_name: string;
+  description: string;
+  sector: string;
+  start_date: string;
+  end_date: string;
+}
+//million-ignore
 const UserWorkExperience: React.FC = () => {
   const [projects] = useState([
     {
@@ -23,14 +35,21 @@ const UserWorkExperience: React.FC = () => {
     },
   ]);
   const [showMeForm, setShowMeForm] = useState(false);
+  const [experiences, setExperiences] = useState<ExperienceData[]>([]);
 
-
-  // const addExperience = () => {
-  //   console.log("ejecutandooo");
-  //   setShowMeForm(true);
-  // };
-
-
+  useEffect(() => {
+    // Realizar la solicitud GET cuando el componente se monta
+    axios
+      .get<ExperienceData[]>("https://work-wave.onrender.com/api/experience")
+      .then((response) => {
+     
+        setExperiences(response.data);
+      })
+      .catch((error) => {
+        console.error("Error al obtener datos:", error);
+      });
+  }, []);
+console.log(experiences)
   return (
     <div className="container">
       <div className="bg-black rounded-md">
@@ -51,21 +70,31 @@ const UserWorkExperience: React.FC = () => {
       </div>
       <div className="projects rounded-md my-2 bg-black mb-2 gap-2 p-2 ">
         <div className="flex flex-col md:flex-row">
-          <div className="bg-[#B9A2FF] m-2  sm: w-[50px] md:w-[225px] h-[50px] rounded-full"></div>
+          <div className="bg-[#B9A2FF] m-2  sm: w-[50px] md:w-[50px] h-[50px] rounded-full"></div>
 
-          <div className="md:ml-2 ">
-            <h2 className="text-xl">Voluntariado</h2>
-            <p>Freelance UX/UI designer</p>
-            <p>Lorem ipsum Lorem ipsum </p>
-            <p>
-              Jun 2022 —{" "}
-              <span className="text-[#0A66C2]">Present1 yrs 02 mos</span>
-            </p>
-            <p className="border-b-1 border-r-0 border-l-0 border-t-0 border-gray-700">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              dapibus eros eu vehicula interdum. Cras nec ultricies massa.
-              Curabitur rutrum, diam id consequat consequat
-            </p>
+          <div className="">
+            <h2 className="ml-1">Experiencias</h2>
+            {experiences.map((experience, index) => (
+              <div key={index} className="">
+                <div>
+                  <div className="md:ml-2 ">
+                    <h2 className="text-xl">{experience.job_position}</h2>
+                    <p>{experience.sector}</p>
+                    <p>{experience.company_name} </p>
+                    <p>
+                      {experience.start_date} —{" "}
+                      <span className="text-[#0A66C2]">
+                        {" "}
+                        {experience.end_date}{" "}
+                      </span>
+                    </p>
+                    <p className="border-b-1 border-r-0 border-l-0 border-t-0 border-gray-700">
+                      {experience.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -78,8 +107,11 @@ const UserWorkExperience: React.FC = () => {
           </button>
         </div>
       </div>
+      <FormAddExperience
+      showMeForm={showMeForm}
+      setShowMeForm={setShowMeForm}
 
-      <FormAddExperience showMeForm={showMeForm} />
+    />
     </div>
   );
 };

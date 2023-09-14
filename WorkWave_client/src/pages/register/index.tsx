@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Stepper from "../../components/Stepper";
@@ -10,12 +10,10 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BiArrowBack } from "react-icons/bi";
 import { Image, Input } from "@nextui-org/react";
-
 import { EyeSlashFilledIcon } from "../../assets/EyeSlashFilledIcon.tsx";
 import { EyeFilledIcon } from "../../assets/EyeFilledIcon.tsx";
-
-import { Loading } from "notiflix/build/notiflix-loading-aio";
-import { Report } from "notiflix/build/notiflix-report-aio";
+import Footer from "../../components/Footer.tsx";
+import { Button } from "@nextui-org/react";
 
 type FormData = {
   email: string;
@@ -68,47 +66,43 @@ const Register: React.FC = () => {
   const [isVisible1, setIsVisible1] = React.useState(false);
   const toggleVisibility1 = () => setIsVisible1(!isVisible1);
 
-  const [UserData, setUserData] = useState({});
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    setError,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: FormData) => {
-    setUserData({ ...data });
-    Loading.circle();
-  };
-  useEffect(() => {
-    const sendUserData = async () => {
-      console.log(UserData);
-      if (UserData) {
-        try {
-          const response = await axios.post(
-            `https://workwave-django.onrender.com/register/`,
-            UserData
-          );
-          console.log("Solicitud POST exitosa:", response.data);
-          Loading.remove();
-          Report.success(
-            "Registro exitoso",
-            "Ingrese con su usuario",
-            "Okay",
-            () => {
-              navigate("/login");
-            }
-          );
-        } catch (error) {
-          console.error("Error al hacer la solicitud POST:", error);
-          Loading.remove();
-        }
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await axios.post(
+        "https://workwave-django.onrender.com/register/",
+        data
+      );
+      console.log("Solicitud POST exitosa:", response.data);
+      // Realiza la redirección después de una solicitud exitosa
+      navigate("/registro/step1");
+    } catch (err) {
+      const error = err as AxiosError;
+      console.error("Error al hacer la solicitud POST:", error);
+      if (error.response?.status === 500) {
+        setError("password2", {
+          type: "manual",
+          message: "Error de Servidor, vuelva más tarde",
+        });
       }
-    };
-    sendUserData();
-  }, [UserData, navigate]);
+      if (error.response?.status === 400) {
+        setError("password2", {
+          type: "manual",
+          message:
+            "Posible usuario creado, ingrese a login o intente con otro usuario",
+        });
+      }
+    }
+  };
 
   const comeBackBTN = () => {
     navigate("/");
@@ -327,18 +321,22 @@ const Register: React.FC = () => {
               <input type="checkbox" className="w-4" />
               <span>
                 He leído y acepto los{" "}
-                <Link className="link hover:text-celeste-claro" to="/terminos">
+                <Link
+                  className="link hover:text-celeste-claro"
+                  to="/terminos-uso"
+                >
                   términos y condiciones.
                 </Link>
               </span>
             </div>
             {/*Terminos y condiciones*/}
-            <button
+            <Button
+              isLoading={isSubmitting}
               type="submit"
-              className="bg-[#4318FF] text-white p-2  rounded-full w-full mt-5"
+              className="bg-[#4318FF] text-white p-2 rounded-full w-full mt-5"
             >
               Continuar
-            </button>
+            </Button>
           </form>
         </section>
         <div className="hidden md:block ">
@@ -353,6 +351,7 @@ const Register: React.FC = () => {
           </Link>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
