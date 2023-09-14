@@ -13,16 +13,16 @@ import {
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import { postPublication } from "../../services/Publications";
 
-type FormData = {
+interface FormData {
   title: string;
   content: string;
   photo: string;
   video: string;
   post_date: Date;
   usersCustomuserId: number;
-};
+}
 
 export default function App() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -43,21 +43,7 @@ export default function App() {
     resolver: yupResolver(postSchema),
   });
   const onSubmit = async (data: FormData) => {
-    if (data) {
-      sendNewPost({ ...data });
-    }
-  };
-
-  const sendNewPost = async (data: FormData) => {
-    try {
-      const response = await axios.post(
-        `https://work-wave.onrender.com/api/posts`,
-        data
-      );
-      console.log("Solicitud POST exitosa:", response.data);
-    } catch (error) {
-      console.error("Error al hacer la solicitud POST:", error);
-    }
+    postPublication({ ...data });
   };
 
   return (

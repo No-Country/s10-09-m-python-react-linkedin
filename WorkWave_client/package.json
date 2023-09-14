@@ -38,6 +38,8 @@
     "eslint-plugin-storybook": "^0.6.13",
     "framer-motion": "^10.16.4",
     "million": "^2.6.0-beta.11",
+    "moment": "^2.29.4",
+    "moment-with-locales-es6": "^1.0.1",
     "next-themes": "^0.2.1",
     "notiflix": "^3.2.6",
     "postcss": "^8.4.28",
