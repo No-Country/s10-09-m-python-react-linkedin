@@ -12,7 +12,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { Image, Input } from "@nextui-org/react";
 import { EyeSlashFilledIcon } from "../../assets/EyeSlashFilledIcon.tsx";
 import { EyeFilledIcon } from "../../assets/EyeFilledIcon.tsx";
-import Footer from "../../components/Footer.tsx";
+import Footer from "../../components/Footer/Footer.tsx";
 import { Button } from "@nextui-org/react";
 
 type FormData = {
@@ -20,9 +20,11 @@ type FormData = {
   first_name: string;
   last_name: string;
   phone_number: string;
+  phone_number_numeral: string;
   country?: string;
   password: string;
   password2: string;
+  terms?: boolean;
 };
 
 const schema = yup
@@ -43,6 +45,11 @@ const schema = yup
       .string()
       .required("Ambos campos son requeridos")
       .min(4, "Un numero debe tener al menos 8 numeros "),
+    phone_number_numeral: yup
+      .string()
+      .required("Ambos campos son requeridos")
+      .min(2, "Escriba el numero ")
+      .matches(/\+/g, "El número debe contener un signo '+'"),
     password: yup
       .string()
       .required("El campo es requerido")
@@ -55,6 +62,9 @@ const schema = yup
       .string()
       .required("El campo es requerido")
       .oneOf([yup.ref("password")], "Las contraseñas no coinciden"),
+    terms: yup
+      .boolean()
+      .oneOf([true], "Debes aceptar los términos y condiciones"),
   })
   .required();
 
@@ -78,10 +88,25 @@ const Register: React.FC = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
+      const sanitizeData = (data: FormData) => {
+        const sanitizedData = {
+          email: data.email,
+          first_name: data.first_name,
+          last_name: data.last_name,
+          password: data.password,
+          password2: data.password2,
+        };
+
+        return sanitizedData;
+      };
+
+      const sanitizedData = sanitizeData(data);
+
       const response = await axios.post(
         "https://workwave-django.onrender.com/register/",
-        data
+        sanitizedData
       );
+
       console.log("Solicitud POST exitosa:", response.data);
       // Realiza la redirección después de una solicitud exitosa
       navigate("/registro/step1");
@@ -109,21 +134,21 @@ const Register: React.FC = () => {
   };
   return (
     <>
-      <div className="absolute top-5 left-0 right-0">
+      <div className="absolute left-0 right-0 top-5">
         <Stepper step={"step1"} width="" />
       </div>
 
-      <div className=" md:pt-32 pt-16 flex flex-col md:flex-row items-center justify-center bg-no-repeat bg-cover ">
-        <section className=" px-4 py-8 w-full flex flex-col md:justify-start md:items-start md:w-1/2 justify-center items-center">
+      <div className="flex flex-col items-center justify-center pt-16 bg-no-repeat bg-cover md:pt-32 md:flex-row">
+        <section className="flex flex-col items-center justify-center w-full px-4 py-8 md:justify-start md:items-start md:w-1/2">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="pt-12 md:w-2/3 w-full"
+            className="w-full pt-12 md:w-2/3"
           >
-            <div className="flex items-center mb-4 gap-8">
+            <div className="flex items-center gap-8 mb-4">
               <div>
                 <BiArrowBack
                   onClick={comeBackBTN}
-                  className="text-3xl cursor-pointer  text-white"
+                  className="text-3xl text-white cursor-pointer"
                 />
               </div>
               <h2 className="text-2xl font-medium text-white ">
@@ -131,10 +156,10 @@ const Register: React.FC = () => {
               </h2>
             </div>
 
-            <p className="text-white  text-sm md:text-base">
+            <p className="text-sm text-white md:text-base">
               Completa tus datos personales, para crear una cuenta en Workwave.{" "}
             </p>
-            <ul className="inputsContainer mt-8">
+            <ul className="mt-8 inputsContainer">
               <li className="mb-4">
                 <label
                   htmlFor="user"
@@ -146,7 +171,7 @@ const Register: React.FC = () => {
                   autoComplete="email"
                   type="text"
                   id="email"
-                  className="mt-1 p-2 border rounded-xl w-full bg-transparent"
+                  className="w-full p-2 mt-1 bg-transparent border rounded-xl"
                   placeholder="lucialopez@mail.com"
                   {...register("email")}
                 />
@@ -169,7 +194,7 @@ const Register: React.FC = () => {
                   type="string"
                   id="name"
                   placeholder="Lucia"
-                  className="mt-1 p-2 border rounded-xl w-full bg-transparent"
+                  className="w-full p-2 mt-1 bg-transparent border rounded-xl"
                   {...register("first_name")}
                 />
                 {errors.first_name && (
@@ -190,7 +215,7 @@ const Register: React.FC = () => {
                   type="string"
                   id="lastname"
                   placeholder="Lopez"
-                  className="mt-1 p-2 border rounded-xl w-full bg-transparent"
+                  className="w-full p-2 mt-1 bg-transparent border rounded-xl"
                   {...register("last_name")}
                 />
                 {errors.last_name && (
@@ -204,7 +229,7 @@ const Register: React.FC = () => {
                 <Country />
               </li>
               {/*Pais*/}
-              <li className="mb-4 flex flex-col">
+              <li className="flex flex-col mb-4">
                 <label
                   htmlFor="phone"
                   className="block text-sm font-medium text-white"
@@ -213,25 +238,25 @@ const Register: React.FC = () => {
                 </label>
                 <li className="flex gap-4">
                   <input
-                    type="phone_number"
-                    id="phone_number"
+                    type="phone_number_numeral"
+                    id="phone_number_numeral"
                     placeholder="+54"
-                    className="mt-1 p-2 border rounded-xl w-16 bg-transparent"
-                    {...register("phone_number")}
+                    className="w-16 p-2 mt-1 bg-transparent border rounded-xl"
+                    {...register("phone_number_numeral")}
                   />
                   <input
                     type="phone"
                     id="phone_number"
                     placeholder="111-1111111"
-                    className="mt-1 p-2 border rounded-xl w-full bg-transparent"
+                    className="w-full p-2 mt-1 bg-transparent border rounded-xl"
                     {...register("phone_number")}
                   />
                 </li>
-                {errors.phone_number || errors.phone_number ? (
+                {errors.phone_number_numeral || errors.phone_number ? (
                   <span className="text-orange-400">
                     {errors.phone_number
                       ? errors.phone_number.message
-                      : errors.phone_number}
+                      : errors.phone_number_numeral?.message}
                   </span>
                 ) : null}
               </li>
@@ -251,9 +276,9 @@ const Register: React.FC = () => {
                       onClick={toggleVisibility}
                     >
                       {isVisible ? (
-                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        <EyeSlashFilledIcon className="text-2xl pointer-events-none text-default-400" />
                       ) : (
-                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        <EyeFilledIcon className="text-2xl pointer-events-none text-default-400" />
                       )}
                     </button>
                   }
@@ -263,7 +288,7 @@ const Register: React.FC = () => {
                   placeholder="************"
                   size="lg"
                   fullWidth
-                  className="mt-1 border-white  bg-none rounded-xl w-full  "
+                  className="w-full mt-1 border-white bg-none rounded-xl "
                   {...register("password")}
                 />
                 {errors.password && (
@@ -287,7 +312,7 @@ const Register: React.FC = () => {
                   type={isVisible1 ? "text" : "password"}
                   size="lg"
                   fullWidth
-                  className="mt-1 border-white  bg-none rounded-xl w-full  "
+                  className="w-full mt-1 border-white bg-none rounded-xl "
                   {...register("password2")}
                   endContent={
                     <button
@@ -296,9 +321,9 @@ const Register: React.FC = () => {
                       onClick={toggleVisibility1}
                     >
                       {isVisible1 ? (
-                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        <EyeSlashFilledIcon className="text-2xl pointer-events-none text-default-400" />
                       ) : (
-                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        <EyeFilledIcon className="text-2xl pointer-events-none text-default-400" />
                       )}
                     </button>
                   }
@@ -318,7 +343,7 @@ const Register: React.FC = () => {
             </ul>
 
             <div className="flex gap-4 my-4">
-              <input type="checkbox" className="w-4" />
+              <input type="checkbox" className="w-4" {...register("terms")} />
               <span>
                 He leído y acepto los{" "}
                 <Link
@@ -329,6 +354,9 @@ const Register: React.FC = () => {
                 </Link>
               </span>
             </div>
+            {errors.terms && (
+              <span className="text-orange-400">{errors.terms.message}</span>
+            )}
             {/*Terminos y condiciones*/}
             <Button
               isLoading={isSubmitting}
@@ -351,7 +379,9 @@ const Register: React.FC = () => {
           </Link>
         </div>
       </div>
-      <Footer />
+      <div className="mt-5">
+        <Footer />
+      </div>
     </>
   );
 };

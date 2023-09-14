@@ -50,7 +50,7 @@ function Chat() {
 
   useEffect(() => {
     console.log("useEffect se está ejecutando");
-    socket.current = io("http://localhost:3002");
+    socket.current = io("https://work-wave.onrender.com");
     socket.current.on("getMessage", (data) => {
       console.log("data viene back", data);
 
@@ -216,7 +216,7 @@ function Chat() {
             </>
           ) : (
             <span className="absolute text-gray-300 cursor-default top-10 text-50">
-              Open a conversation to start a chat.
+              Abre una conversacion para iniciar el chat.
             </span>
           )}
         </div>
