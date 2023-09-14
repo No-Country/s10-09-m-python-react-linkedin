@@ -12,7 +12,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { Image, Input } from "@nextui-org/react";
 import { EyeSlashFilledIcon } from "../../assets/EyeSlashFilledIcon.tsx";
 import { EyeFilledIcon } from "../../assets/EyeFilledIcon.tsx";
-import Footer from "../../components/Footer.tsx";
+import Footer from "../../components/Footer/Footer.tsx";
 import { Button } from "@nextui-org/react";
 
 type FormData = {
@@ -20,9 +20,11 @@ type FormData = {
   first_name: string;
   last_name: string;
   phone_number: string;
+  phone_number_numeral: string;
   country?: string;
   password: string;
   password2: string;
+  terms?: boolean;
 };
 
 const schema = yup
@@ -43,6 +45,11 @@ const schema = yup
       .string()
       .required("Ambos campos son requeridos")
       .min(4, "Un numero debe tener al menos 8 numeros "),
+    phone_number_numeral: yup
+      .string()
+      .required("Ambos campos son requeridos")
+      .min(2, "Escriba el numero ")
+      .matches(/#/g, "El número debe contener un numeral '#'"),
     password: yup
       .string()
       .required("El campo es requerido")
@@ -55,6 +62,9 @@ const schema = yup
       .string()
       .required("El campo es requerido")
       .oneOf([yup.ref("password")], "Las contraseñas no coinciden"),
+    terms: yup
+      .boolean()
+      .oneOf([true], "Debes aceptar los términos y condiciones"),
   })
   .required();
 
@@ -78,10 +88,25 @@ const Register: React.FC = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
+      const sanitizeData = (data: FormData) => {
+        const sanitizedData = {
+          email: data.email,
+          first_name: data.first_name,
+          last_name: data.last_name,
+          password: data.password,
+          password2: data.password2,
+        };
+
+        return sanitizedData;
+      };
+
+      const sanitizedData = sanitizeData(data);
+
       const response = await axios.post(
         "https://workwave-django.onrender.com/register/",
-        data
+        sanitizedData
       );
+
       console.log("Solicitud POST exitosa:", response.data);
       // Realiza la redirección después de una solicitud exitosa
       navigate("/registro/step1");
@@ -213,11 +238,11 @@ const Register: React.FC = () => {
                 </label>
                 <li className="flex gap-4">
                   <input
-                    type="phone_number"
-                    id="phone_number"
+                    type="phone_number_numeral"
+                    id="phone_number_numeral"
                     placeholder="+54"
                     className="mt-1 p-2 border rounded-xl w-16 bg-transparent"
-                    {...register("phone_number")}
+                    {...register("phone_number_numeral")}
                   />
                   <input
                     type="phone"
@@ -227,11 +252,11 @@ const Register: React.FC = () => {
                     {...register("phone_number")}
                   />
                 </li>
-                {errors.phone_number || errors.phone_number ? (
+                {errors.phone_number_numeral || errors.phone_number ? (
                   <span className="text-orange-400">
                     {errors.phone_number
                       ? errors.phone_number.message
-                      : errors.phone_number}
+                      : errors.phone_number_numeral?.message}
                   </span>
                 ) : null}
               </li>
@@ -318,7 +343,7 @@ const Register: React.FC = () => {
             </ul>
 
             <div className="flex gap-4 my-4">
-              <input type="checkbox" className="w-4" />
+              <input type="checkbox" className="w-4" {...register("terms")} />
               <span>
                 He leído y acepto los{" "}
                 <Link
@@ -329,6 +354,9 @@ const Register: React.FC = () => {
                 </Link>
               </span>
             </div>
+            {errors.terms && (
+              <span className="text-orange-400">{errors.terms.message}</span>
+            )}
             {/*Terminos y condiciones*/}
             <Button
               isLoading={isSubmitting}
@@ -351,7 +379,9 @@ const Register: React.FC = () => {
           </Link>
         </div>
       </div>
-      <Footer />
+      <div className="mt-5">
+        <Footer />
+      </div>
     </>
   );
 };
