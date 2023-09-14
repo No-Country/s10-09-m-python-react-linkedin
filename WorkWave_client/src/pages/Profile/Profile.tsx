@@ -10,9 +10,6 @@ import { Usuario } from "../../models/user";
 import axios from "axios";
 import { TokenContext } from "../../context/TokenContext";
 
-import ProfileImg from "./ProfileImg";
-
-const API = process.env.REACT_APP_API_BACK;
 const Profile: React.FC = () => {
   const { user } = useContext(TokenContext);
   // console.log(user);
