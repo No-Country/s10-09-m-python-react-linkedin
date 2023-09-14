@@ -9,9 +9,11 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BiArrowBack } from "react-icons/bi";
-import { Button, Image, Input } from "@nextui-org/react";
+import { Image, Input } from "@nextui-org/react";
 import { EyeSlashFilledIcon } from "../../assets/EyeSlashFilledIcon.tsx";
 import { EyeFilledIcon } from "../../assets/EyeFilledIcon.tsx";
+import Footer from "../../components/Footer.tsx";
+import { Button } from "@nextui-org/react";
 
 type FormData = {
   email: string;
@@ -319,7 +321,10 @@ const Register: React.FC = () => {
               <input type="checkbox" className="w-4" />
               <span>
                 He leído y acepto los{" "}
-                <Link className="link hover:text-celeste-claro" to="/terminos-uso">
+                <Link
+                  className="link hover:text-celeste-claro"
+                  to="/terminos-uso"
+                >
                   términos y condiciones.
                 </Link>
               </span>
@@ -346,6 +351,7 @@ const Register: React.FC = () => {
           </Link>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

@@ -3,18 +3,19 @@ import UserWorkExperience from "../../components/userWorkExperience/UserWorkExpe
 import UserEducation from "../userEducation/userEducation";
 import UserPublications from "../UserPublications/UserPublications";
 const NavbarUserProfile: React.FC = () => {
+  const userData = JSON.parse(localStorage.getItem("user") ?? "{}");
   const [seccionActual, setSeccionActual] = useState<string>("publications");
   const cambiarSeccion = (seccion: string) => {
     setSeccionActual(seccion);
   };
   return (
     <div>
-      <nav className="flex justify-around gap-2 mb-4">
+      <nav className="flex gap-1  mb-4">
         <button
           onClick={() => cambiarSeccion("experience")}
-          className={`px-4 py-2 text-sm rounded-md w-full ${
+          className={`transition ease-out delay-75 px-4 py-3 origin-bottom text-sm  w-full hover:scale-y-110  ${
             seccionActual === "experience"
-              ? "bg-[#4318FF] text-white p-2 rounded-md "
+              ? "bg-[#4318FF] text-white p-2 scale-y-110  "
               : " text-white bg-[#000] "
           }`}
         >
@@ -22,9 +23,9 @@ const NavbarUserProfile: React.FC = () => {
         </button>
         <button
           onClick={() => cambiarSeccion("education")}
-          className={`px-4 py-2  text-sm w-full  rounded-md ${
+          className={`transition ease-out delay-75 px-4 py-2 origin-bottom hover:scale-y-110  text-sm w-full   ${
             seccionActual === "education"
-              ? "bg-[#4318FF] text-white p-2 rounded-md "
+              ? "bg-[#4318FF] text-white p-2 scale-y-110  "
               : " text-white bg-[#000] "
           }`}
         >
@@ -32,9 +33,9 @@ const NavbarUserProfile: React.FC = () => {
         </button>
         <button
           onClick={() => cambiarSeccion("publications")}
-          className={`px-4 py-2  text-sm w-full rounded-md ${
+          className={`transition ease-out delay-75 px-4 py-2 origin-bottom hover:scale-y-110  text-sm w-full   ${
             seccionActual === "publications"
-              ? "bg-[#4318FF]  text-white rounded-md "
+              ? "bg-[#4318FF]  text-white scale-y-110   "
               : " text-white bg-[#000] "
           }`}
         >
@@ -50,6 +51,7 @@ const NavbarUserProfile: React.FC = () => {
               text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus augue eget scelerisque efficitur."
               img="/publicationImg.avif"
               footText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus augue eget scelerisque efficitur."
+              userData={userData}
             />
           )
         )}

@@ -1,0 +1,55 @@
+<svg width="362" height="374" viewBox="0 0 362 374" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g filter="url(#filter0_f_1500_16840)">
+<ellipse cx="181.102" cy="190.434" rx="98.5712" ry="101.356" fill="url(#paint0_linear_1500_16840)"/>
+</g>
+<g filter="url(#filter1_f_1500_16840)">
+<path d="M213.328 61.7896L299.24 214.798H127.416L213.328 61.7896Z" fill="url(#paint1_linear_1500_16840)"/>
+</g>
+<circle cx="197.531" cy="176.789" r="114.17" stroke="#F5F5F5" stroke-width="1.65888"/>
+<circle cx="197.172" cy="176.789" r="94.1757" fill="#E0E5F2"/>
+<mask id="mask0_1500_16840" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="150" y="129" width="95" height="95">
+<rect x="150.086" y="129.702" width="94.1757" height="94.1757" fill="url(#pattern0)"/>
+</mask>
+<g mask="url(#mask0_1500_16840)">
+<rect x="150.086" y="129.702" width="94.1757" height="94.1757" fill="#707EAE"/>
+</g>
+<g filter="url(#filter2_d_1500_16840)">
+<circle cx="279.672" cy="261.291" r="18" fill="white"/>
+</g>
+<path d="M279.672 256.291V266.291" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M284.672 261.291L274.672 261.291" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+<defs>
+<filter id="filter0_f_1500_16840" x="0.61132" y="7.15795" width="360.98" height="366.552" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="40.96" result="effect1_foregroundBlur_1500_16840"/>
+</filter>
+<filter id="filter1_f_1500_16840" x="65.9741" y="0.349606" width="294.708" height="275.888" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="30.72" result="effect1_foregroundBlur_1500_16840"/>
+</filter>
+<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_1500_16840" transform="scale(0.0104167)"/>
+</pattern>
+<filter id="filter2_d_1500_16840" x="199.672" y="185.291" width="160" height="160" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="31"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.600625 0 0 0 0 0.670375 0 0 0 0 0.775 0 0 0 0.18 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1500_16840"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1500_16840" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_1500_16840" x1="102.909" y1="103.047" x2="245.444" y2="287.978" gradientUnits="userSpaceOnUse">
+<stop stop-color="#6100FF"/>
+<stop offset="1" stop-color="#00FFFF" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint1_linear_1500_16840" x1="213.328" y1="61.7896" x2="213.328" y2="265.801" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0075FF"/>
+<stop offset="1" stop-color="#00A3FF" stop-opacity="0"/>
+</linearGradient>
+<image id="image0_1500_16840" width="96" height="96" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAADNklEQVR4nO2dTUtVURSGnwZlgTUriqJBkVGQEEEG9jOylH5ANG0aCU4KxHFf5rBJRP6CpBpkSEQfQxsVBSlSlt997Ni4LtlNypv3nrXuve8D7+R6de/1rnP22eesfbYghBBCCCGEEEIIIUQ8tgE9wCAwBkwAS6YJ++wm0A1s9e5sI9EGDAGzQFqj8ndvAQe8O1/PbAEGgK8VGF+ufHb0A5u9g6k3DgCv1mF8uUaBXd5B1QtHbUxPVdZboN07uHo48idqYP7KJOz0DjIqm4HnNTS/pKd2fRFlDBRgfkl95Y03O23rnO1Uqi8ain5nqEDzS7rqdLCFvMOddUjAjO6Yl+lxML+kM9aHpmbQMQE3vIOPwJhjAvIdctMz6ZiAD03vPrDomIAFJQAlwJtJDUG+jOki7MtNxwRcd449BN2OCejyDj4CrfZYoGjzZ6xtwXIBvegE5KFPrKiELRVofr732FdqXCzTX2ACrliboqwkOVqA+Y+BlpUNi1/kgvmbGpr/Dti9oj2xCu22eqHa5ufEHlmtQfEn24GHVR52tBylQlps9cLMOmc7lzXmr4+dVkCvJBEzVu3SVLOKtFoNNz+/eWLFlEXTB/vsGnBad7hCCCGEEEIIIYQQQlT+5swxWzfUC9wGRuwtx9f2OuuCacI+yz+7b9/ttd/Nf0N7R/yDjUAHcAEYttJhLcqRw9ZGh7XZtGwAjlvBZcTpHbFZa7vP+pL71NDkAE/aM/v3DoanNZwhuW+djZaMHcBFYDyAyWmNGrc+59p03XLY3v+dD2Bo+k/N27LJQ9QRe60e+y2AgalK+g7cAfYTmE029VsIYFiqkXJslyLOoNqrvMFSCq6XkRZ5dTmt70/Oyht+nPI2/zzwI4AZyUk59nNe5p+1i1Nqcn23Rx6F7+8zFyD4FERzRW+R+ShA0CmYHhRlfmeAYFNQnWj07WVScBWy/c2LAIGmoHpWRAI+BQg0BdXHIhLgHWQKLiUAJcD9KEw6A/yNSBqC/M1IDtI1gAZPwOcAR1kKqjxFrzn3AgSagupuEQk4CEwFCDYF01SRT0T3WJF6OkDgyVnTduTrPzYJIYQQQgghhBBCCP7GT8suwKXYQNvyAAAAAElFTkSuQmCC"/>
+</defs>
+</svg>

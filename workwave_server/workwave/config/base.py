@@ -136,4 +136,4 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'http://dev.weworkwave.net', 'https://workwave-django.onrender.com']
+CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'http://dev.weworkwave.net', 'https://workwave-django.onrender.com', 'https://weworkwave.net', 'https://workwake.onrender.com']

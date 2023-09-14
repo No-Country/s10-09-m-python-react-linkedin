@@ -1,18 +1,20 @@
 import React from "react";
 import banner from "../../assets/bannerUser.avif";
-import UserImg from "../../assets/userImg.avif";
-
 import { AiOutlineMail } from "react-icons/ai";
 import { FaPhoneAlt } from "react-icons/fa";
 import { AiFillBehanceSquare } from "react-icons/ai";
+import { BsSend } from "react-icons/bs";
 import NavbarUserProfile from "../../components/NavbarUserProfile/NavbarUserProfile";
+import ProfileImg from "./ProfileImg";
 
 const Profile: React.FC = () => {
+  const userData = JSON.parse(localStorage.getItem("user") ?? "{}");
+  console.log(userData);
   return (
     <div className="container mx-auto">
       {/* BANNER DEL USUARIO */}
-      <div className="w-full mx-auto bg-black md:flex md:w-2/3">
-        <div className="w-full">
+      <div className="w-full mx-auto bg-black md:flex ">
+        <div className="w-full ">
           <div className="bannerProfileContainer">
             <div className="bannerProfileUser">
               <img
@@ -21,29 +23,24 @@ const Profile: React.FC = () => {
                 className="w-full rounded-sm"
               />
             </div>
-            <div className="bg-black dataUser">
-              <div>
-                <div className="ml-4">
-                  <img
-                    src={UserImg}
-                    alt=""
-                    className="p-2 mx-6 my-2 border border-white rounded-full userImg"
-                  />
+            <div className="bg-black dataUser flex  flex-row items-center">
+              <ProfileImg />
+              <div className="flex items-center justify-between w-full gap-4">
+                <div className="flex flex-col pt-4 ">
+                  <h1 className="text-4xl">{`${userData.first_name} ${userData.last_name}`}</h1>
+                  <p className="pr-24">soy una alcachofa jaja salu2</p>
+                  <div className="flex justify-start pl-4 py-2  my-2 bg-black ">
+                    <p className="text-[#3311DB]"> 300 Conexiones</p>
+                  </div>
                 </div>
-              </div>
-              <div className="mt-5">
-                <h1 className="ml-2">UserName</h1>
-                <p className="ml-2">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  dapibus eros eu vehicula interdum.
-                </p>
-              </div>
-              <div className="flex justify-around mt-3">
-                <div className="p-1 mb-2 bg-blue-500 rounded-xl">
-                  300 CONEXIONES
-                </div>
-                <div className="px-10 mb-2 bg-transparent border-2 border-solid rounded-xl">
-                  EMPLEADO
+                <div className="flex flex-col pt-16 px-6 w-1/4">
+                  <div className="p-2  flex  justify-center items-center gap-2 mb-2 bg-[#68769F] rounded-xl ">
+                    <BsSend />
+                    <button> Enviar mensaje</button>
+                  </div>
+                  <div className="px-10 py-2 flex  justify-center items-center gap-2 mb-2 bg-transparent border-2 border-solid rounded-xl">
+                    <button> Conectar +</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -87,7 +84,7 @@ const Profile: React.FC = () => {
           </div>
         </div>
         {/* PROYECTOS Y EXPERIENCIA DEL USUARIO */}
-        <div className="p-2 mt-3 UserProjectsContainer sm:w-full md:w-1/2">
+        <div className="p-2 mt-3 UserProjectsContainer sm:w-full md:w-4/6">
           <NavbarUserProfile />
         </div>
       </div>
