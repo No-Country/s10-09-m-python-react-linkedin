@@ -216,7 +216,7 @@ function Chat() {
             </>
           ) : (
             <span className="absolute text-gray-300 cursor-default top-10 text-50">
-              Open a conversation to start a chat.
+              Abre una conversacion para iniciar el chat.
             </span>
           )}
         </div>
