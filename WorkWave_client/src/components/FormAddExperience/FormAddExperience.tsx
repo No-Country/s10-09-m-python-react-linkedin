@@ -1,9 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { IoIosArrowDown } from "react-icons/io";
+import {
+  Modal,
+  ModalContent,
+
+  ModalBody,
+  ModalFooter,
+  Button,
+  Input,
+} from "@nextui-org/react";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useState, useEffect } from "react";
 interface FormAddExperienceProps {
   showMeForm: boolean;
+  setShowMeForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 interface interfaceExperience {
   job_position: string;
   company_name: string;
@@ -16,16 +29,15 @@ interface interfaceExperience {
   typesOfUbicationId: number;
   usersCustomuserId: number;
 }
+
 const getUserIdFromLocalStorage = (): number | null => {
   const userString = localStorage.getItem("user");
   const storedUser = userString ? JSON.parse(userString) : null;
   return storedUser ? storedUser.id : null;
 };
-const FormAddExperience: React.FC<FormAddExperienceProps> = ({
-  showMeForm,
-}) => {
+
+const FormAddExperience: React.FC<FormAddExperienceProps> = ({ showMeForm,setShowMeForm }) =>{
   const [isOpen, setIsOpen] = useState(false);
-  const [isOpenForm, setIsOpenForm] = useState(showMeForm);
   const [selectedOption, setSelectedOption] = useState("");
   const options = [
     {
@@ -34,7 +46,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
     },
     {
       id: 2,
-      name: "Hibrido",
+      name: "Híbrido",
     },
     {
       id: 3,
@@ -54,10 +66,27 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
     start_date: "",
     end_date: "",
     typesOfEmploymentId: 2,
-    typesOfUbicationId: 0, // Puedes inicializarlo con 0 o el valor por defecto que prefieras
+    typesOfUbicationId: 0, 
     usersCustomuserId: userID || 0,
   });
-  console.log(formData);
+
+  const postSchema = yup.object({
+    job_position: yup.string().defined().default(""),
+    company_name: yup.string().default(""),
+    ubication: yup.string().default(""),
+    sector: yup.string().default(""),
+    description: yup.string().default(""),
+    start_date: yup.string().default(""),
+    end_date: yup.string().default(""),
+    typesOfEmploymentId: yup.number().default(2),
+    typesOfUbicationId: yup.number().default(0),
+    usersCustomuserId: yup.number().default(userID || 0),
+  });
+
+  const { register, handleSubmit } = useForm<interfaceExperience>({
+    resolver: yupResolver(postSchema),
+  });
+
   const toggleCollapse = () => {
     setIsOpen(!isOpen);
   };
@@ -75,6 +104,7 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
 
     setIsOpen(false);
   };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -82,16 +112,9 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
       [name]: value,
     });
   };
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Datos a enviar:", formData);
-  };
-  const handleCloseForm = () => {
-    setIsOpenForm(false);
-    console.log("anda?", showMeForm);
-  };
-  const sendDataToTheServer = async (e: React.FormEvent) => {
-    e.preventDefault();
+
+  const sendDataToTheServer = async () => {
+ 
     try {
       const response = await axios.post(
         "https://work-wave.onrender.com/api/experience",
@@ -102,154 +125,136 @@ const FormAddExperience: React.FC<FormAddExperienceProps> = ({
       console.error("Error al enviar datos:", error);
     }
   };
+
   useEffect(() => {
     const userId = getUserIdFromLocalStorage();
     setUserID(userId);
+
   }, []);
 
+  
+
   return (
-    <div
-      className={` ${
-        isOpenForm ? "block" : "hidden"
-      } container flex flex-col  bg-black`}
+    <Modal
+      isOpen={showMeForm}  
+      onClose={() => setShowMeForm(false)}
+      title="Añadir experiencia"
     >
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div className="flex items-center justify-between">
-          <div className="p-2">
-            <h1>Añadir experiencia</h1>
-          </div>
-          <div>
-            <button
-              className="mr-4 text-white"
-              type="button"
-              onClick={handleCloseForm}
-            >
-              x
-            </button>
-          </div>
-        </div>
-
-        <div className="flex flex-col">
-          <label htmlFor="titulo1" className="mx-2">
-            Cargo
-          </label>
-          <input
-            type="text"
-            id="titulo1"
-            name="job_position"
-            onChange={handleInputChange}
-            placeholder="Ejemplo: grado en diseño"
-            className="p-2 mx-2 bg-black border border-gray-500 rounded-lg"
-            value={formData?.job_position}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="titulo2">Nombre de la empresa</label>
-          <input
-            type="text"
-            id="titulo2"
-            name="company_name"
-            onChange={handleInputChange}
-            placeholder="Ejemplo: grado en diseño"
-            className="p-2 mx-2 bg-black border border-gray-500 rounded-lg"
-            value={formData?.company_name}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="titulo2">Ubicacion</label>
-          <input
-            type="text"
-            id="titulo2"
-            name="ubication"
-            onChange={handleInputChange}
-            placeholder="Ejemplo: grado en diseño"
-            className="p-2 mx-2 bg-black border border-gray-500 rounded-lg"
-            value={formData?.ubication}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="titulo2">Tipo de ubicacion</label>
-          <button
-            type="button"
-            onClick={toggleCollapse}
-            className="flex items-center justify-between p-2 px-4 py-2 mx-2 text-gray-700 bg-black border border-gray-500 rounded-lg"
-          >
-            <span>{selectedOption || "Seleccionar una opción"}</span>
-            <IoIosArrowDown
-              className={`w-5 h-5 transform ${
-                isOpen ? "rotate-180" : "rotate-0"
-              }`}
-            />
-          </button>
-
-          {isOpen && (
-            <ul className="absolute z-10 w-40 mt-2 bg-black border rounded-md shadow-md">
-              {options.map((option) => (
-                <li
-                  key={option.id}
-                  onClick={() => selectOption(option.name)}
-                  className="px-4 py-2 cursor-pointer hover:bg-blue-100"
-                >
-                  {option.name}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-
-        <div className="flex">
-          <div>
-            <label>Fecha de inicio*</label>
-            <input
-              type="date"
-              name="start_date"
-              onChange={handleInputChange}
-              className="p-2 m-2 mx-2 bg-black border border-gray-500 rounded-lg w-25"
-            />
-          </div>
-          <div>
-            <label>Fecha de Finalización*</label>
-            <input
-              type="date"
-              name="end_date"
-              onChange={handleInputChange}
-              className="p-2 m-2 mx-2 bg-black border border-gray-500 rounded-lg w-42 "
-            />
-          </div>
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="titulo2">Sector</label>
-          <input
-            type="text"
-            id="titulo2"
-            name="sector"
-            onChange={handleInputChange}
-            placeholder="Ejemplo: Tecnologia"
-            className="p-2 mx-2 bg-black border border-gray-500 rounded-lg"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="titulo2">Descripción</label>
-          <input
-            type="text"
-            name="description"
-            onChange={handleInputChange}
-            id="titulo2"
-            placeholder="Añadir descripción del puesto"
-            className="p-2 mx-2 bg-black border border-gray-500 rounded-lg "
-          />
-        </div>
-        <div className="flex items-center justify-center ">
-          <button
-            className="bg-[#4318FF] text-white rounded-xl p-3 m-4 w-60"
-            type="button"
-            onClick={(e) => sendDataToTheServer(e)}
-          >
-            Publicar
-          </button>
-        </div>
+      <form onSubmit={handleSubmit(sendDataToTheServer)}>
+        <ModalContent>
+          <ModalBody>
+            <div className="flex flex-col">
+              <label htmlFor="job_position">Cargo</label>
+              <Input
+                id="job_position"
+                type="text"
+                autoComplete="off"
+                {...register("job_position")}
+                value={formData.job_position}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="company_name">Nombre de la empresa</label>
+              <Input
+                id="company_name"
+                type="text"
+                autoComplete="off"
+                {...register("company_name")}
+                value={formData.company_name}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="ubication">Ubicación</label>
+              <Input
+                id="ubication"
+                type="text"
+                autoComplete="off"
+                {...register("ubication")}
+                value={formData.ubication}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="sector">Sector</label>
+              <Input
+                id="sector"
+                type="text"
+                autoComplete="off"
+                {...register("sector")}
+                value={formData.sector}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="description">Descripción</label>
+              <Input
+                id="description"
+                type="text"
+                autoComplete="off"
+                {...register("description")}
+                value={formData.description}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="flex">
+              <div>
+                <label>Fecha de inicio*</label>
+                <Input
+                  type="date"
+                  id="start_date"
+                  autoComplete="off"
+                  {...register("start_date")}
+                  value={formData.start_date}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div>
+                <label>Fecha de Finalización*</label>
+                <Input
+                  type="date"
+                  id="end_date"
+                  autoComplete="off"
+                  {...register("end_date")}
+                  value={formData.end_date}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <label>Tipo de ubicación</label>
+              <Button
+                type="button"
+                onClick={toggleCollapse}
+               
+             
+              >
+                {selectedOption || "Seleccionar una opción"}
+              </Button>
+              {isOpen && (
+                <ul className="mt-2">
+                  {options.map((option) => (
+                    <li
+                      key={option.id}
+                      onClick={() => selectOption(option.name)}
+                      className="cursor-pointer hover:bg-blue-100 p-2 rounded-md"
+                    >
+                      {option.name}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </ModalBody>
+          <ModalFooter>
+            <Button type="button" color="primary" onClick={(e)=>sendDataToTheServer}>
+              Publicar
+            </Button>
+          </ModalFooter>
+        </ModalContent>
       </form>
-    </div>
+    </Modal>
   );
 };
 
