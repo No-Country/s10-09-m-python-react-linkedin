@@ -53,26 +53,29 @@ const Profile: React.FC = () => {
                 className="w-full h-64 rounded-sm"
               />
             </div>
-            <div className="flex flex-col items-center bg-black dataUser">
-              <div className="absolute z-50 w-40 left-[6vw]  sm:top-[24vh] ">
-                <img
-                  // src="/frontimg.svg"
-                  src={profile?.avatar_url}
-                  alt="userImg"
-                  className="object-cover w-full p-2 my-4 rounded-full"
-                />
-              </div>
-              <div className="flex gap-4">
-                <div className="flex flex-col pt-4 pl-64 ">
+            <div className="flex items-center justify-around bg-black dataUser">
+              <div className="flex flex-row-reverse items-center justify-center w-full gap-16">
+                <div className="flex flex-col pt-4 w-full justify-start  ">
                   <h1 className="text-4xl">
                     {profile?.first_name} {profile?.last_name}
                   </h1>
-                  <p className="pr-24">{profile?.headline}</p>
+                  <p>{profile?.headline ?? "soy una alcachofa jaaj salu2"}</p>
                   <div className="flex justify-start py-2 pl-4 my-2 bg-black ">
                     <p className="text-[#3311DB]"> 300 Conexiones</p>
                   </div>
                 </div>
-                <div className="flex flex-col w-1/4 px-6 pt-16">
+                <img
+                  // src="/frontimg.svg"
+                  src={
+                    profile?.avatar_url &&
+                    "https://images.pexels.com/photos/17126623/pexels-photo-17126623/free-photo-of-artischocke-wilde.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  }
+                  alt="userImg"
+                  className="object-cover  my-4 rounded-full h-48 w-60 ml-16"
+                />
+              </div>
+              <div className="w-full ">
+                <div className="flex flex-row gap-4  justify-end px-6 pt-16">
                   <div className="p-2  flex  justify-center items-center gap-2 mb-2 bg-[#68769F] rounded-xl ">
                     <BsSend />
                     <button> Enviar mensaje</button>
